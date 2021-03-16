@@ -1,0 +1,41 @@
+.container__crew{
+    /* border:black 1px solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHeader{
+    background-color: #e9ecef;
+}
+
+.container__crewSideMain{
+    /* border:green 1px solid; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+
+.container__crewSide{
+    /* border:black 1px solid; */
+    display: block;
+    padding: 3px;
+    background-color: #f8f9fa
+}
+
+.container__crewMain{
+    /* border:black 1px solid; */
+    display: block;
+    background-color: #f8f9fa;
+    padding: 3px;
+}
+
+.crewCard{
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 60% 30% 10%;
+    padding: 2px;
+}
+
+.crew__name{
+}
+

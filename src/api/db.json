@@ -1,0 +1,179 @@
+{
+    "users":[
+        {
+            "id": 1,
+            "email": "test@test.com"
+        }
+    ],
+    "artists":[
+        {
+            "id": 1,
+            "name": "Melinda Talbert"
+        },
+        {
+            "id": 2,
+            "name": "Rustin Pynch"
+        }
+],
+    "tours": [
+        {
+            "id": 1,
+            "name": "Big Bottles of Boot Booze Tour 2021",
+            "dateStart": "5/1/2021",
+            "dateEnd": "5/31/2021",
+            "artistId": 1
+        },
+        {
+            "id": 2,
+            "name": "Let Your Best People Go During the Pandemic Tour 2020",
+            "dateStart": "7/1/2021",
+            "dateEnd": "7/31/2021",
+            "artistId": 1
+        },
+        {
+            "id": 3,
+            "name": "My Smile is Amazing 2021",
+            "dateStart": "5/1/2021",
+            "dateEnd": "6/30/2021",
+            "artistId": 2
+        },
+        {
+            "id": 4,
+            "name": "Lots of Covers in My Set 2021",
+            "dateStart": "7/10/2021",
+            "dateEnd": "8/20/2021",
+            "artistId": 2
+        },
+        {
+            "id": 4,
+            "name": "Another Tour Like the Last One 2021",
+            "dateStart": "8/31/2021",
+            "dateEnd": "9/16/2021",
+            "artistId": 2
+        }
+],
+    "crewGroup":[
+        {
+            "id": 1,
+            "name": "Band"
+        },
+        {
+            "id": 2,
+            "name": "Production"
+        },
+        {
+            "id": 3,
+            "name": "Audio"
+        },
+        {
+            "id": 4,
+            "name": "Stage/Rigging"
+        },
+        {
+            "id": 5,
+            "name": "Video"
+        },
+        {
+            "id": 6,
+            "name": "Lighting"
+        },
+        {
+            "id": 7,
+            "name": "Rigging"
+        },
+        {
+            "id": 8,
+            "name": "Drivers"
+        },
+        {
+            "id": 9,
+            "name": "Backline"
+        }
+    ],
+    "crew": [
+    {
+        "id":2,
+        "firstName": "Reginald",
+        "lastName": "Lake",
+        "crewGroupId": 2,
+        "title": "TM"
+    },
+    {
+        "id":3,
+        "firstName": "Lee",
+        "lastName": "Dotson",
+        "crewGroupId": 2,
+        "title": "PM"
+    },
+    {
+        "id":4,
+        "firstName": "Rahim",
+        "lastName": "Castillo",
+        "crewGroupId": 2,
+        "title": "Asst TM"
+    },
+    {
+        "id":5,
+        "firstName": "Catrin",
+        "lastName": "Pemberton",
+        "crewGroupId": 2,
+        "title": "PA"
+    },
+    {
+        "id":6,
+        "firstName": "Dale",
+        "lastName": "Beil",
+        "crewGroupId": 2,
+        "title": "Merch"
+    },
+    {
+        "id":7,
+        "firstName": "Roy",
+        "lastName": "Hamer",
+        "crewGroupId": 2,
+        "title": "Security"
+    },
+    {
+        "id":8,
+        "firstName": "Asia",
+        "lastName": "Davidson",
+        "crewGroupId": 1,
+        "title": "Guitar"
+    },
+    {
+        "id":9,
+        "firstName": "Siyana",
+        "lastName": "Curry",
+        "crewGroupId": 1,
+        "title": "Guitar 2"
+    },
+    {
+        "id":10,
+        "firstName": "Zayn",
+        "lastName": "Pugh",
+        "crewGroupId": 1,
+        "title": "Steel"
+    },
+    {
+        "id":11,
+        "firstName": "Amy",
+        "lastName": "Tyson",
+        "crewGroupId": 1,
+        "title": "Keys"
+    },
+    {
+        "id":12,
+        "firstName": "Herbert",
+        "lastName": "Sharp",
+        "crewGroupId": 1,
+        "title": "Bass"
+    },
+    {
+        "id":13,
+        "firstName": "Ranveer",
+        "lastName": "Wu",
+        "crewGroupId": 1,
+        "title": "Drums"
+    }
+    ]
+}
