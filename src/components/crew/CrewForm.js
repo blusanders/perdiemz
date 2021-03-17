@@ -24,6 +24,8 @@ export const CrewForm = () => {
     //create state var to stop quick clicks on edits
     const [isLoading, setIsLoading] = useState(true);
 
+    const [validMsg, setValidMsg] = useState("");
+
     //get crewId from URL if there
     const { crewId } = useParams();
     const history = useHistory();
@@ -37,15 +39,21 @@ export const CrewForm = () => {
 
     const handleSaveCrew = () => {
       let validForm=false
-      let validMsg = []
+
+      if (crew.firstName.length === 0) {
+        setValidMsg(validMsg+"<div>First name required.</div>")
+      }else{
+        validForm=true
+      }
+
       if (parseInt(crew.crewTypeId) === 0) {
-        validMsg.push("Crew type required.")
+        setValidMsg(validMsg+"<div>Crew type required.</div>")
       }else{
         validForm=true
       }
 
       if (validForm===false) {
-        window.alert("Please select a Crew Type")
+        window.alert("All items required")
       } else {
         //disable the button - no extra clicks
         setIsLoading(true);
@@ -93,6 +101,8 @@ export const CrewForm = () => {
     return (
       <form className="crewForm">
         <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
+
+        {validMsg.length > 0 ? "" : validMsg}
 
           <fieldset>
           <div className="form-group">
