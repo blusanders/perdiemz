@@ -37,7 +37,15 @@ export const CrewForm = () => {
       setCrew(newCrew)
     }
 
-    const handleSaveCrew = () => {
+    const handleClickDeleteCrew = (event) => {
+      console.log("Delete ID " + event.target.id)
+      // deleteMessage(event.target.id)
+      // .then(() => {
+      //     history.push("/messages")
+      // })
+  }
+
+  const handleSaveCrew = () => {
       let validForm=false
       let validMsgString=""
 
@@ -57,14 +65,7 @@ export const CrewForm = () => {
           }
         }
       }
-
-    const handleClickDeleteCrew = (event) => {
-        console.log("Delete ID " + event.target.id)
-        // deleteMessage(event.target.id)
-        // .then(() => {
-        //     history.push("/messages")
-        // })
-    }
+      
 
       if (validForm===false) {
         window.alert(validMsgString)
@@ -91,6 +92,13 @@ export const CrewForm = () => {
             title: crew.title,
             crewTypeId: parseInt(crew.crewTypeId)
           })
+          .then(setCrew({  //reset state obj as blank to zero out add form
+            firstName: "",
+            lastName: "",
+            title: "",
+            crewTypeId: 0
+          }))
+          .then(setIsLoading(false))
           .then(() => history.push("/crew"))
         }
       }
@@ -113,6 +121,7 @@ export const CrewForm = () => {
     }, [])
 
     return (
+      <div>
       <form className="crewForm ">
         <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
 
@@ -165,17 +174,28 @@ export const CrewForm = () => {
         </fieldset>
 
         <button className="btn btn-secondary"
+          type="submit"
           disabled={isLoading}
           onClick={event => {
             event.preventDefault() // Prevent browser from submitting the form and refreshing the page
             handleSaveCrew()
           }}>
-        {crewId ? "Save Crew" : "Add Crew"}</button>
 
-        <button className="btn btn-secondary" onClick={handleClickDeleteCrew}>
-          Delete Crew
+          {/* show ADD or SAVE if adding or editing  */}
+          {crewId ? "Save Crew" : "Add Crew"}
+
         </button>
 
+        {/* only show delete button if editing */}
+        {crewId ?
+        <button type="button" className="btn btn-secondary" onClick={handleClickDeleteCrew}>
+          Delete Crew
+        </button>
+        :
+        ""
+        }
       </form>
-    )
+
+</div>
+)
 }
