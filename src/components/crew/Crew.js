@@ -30,7 +30,6 @@ export const Crew = () => {
                     }
                 </div>
                 <div className="container__crewMain">
-                    <h2>Add/Edit Crew Member</h2>
                     <CrewForm />
                 </div>
             </div>

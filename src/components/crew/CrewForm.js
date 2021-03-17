@@ -9,9 +9,8 @@ import "./Crew.css"
 import { Button } from 'reactstrap';
 
 export const CrewForm = () => {
-  const { addCrew, getCrewById, updateCrew } = useContext(CrewContext)
+  const { addCrew, getCrewById, updateCrew, deleteCrew } = useContext(CrewContext)
   const { crewTypes, getCrewTypes } = useContext(CrewTypeContext)
-  const { tour, getTours} = useContext(TourContext)
 
   //create empty state var to hold form values
   const [crew, setCrew] = useState({
@@ -28,6 +27,7 @@ export const CrewForm = () => {
 
     //get crewId from URL if there
     const { crewId } = useParams();
+
     const history = useHistory();
 
     //update state on every field change
@@ -37,13 +37,15 @@ export const CrewForm = () => {
       setCrew(newCrew)
     }
 
-    const handleClickDeleteCrew = (event) => {
+    const handleDeleteCrew = (event) => {
       console.log("Delete ID " + event.target.id)
-      // deleteMessage(event.target.id)
-      // .then(() => {
-      //     history.push("/messages")
-      // })
-  }
+      if(window.confirm("Are you sure?")===true){
+        deleteCrew(event.target.id)
+        .then(() => {
+        history.push("/crew")
+        })
+      }
+    }
 
   const handleSaveCrew = () => {
       let validForm=false
@@ -140,7 +142,7 @@ export const CrewForm = () => {
         <fieldset>
           <div className="form-group">
             <label htmlFor="crewName">Last name:* </label>
-            <input type="text" id="lastName" required autoFocus className="form-control"
+            <input type="text" id="lastName" required className="form-control"
             placeholder="Last Name"
             onChange={handleControlledInputChange}
             value={crew.lastName}/>
@@ -152,7 +154,7 @@ export const CrewForm = () => {
               <label htmlFor="breed">Title:*</label>
               <input type="text" id="title" 
               onChange={handleControlledInputChange}
-              required autoFocus className="form-control" 
+              required className="form-control" 
               placeholder="Title" 
               value={crew.title}/>
           </div>
@@ -185,10 +187,10 @@ export const CrewForm = () => {
           {crewId ? "Save Crew" : "Add Crew"}
 
         </button>
-
+        <div class="divider"/>
         {/* only show delete button if editing */}
         {crewId ?
-        <button type="button" className="btn btn-secondary" onClick={handleClickDeleteCrew}>
+        <button type="button" id={crewId} className="btn btn-secondary" onClick={handleDeleteCrew}>
           Delete Crew
         </button>
         :

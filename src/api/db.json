@@ -176,39 +176,11 @@
       "title": "Drums"
     },
     {
-      "firstName": "1",
-      "lastName": "2",
-      "title": "3",
-      "crewTypeId": 3,
-      "id": 14
-    },
-    {
-      "firstName": "4",
-      "lastName": "5",
-      "title": "6",
-      "crewTypeId": 4,
-      "id": 15
-    },
-    {
       "firstName": "77",
       "lastName": "88",
       "title": "99",
       "crewTypeId": 5,
       "id": 16
-    },
-    {
-      "firstName": "11",
-      "lastName": "22",
-      "title": "33",
-      "crewTypeId": 8,
-      "id": 17
-    },
-    {
-      "firstName": "654",
-      "lastName": "312",
-      "title": "456",
-      "crewTypeId": 1,
-      "id": 18
     }
   ],
   "tourRun": [

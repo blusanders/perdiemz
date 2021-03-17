@@ -17,7 +17,7 @@ export const CrewProvider = (props) => {
     }
 
     const getCrewById = (id) => {
-        return fetch(`http://localhost:8088/crew/${id}?_expand=user`)
+        return fetch(`http://localhost:8088/crew/${id}`)
             .then(res => res.json())
     }
 

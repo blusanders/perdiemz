@@ -17,25 +17,33 @@
 
 .container__crewSide{
     /* border:black 1px solid; */
-    display: block;
-    padding: 3px;
-    background-color: #f8f9fa
+    /* border-radius: 15px; */
+    background-color: #f8f9fa;
+    padding: 10px;
 }
 
 .container__crewMain{
     /* border:black 1px solid; */
-    display: block;
+    /* border-radius: 15px; */
     background-color: #f8f9fa;
-    padding: 3px;
+    padding: 10px;
 }
 
 .crewCard{
+    /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: 50% 40% 10%;
-    padding: 2px;
+    grid-template-columns: 50% 35% 15%;
+    padding: 1px;
+    margin: 1px;
+    font-size: 12px;
+    border-top: 1px solid gray;
+    align-items:center;
 }
 
-.crew__name{
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
 }
 
