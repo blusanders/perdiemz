@@ -5,14 +5,14 @@ export const CrewTypeContext = createContext()
 
 // This component establishes what data can be used.
 export const CrewTypeProvider = (props) => {
-    const [crewType, setCrewType] = useState([])
+    const [crewTypes, setCrewTypes] = useState([])
 
-    const getCrewType = () => {
+    const getCrewTypes = () => {
         return fetch("http://localhost:8088/crewType")
         .then(res => res.json())
         .then(sorted => {
             sorted = sorted.sort((a,b)=>a.lName-b.lName) //change a,b to sort most recent last
-            setCrewType(sorted)
+            setCrewTypes(sorted)
         })
     }
 
@@ -29,19 +29,19 @@ export const CrewTypeProvider = (props) => {
             },
             body: JSON.stringify(crewObj)
         })
-        .then(getCrewType)
+        .then(getCrewTypes)
     }
 
     const deleteCrewType = crewId => {
         return fetch(`http://localhost:8088/crewType/${crewId}`, {
             method: "DELETE"
         })
-            .then(getCrewType)
+            .then(getCrewTypes)
     }
 
     return (
         <CrewTypeContext.Provider value={{
-            crewType, getCrewType, getCrewTypeById, addCrewType, deleteCrewType
+            crewTypes, getCrewTypes, getCrewTypeById, addCrewType, deleteCrewType
         }}>
             {props.children}
         </CrewTypeContext.Provider>

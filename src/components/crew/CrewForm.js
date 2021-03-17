@@ -3,13 +3,15 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { CrewContext } from "./CrewProvider";
 import { CrewTypeContext } from "../CrewType/CrewTypeProvider";
+import { TourContext } from "../tour/TourProvider";
 
 import "./Crew.css"
 import { Button } from 'reactstrap';
 
 export const CrewForm = () => {
   const { addCrew, getCrewById, updateCrew } = useContext(CrewContext)
-  const { crewType, getCrewType, addCrewType, getCrewTypeById, updateCrewType } = useContext(CrewTypeContext)
+  const { crewTypes, getCrewTypes } = useContext(CrewTypeContext)
+  const { tour, getTours} = useContext(TourContext)
 
   //create empty state var to hold form values
   const [crew, setCrew] = useState({
@@ -34,12 +36,21 @@ export const CrewForm = () => {
     }
 
     const handleSaveCrew = () => {
-      if (parseInt(crew.locationId) === 0) {
-          window.alert("Please select a location")
+      let validForm=false
+      let validMsg = []
+      if (parseInt(crew.crewTypeId) === 0) {
+        validMsg.push("Crew type required.")
+      }else{
+        validForm=true
+      }
+
+      if (validForm===false) {
+        window.alert("Please select a Crew Type")
       } else {
         //disable the button - no extra clicks
         setIsLoading(true);
-        // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of an crew
+
+        //if params has crewId
         if (crewId){
           //PUT - update
           updateCrew({
@@ -65,8 +76,8 @@ export const CrewForm = () => {
 
     // Get customers and locations. If crewId is in the URL, getCrewById
     useEffect(() => {
-      debugger
-      getCrewType().then(() => {
+      getCrewTypes()
+      .then(() => {
         if (crewId) {
           getCrewById(crewId)
           .then(crew => {
@@ -82,7 +93,8 @@ export const CrewForm = () => {
     return (
       <form className="crewForm">
         <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
-        <fieldset>
+
+          <fieldset>
           <div className="form-group">
             <label htmlFor="crewName">First: </label>
             <input type="text" id="firstName" required autoFocus className="form-control"
@@ -119,7 +131,7 @@ export const CrewForm = () => {
             <select value={crew.crewTypeId} id="crewTypeId" className="form-control" 
             onChange={handleControlledInputChange}>
               <option value="0">Select a Crew Type</option>
-              {crewType.map(l => (
+              {crewTypes.map(l => (
                 <option key={l.id} value={l.id}>
                   {l.name}
                 </option>

@@ -12,7 +12,7 @@
     /* border:green 1px solid; */
     /* display: flex; */
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 30% 70%;
 }
 
 .container__crewSide{
@@ -32,7 +32,7 @@
 .crewCard{
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: 60% 30% 10%;
+    grid-template-columns: 50% 40% 10%;
     padding: 2px;
 }
 
