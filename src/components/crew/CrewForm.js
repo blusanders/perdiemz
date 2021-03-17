@@ -39,26 +39,40 @@ export const CrewForm = () => {
 
     const handleSaveCrew = () => {
       let validForm=false
+      let validMsgString=""
 
       if (crew.firstName.length === 0) {
-        setValidMsg(validMsg+"<div>First name required.</div>")
+        validMsgString = "First name required."
       }else{
-        validForm=true
+        if (crew.lastName.length === 0) {
+          validMsgString += "Last name required."
+        }else{
+          if (crew.title.length === 0) {
+            validMsgString += "Title is required."
+          }else{
+            if (parseInt(crew.crewTypeId) === 0) {
+              validMsgString += "Crew Type is required."
+            }else{validForm=true
+            }
+          }
+        }
       }
 
-      if (parseInt(crew.crewTypeId) === 0) {
-        setValidMsg(validMsg+"<div>Crew type required.</div>")
-      }else{
-        validForm=true
-      }
+    const handleClickDeleteCrew = (event) => {
+        console.log("Delete ID " + event.target.id)
+        // deleteMessage(event.target.id)
+        // .then(() => {
+        //     history.push("/messages")
+        // })
+    }
 
       if (validForm===false) {
-        window.alert("All items required")
+        window.alert(validMsgString)
       } else {
         //disable the button - no extra clicks
         setIsLoading(true);
 
-        //if params has crewId
+        //if params has crewId then UPDATE else ADD
         if (crewId){
           //PUT - update
           updateCrew({
@@ -99,14 +113,14 @@ export const CrewForm = () => {
     }, [])
 
     return (
-      <form className="crewForm">
+      <form className="crewForm ">
         <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
 
         {validMsg.length > 0 ? "" : validMsg}
 
           <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">First: </label>
+            <label htmlFor="crewName">First:*</label>
             <input type="text" id="firstName" required autoFocus className="form-control"
             placeholder="First Name"
             onChange={handleControlledInputChange}
@@ -116,17 +130,17 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">Last name: </label>
+            <label htmlFor="crewName">Last name:* </label>
             <input type="text" id="lastName" required autoFocus className="form-control"
             placeholder="Last Name"
             onChange={handleControlledInputChange}
-            value={crew.firstName}/>
+            value={crew.lastName}/>
           </div>
         </fieldset>
 
         <fieldset>
           <div className="form-group">
-              <label htmlFor="breed">Title:</label>
+              <label htmlFor="breed">Title:*</label>
               <input type="text" id="title" 
               onChange={handleControlledInputChange}
               required autoFocus className="form-control" 
@@ -137,7 +151,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="location">Crew Type: </label>
+            <label htmlFor="location">Crew Type:* </label>
             <select value={crew.crewTypeId} id="crewTypeId" className="form-control" 
             onChange={handleControlledInputChange}>
               <option value="0">Select a Crew Type</option>
@@ -157,6 +171,11 @@ export const CrewForm = () => {
             handleSaveCrew()
           }}>
         {crewId ? "Save Crew" : "Add Crew"}</button>
+
+        <button className="btn btn-secondary" onClick={handleClickDeleteCrew}>
+          Delete Crew
+        </button>
+
       </form>
     )
 }
