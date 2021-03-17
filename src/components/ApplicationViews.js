@@ -9,6 +9,7 @@ import { CrewProvider } from "./crew/CrewProvider";
 import { TourRun } from "./tourrun/TourRun";
 
 import { Reports } from "./reports/Reports";
+import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
 
 
 export const ApplicationViews = () => {
@@ -21,7 +22,9 @@ export const ApplicationViews = () => {
             <Route exact path="/crew">
 
             <CrewProvider>
-                <Crew />
+                <CrewTypeProvider>
+                    <Crew />
+                </CrewTypeProvider>
             </CrewProvider>
             </Route>
 

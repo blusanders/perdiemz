@@ -1,79 +1,76 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
-import { CrewTypeContext } from "../crewtype/CrewTypeProvider"
+
 import { CrewContext } from "./CrewProvider";
+import { CrewTypeContext } from "../CrewType/CrewTypeProvider";
+
 import "./Crew.css"
 import { Button } from 'reactstrap';
 
 export const CrewForm = () => {
-    const { addAnimal, getAnimalById, updateAnimal } = useContext(AnimalContext)
-    const { locations, getLocations } = useContext(LocationContext)
+  const { addCrew, getCrewById, updateCrew } = useContext(CrewContext)
+  const { crewType, getCrewType, addCrewType, getCrewTypeById, updateCrewType } = useContext(CrewTypeContext)
 
-    //for edit, hold on to state of animal in this view
-    const [animal, setAnimal] = useState({
-      name: "",
-      breed: "",
-      customerId: 0,
-      locationId: 0
+  //create empty state var to hold form values
+  const [crew, setCrew] = useState({
+      firstName: "",
+      lastName: "",
+      title: "",
+      crewTypeId: 0
     })
 
-    //wait for data before button is active. Look at the button to see how it's setting itself to disabled or not based on this state
+    //create state var to stop quick clicks on edits
     const [isLoading, setIsLoading] = useState(true);
 
-    // Now that the form can be used for editing as well as adding an animal, you need access to the animal id for fetching the animal you want to edit
-    const { animalId } = useParams();
+    //get crewId from URL if there
+    const { crewId } = useParams();
     const history = useHistory();
 
-    //when field changes, update state. This causes a re-render and updates the view.
-    //Controlled component
+    //update state on every field change
     const handleControlledInputChange = (event) => {
-      //When changing a state object or array,
-      //always create a copy make changes, and then set state.
-      const newAnimal = { ...animal }
-      //animal is an object with properties.
-      //set the property to the new value
-      newAnimal[event.target.id] = event.target.value
-      //update state
-      setAnimal(newAnimal)
+      const newCrew = { ...crew }
+      newCrew[event.target.id] = event.target.value
+      setCrew(newCrew)
     }
 
-    const handleSaveAnimal = () => {
-      if (parseInt(animal.locationId) === 0) {
+    const handleSaveCrew = () => {
+      if (parseInt(crew.locationId) === 0) {
           window.alert("Please select a location")
       } else {
         //disable the button - no extra clicks
         setIsLoading(true);
-        // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of an animal
-        if (animalId){
+        // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of an crew
+        if (crewId){
           //PUT - update
-          updateAnimal({
-              id: animal.id,
-              name: animal.name,
-              breed: animal.breed,
-              locationId: parseInt(animal.locationId),
-              customerId: parseInt(animal.customerId)
+          updateCrew({
+              id: crew.id,
+              firstName: crew.firstName,
+              lastName: crew.lastName,
+              title: crew.title,
+              crewTypeId: parseInt(crew.crewTypeId)
           })
-          .then(() => history.push(`/animals/detail/${animal.id}`))
+          .then(() => history.push(`/crew/detail/${crew.id}`))
         }else {
           //POST - add
-          addAnimal({
-              name: animal.name,
-              breed: animal.breed,
-              locationId: parseInt(animal.locationId),
-              customerId: parseInt(animal.customerId)
+          addCrew({
+            firstName: crew.firstName,
+            lastName: crew.lastName,
+            title: crew.title,
+            crewTypeId: parseInt(crew.crewTypeId)
           })
-          .then(() => history.push("/animals"))
+          .then(() => history.push("/crew"))
         }
       }
     }
 
-    // Get customers and locations. If animalId is in the URL, getAnimalById
+    // Get customers and locations. If crewId is in the URL, getCrewById
     useEffect(() => {
-      getCustomers().then(getLocations).then(() => {
-        if (animalId) {
-          getAnimalById(animalId)
-          .then(animal => {
-              setAnimal(animal)
+      debugger
+      getCrewType().then(() => {
+        if (crewId) {
+          getCrewById(crewId)
+          .then(crew => {
+              setCrew(crew)
               setIsLoading(false)
           })
         } else {
@@ -83,29 +80,46 @@ export const CrewForm = () => {
     }, [])
 
     return (
-      <form className="animalForm">
-        <h2 className="animalForm__title">{animalId ? "Edit Animal" : "Add Animal"}</h2>
+      <form className="crewForm">
+        <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="animalName">Animal name: </label>
-            <input type="text" id="name" required autoFocus className="form-control"
-            placeholder="Animal name"
+            <label htmlFor="crewName">First: </label>
+            <input type="text" id="firstName" required autoFocus className="form-control"
+            placeholder="First Name"
             onChange={handleControlledInputChange}
-            value={animal.name}/>
+            value={crew.firstName}/>
           </div>
         </fieldset>
+
         <fieldset>
           <div className="form-group">
-              <label htmlFor="breed">Animal breed:</label>
-              <input type="text" id="breed" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Animal breed" value={animal.breed}/>
+            <label htmlFor="crewName">Last name: </label>
+            <input type="text" id="lastName" required autoFocus className="form-control"
+            placeholder="Last Name"
+            onChange={handleControlledInputChange}
+            value={crew.firstName}/>
           </div>
         </fieldset>
+
         <fieldset>
           <div className="form-group">
-            <label htmlFor="location">Assign to location: </label>
-            <select value={animal.locationId} id="locationId" className="form-control" onChange={handleControlledInputChange}>
-              <option value="0">Select a location</option>
-              {locations.map(l => (
+              <label htmlFor="breed">Title:</label>
+              <input type="text" id="title" 
+              onChange={handleControlledInputChange}
+              required autoFocus className="form-control" 
+              placeholder="Title" 
+              value={crew.title}/>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="location">Crew Type: </label>
+            <select value={crew.crewTypeId} id="crewTypeId" className="form-control" 
+            onChange={handleControlledInputChange}>
+              <option value="0">Select a Crew Type</option>
+              {crewType.map(l => (
                 <option key={l.id} value={l.id}>
                   {l.name}
                 </option>
@@ -113,26 +127,14 @@ export const CrewForm = () => {
             </select>
           </div>
         </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="customer">Customer: </label>
-            <select value={animal.customerId} id="customerId" className="form-control" onChange={handleControlledInputChange}>
-              <option value="0">Select a customer</option>
-              {customers.map(c => (
-                <option key={c.id} value={c.id}>
-                    {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </fieldset>
-        <button className="btn btn-primary"
+
+        <button className="btn btn-secondary"
           disabled={isLoading}
           onClick={event => {
             event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-            handleSaveAnimal()
+            handleSaveCrew()
           }}>
-        {animalId ? "Save Animal" : "Add Animal"}</button>
+        {crewId ? "Save Crew" : "Add Crew"}</button>
       </form>
     )
 }

@@ -52,7 +52,7 @@
             "artistId": 2
         }
 ],
-    "crewGroup":[
+    "crewType":[
         {
             "id": 1,
             "name": "Band"
@@ -95,84 +95,84 @@
         "id":2,
         "firstName": "Reginald",
         "lastName": "Lake",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "TM"
     },
     {
         "id":3,
         "firstName": "Lee",
         "lastName": "Dotson",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "PM"
     },
     {
         "id":4,
         "firstName": "Rahim",
         "lastName": "Castillo",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "Asst TM"
     },
     {
         "id":5,
         "firstName": "Catrin",
         "lastName": "Pemberton",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "PA"
     },
     {
         "id":6,
         "firstName": "Dale",
         "lastName": "Beil",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "Merch"
     },
     {
         "id":7,
         "firstName": "Roy",
         "lastName": "Hamer",
-        "crewGroupId": 2,
+        "crewTypeId": 2,
         "title": "Security"
     },
     {
         "id":8,
         "firstName": "Asia",
         "lastName": "Davidson",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Guitar"
     },
     {
         "id":9,
         "firstName": "Siyana",
         "lastName": "Curry",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Guitar 2"
     },
     {
         "id":10,
         "firstName": "Zayn",
         "lastName": "Pugh",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Steel"
     },
     {
         "id":11,
         "firstName": "Amy",
         "lastName": "Tyson",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Keys"
     },
     {
         "id":12,
         "firstName": "Herbert",
         "lastName": "Sharp",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Bass"
     },
     {
         "id":13,
         "firstName": "Ranveer",
         "lastName": "Wu",
-        "crewGroupId": 1,
+        "crewTypeId": 1,
         "title": "Drums"
     }
     ]
