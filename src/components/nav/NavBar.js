@@ -14,7 +14,7 @@ export const NavBar = (props) => {
   }
 
   return (
-    <nav className="navbar bg-white">
+    <nav className="navbar bg-custom-2 bg-white">
 
       <ul className="nav nav-pills nav-fill">
         <li className="navbar-brand">
