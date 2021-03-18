@@ -1,17 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import { CrewContext } from "./CrewProvider";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import "./Crew.css"
-import { CrewCard } from "./CrewCard";
 import { CrewForm } from "./CrewForm";
+import { CrewList } from "./CrewList";
 
 export const Crew = () => {
-
-    const { crew, getCrew } = useContext(CrewContext)
-
-    useEffect(() => {
-        getCrew()
-    }, [])
 
     return (
         <div className="container__crew">
@@ -21,6 +13,7 @@ export const Crew = () => {
             </div>
 
             <div className="container__crewSideMain">
+
                 <div className="container__crewSide">
                     <h2>All Crew</h2>
                     <div className="crewCardHeader">
@@ -29,15 +22,14 @@ export const Crew = () => {
                         <div></div>
                     </div>
 
-                    {
-                        crew.map(crewMember => {
-                        return <CrewCard key={crew.id} crew={crewMember} />
-                        })
-                    }
-            </div>
+                    <CrewList />
+
+                </div>
+
                 <div className="container__crewMain">
                     <CrewForm />
                 </div>
+
             </div>
 
         </div>

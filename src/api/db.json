@@ -148,9 +148,8 @@
       "id": 8,
       "firstName": "Asia",
       "lastName": "Davidson",
-      "crewTypeId": 1,
       "title": "Guitar",
-      "available": true
+      "crewTypeId": 1
     },
     {
       "id": 9,
@@ -193,22 +192,30 @@
       "available": true
     },
     {
-      "id": 14,
       "firstName": "Test",
       "lastName": "Person",
       "title": "Tech",
-      "crewTypeId": 3
+      "crewTypeId": 3,
+      "id": 14,
+      "available": true
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Person",
+      "title": "123",
+      "crewTypeId": 3,
+      "id": 15
     }
   ],
   "tourRun": [
     {
       "id": 1,
       "tourId": 1,
-      "name": "Test Run One, Tour",
+      "name": "Test Run One, Tour One",
       "dateStart": "5/1/2021",
       "dateEnd": "5/10/2021",
       "timeArrive": "",
-      "timeLeave": "",
+      "timeLeave": "12:00:pm",
       "description": "This is the first run of the tour"
     },
     {

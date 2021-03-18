@@ -28,10 +28,15 @@ export const CrewForm = () => {
     //get crewId from URL if there
     const { crewId } = useParams();
 
+    //can useEffect monitor the URL for changes?
+    // useEffect(() => {}, [crewId])
+
+
     const history = useHistory();
 
     //update state on every field change
     const handleControlledInputChange = (event) => {
+      event.preventDefault()
       const newCrew = { ...crew }
       newCrew[event.target.id] = event.target.value
       setCrew(newCrew)
