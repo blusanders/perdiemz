@@ -23,12 +23,18 @@ export const Crew = () => {
             <div className="container__crewSideMain">
                 <div className="container__crewSide">
                     <h2>All Crew</h2>
+                    <div className="crewCardHeader">
+                        <div>Name</div>
+                        <div>Title</div>
+                        <div></div>
+                    </div>
+
                     {
                         crew.map(crewMember => {
                         return <CrewCard key={crew.id} crew={crewMember} />
                         })
                     }
-                </div>
+            </div>
                 <div className="container__crewMain">
                     <CrewForm />
                 </div>

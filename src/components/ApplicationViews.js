@@ -11,6 +11,7 @@ import { TourRun } from "./tourrun/TourRun";
 import { Reports } from "./reports/Reports";
 import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
 import { TourProvider } from "./tour/TourProvider";
+import { TourRunProvider } from "./tourrun/TourRunProvider";
 
 
 export const ApplicationViews = () => {
@@ -41,7 +42,9 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route exact path="/tourrun">
-                <TourRun />
+                <TourRunProvider>
+                    <TourRun />
+                    </TourRunProvider>
             </Route>
 
             <Route exact path="/reports">

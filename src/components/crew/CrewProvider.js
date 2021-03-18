@@ -32,6 +32,17 @@ export const CrewProvider = (props) => {
         .then(getCrew)
     }
 
+    const updateCrew = crew => {
+        return fetch(`http://localhost:8088/crew/${crew.id}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(crew)
+        })
+            .then(getCrew)
+        }
+
     const deleteCrew = crewId => {
         return fetch(`http://localhost:8088/crew/${crewId}`, {
             method: "DELETE"
@@ -41,7 +52,7 @@ export const CrewProvider = (props) => {
 
     return (
         <CrewContext.Provider value={{
-            crew, getCrew, getCrewById, addCrew, deleteCrew
+            crew, getCrew, getCrewById, addCrew, deleteCrew, updateCrew
         }}>
             {props.children}
         </CrewContext.Provider>

@@ -21,7 +21,7 @@ export const NavBar = (props) => {
           <Link className="nav-link" to="/"><img src={PerDiemzLogo} width="100"></img></Link>
         </li>
         <li className="nav-item text-black">
-          <Link className="nav-link" to="/crew">Crew</Link>
+          <Link className="nav-link link-secondary" to="/crew">Crew</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/tourrun">Tour Runs</Link>

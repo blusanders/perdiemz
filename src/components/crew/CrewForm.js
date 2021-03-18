@@ -85,7 +85,7 @@ export const CrewForm = () => {
               title: crew.title,
               crewTypeId: parseInt(crew.crewTypeId)
           })
-          .then(() => history.push(`/crew/detail/${crew.id}`))
+          .then(() => history.push(`/crew`))
         }else {
           //POST - add
           addCrew({
@@ -131,7 +131,7 @@ export const CrewForm = () => {
 
           <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">First:*</label>
+            <label htmlFor="crewName">First:</label>
             <input type="text" id="firstName" required autoFocus className="form-control"
             placeholder="First Name"
             onChange={handleControlledInputChange}
@@ -141,7 +141,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">Last name:* </label>
+            <label htmlFor="crewName">Last name: </label>
             <input type="text" id="lastName" required className="form-control"
             placeholder="Last Name"
             onChange={handleControlledInputChange}
@@ -151,7 +151,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-              <label htmlFor="breed">Title:*</label>
+              <label htmlFor="breed">Title:</label>
               <input type="text" id="title" 
               onChange={handleControlledInputChange}
               required className="form-control" 
@@ -162,7 +162,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="location">Crew Type:* </label>
+            <label htmlFor="location">Crew Type: </label>
             <select value={crew.crewTypeId} id="crewTypeId" className="form-control" 
             onChange={handleControlledInputChange}>
               <option value="0">Select a Crew Type</option>
@@ -187,7 +187,7 @@ export const CrewForm = () => {
           {crewId ? "Save Crew" : "Add Crew"}
 
         </button>
-        <div class="divider"/>
+        <div className="divider"/>
         {/* only show delete button if editing */}
         {crewId ?
         <button type="button" id={crewId} className="btn btn-secondary" onClick={handleDeleteCrew}>
@@ -196,6 +196,8 @@ export const CrewForm = () => {
         :
         ""
         }
+        <div>&nbsp;</div>
+        <div className="formNotice">*All Fields Required</div>
       </form>
 
 </div>

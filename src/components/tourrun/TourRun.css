@@ -1,4 +1,4 @@
-.container__crew{
+.container__tourRun{
     /* border:black 1px solid; */
     display: flex;
     flex-direction: column;
@@ -8,28 +8,28 @@
     background-color: #e9ecef;
 }
 
-.container__crewSideMain{
+.container__tourRunSideMain{
     /* border:green 1px solid; */
     /* display: flex; */
     display: grid;
     grid-template-columns: 30% 70%;
 }
 
-.container__crewSide{
+.container__tourRunSide{
     /* border:black 1px solid; */
     /* border-radius: 15px; */
     background-color: #f8f9fa;
     padding: 10px;
 }
 
-.container__crewMain{
+.container__tourRunMain{
     /* border:black 1px solid; */
     /* border-radius: 15px; */
     background-color: #f8f9fa;
     padding: 10px;
 }
 
-.crewCard{
+.tourRunCard{
     /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
@@ -41,7 +41,7 @@
     align-items:center;
 }
 
-.crewCardHeader{
+.tourRunCardHeader{
     /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
