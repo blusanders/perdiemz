@@ -5,13 +5,13 @@ import { Home } from "./Home";
 
 import { Crew } from "./crew/Crew";
 import { CrewProvider } from "./crew/CrewProvider";
+import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
 
 import { TourRun } from "./tourrun/TourRun";
+import { TourRunProvider } from "./tourrun/TourRunProvider";
+import { TourProvider } from "./tour/TourProvider";
 
 import { Reports } from "./reports/Reports";
-import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
-import { TourProvider } from "./tour/TourProvider";
-import { TourRunProvider } from "./tourrun/TourRunProvider";
 
 
 export const ApplicationViews = () => {
@@ -43,9 +43,11 @@ export const ApplicationViews = () => {
 
             <Route exact path="/tourrun">
                 <TourRunProvider>
-                    <TourRun />
+                    <TourProvider>
+                        <TourRun />
+                    </TourProvider>
                 </TourRunProvider>
-                </Route>
+            </Route>
 
             <Route exact path="/reports">
                 <Reports />

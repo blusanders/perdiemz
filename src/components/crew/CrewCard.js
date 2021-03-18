@@ -16,7 +16,7 @@ export const CrewCard = ({ crew }) => {
         <div className="crewCard">
             <div className="crew__text crew__name">{crew.firstName} {crew.lastName}</div>
             <div className="crew__text">{crew.title}</div>
-            <div>
+            <div>   
     
                 {/* <Link to={`/crew/${crew.id}`} className="btn btn-primary">...</Link> */}
                 <Button type="button" className="btn-sm" href={`/crew/${crew.id}`}>

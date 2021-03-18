@@ -200,11 +200,11 @@
       "available": true
     },
     {
-      "firstName": "Test",
+      "id": 15,
+      "firstName": "Test123",
       "lastName": "Person",
       "title": "123",
-      "crewTypeId": 3,
-      "id": 15
+      "crewTypeId": 3
     }
   ],
   "tourRun": [
@@ -216,7 +216,9 @@
       "dateEnd": "5/10/2021",
       "timeArrive": "",
       "timeLeave": "12:00:pm",
-      "description": "This is the first run of the tour"
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5
     },
     {
       "id": 2,
@@ -226,7 +228,9 @@
       "dateEnd": "6/10/2021",
       "timeArrive": "",
       "timeLeave": "",
-      "description": "This is the first run of the tour"
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5
     },
     {
       "id": 3,
@@ -236,7 +240,9 @@
       "dateEnd": "7/10/2021",
       "timeArrive": "",
       "timeLeave": "",
-      "description": "This is the first run of the tour"
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5
     },
     {
       "id": 4,
@@ -246,7 +252,9 @@
       "dateEnd": "8/10/2021",
       "timeArrive": "",
       "timeLeave": "",
-      "description": "This is the first run of the tour"
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5
     }
   ],
   "tourRunCrew": [

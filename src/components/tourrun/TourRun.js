@@ -1,15 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { TourRunCard } from "./TourRunCard";
-import { TourRunContext } from "./TourRunProvider";
+import "./TourRun.css"
+import { TourRunForm } from "./TourRunForm";
+import { TourRunList } from "./TourRunList";
 
 export const TourRun = () => {
-
-    const { tourRuns, getTourRuns } = useContext(TourRunContext)
-
-    useEffect(() => {
-        getTourRuns()
-    }, [])
 
         return (
         <div className="container__tourRun">
@@ -26,15 +20,13 @@ export const TourRun = () => {
                     <div>Date</div>
                     <div></div>
                 </div>
+                
+                <TourRunList />
 
-                {
-                    tourRuns.map(tourRun => {
-                    return <TourRunCard key={tourRun.id} tourRun={tourRun} />
-                    })
-                }
         </div>
             <div className="container__tourRunMain">
-Tour Run Form
+                {/* Tour Run Form */}
+                <TourRunForm />
             </div>
         </div>
 

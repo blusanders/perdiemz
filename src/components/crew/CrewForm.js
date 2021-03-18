@@ -3,7 +3,6 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { CrewContext } from "./CrewProvider";
 import { CrewTypeContext } from "../CrewType/CrewTypeProvider";
-import { TourContext } from "../tour/TourProvider";
 
 import "./Crew.css"
 import { Button } from 'reactstrap';

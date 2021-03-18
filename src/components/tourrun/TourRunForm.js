@@ -1,29 +1,37 @@
-    import React, { useContext, useEffect, useState } from "react"
-    import { useHistory, useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react"
+import { useHistory, useParams } from 'react-router-dom';
 
-    import { TourRunContext } from "./TourRunProvider";
+import { TourContext } from "../tour/TourProvider";
+import { TourRunContext } from "./TourRunProvider";
+import "./TourRun.css"
 
-    import "./TourRun.css"
-    import { Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
-    export const TourRunForm = () => {
-    const { getTourRuns, addTourRun, getTourRunById, deleteTourRun } = useContext(TourRunContext)
+export const TourRunForm = () => {
+
+    const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
+    const { tours, getTours } = useContext(TourContext)
 
     //create empty state var to hold form values
     const [tourRun, setTourRun] = useState({
-    tourId: 0
-    name: "",
-    description: "",
-    dateStart: "",
-    dateEnd: "",
-    timeLeave: "",
-    timeArrive: ""
+        tourId: 0,
+        name: "",
+        description: "",
+        dateStart: "",
+        dateEnd: "",
+        timeLeave: "",
+        timeArrive: "",
+        perDiem: 0,
+        daysOut: 0
     })
 
     //create state var to stop quick clicks on edits
     const [isLoading, setIsLoading] = useState(true);
 
     const history = useHistory();
+
+    //get tourRunId from URL if there but not editing for now
+    const { tourRunId } = useParams();
 
     //update state on every field change
     const handleControlledInputChange = (event) => {
@@ -38,30 +46,32 @@
         if(window.confirm("Are you sure?")===true){
         deleteTourRun(event.target.id)
         .then(() => {
-        history.push("/tourRun")
+            history.push("/tourRun")
         })
         }
     }
 
     const handleSaveTourRun = () => {
+
         let validForm=false
         let validMsgString=""
 
-        if (tourRun.firstName.length === 0) {
-        validMsgString = "First name required."
+        if (tourRun.name.length === 0) {
+            validMsgString = "Name is required."
         }else{
-        if (tourRun.lastName.length === 0) {
-            validMsgString += "Last name required."
-        }else{
-            if (tourRun.title.length === 0) {
-            validMsgString += "Title is required."
+            if (tourRun.dateStart.length === 0) {
+                validMsgString += "Start date required."
             }else{
-            if (parseInt(tourRun.tourRunTypeId) === 0) {
-                validMsgString += "TourRun Type is required."
-            }else{validForm=true
+                if (tourRun.title.length === 0) {
+                    validMsgString += "Title is required."
+                }else{
+                    if (parseInt(tourRun.tourId) === 0) {
+                        validMsgString += "Tour is required."
+                    }else{
+                        validForm=true
+                    }
+                }
             }
-            }
-        }
         }
         
 
@@ -76,22 +86,29 @@
             //PUT - update
             updateTourRun({
                 id: tourRun.id,
-                firstName: tourRun.firstName,
-                lastName: tourRun.lastName,
-                title: tourRun.title,
-                tourRunTypeId: parseInt(tourRun.tourRunTypeId)
+                name: tourRun.name,
+                description: tourRun.description,
+                dateStart: tourRun.dateStart,
+                dateEnd: tourRun.dateEnd,
+                timeLeave: tourRun.timeLeave,
+                timeArrive: tourRun.timeArrive,
+                tourId: parseInt(tourRun.tourId),
+                perDiem: parseInt(tourRun.perDiem),
+                daysOut: parseInt(tourRun.daysOut)
             })
-            .then(() => history.push(`/tourRun`))
-        }else {
+                .then(() => history.push(`/tourRun`))
+        }else{
             //POST - add
             addTourRun({
-            name: tourRun.name,
-            description: tourRun.description,
-            dateStart: tourRun.dateStart,
-            dateEnd: tourRun.dateEnd,
-            timeLeave: tourRun.timeLeave,
-            timeArrive: tourRun.timeArrive,
-            tourId: parseInt(tourRun.tourId)
+                name: tourRun.name,
+                description: tourRun.description,
+                dateStart: tourRun.dateStart,
+                dateEnd: tourRun.dateEnd,
+                timeLeave: tourRun.timeLeave,
+                timeArrive: tourRun.timeArrive,
+                tourId: parseInt(tourRun.tourId),
+                perDiem: parseInt(tourRun.perDiem),
+                daysOut: parseInt(tourRun.daysOut)
             })
             .then(setTourRun({  //reset state obj as blank to zero out add form
             name: "",
@@ -100,7 +117,9 @@
             dateEnd: "",
             timeLeave: "",
             timeArrive: "",
-            tourId: 0
+            tourId: 0,
+            perDiem: 0,
+            daysOut: 0
             }))
             .then(setIsLoading(false))
             .then(() => history.push("/tourRun"))
@@ -108,10 +127,8 @@
         }
     }
 
-    // Get customers and locations. If tourRunId is in the URL, getTourRunById
     useEffect(() => {
         getTours()
-        .then(getCrew)
         .then(setIsLoading(false))
     }, [])
 
@@ -120,12 +137,18 @@
         <form className="tourRunForm">
         <h2 className="tourRunForm__title">{tourRunId ? "" : "Add TourRun"}</h2>
 
-        {validMsg.length > 0 ? "" : validMsg}
+        {/* {validMsg.length > 0 ? "" : validMsg} */}
 
+        <div class="input-group">
+        One <input type="text" class="form-control" placeholder="Start"/>
+        <label for="one">Two</label>
+        <input name="one" type="text" class="form-control" placeholder="End"/>
+        </div>
+        
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
             <label htmlFor="location">Tour: </label>
-            <select value={tourRuns.tourId} id="tourId" className="form-control" 
+            <select value={tours.tourId} id="tourId" className="form-control" 
             onChange={handleControlledInputChange}>
                 <option value="0">Select a Tour</option>
                 {tours.map(l => (
@@ -136,18 +159,27 @@
             </select>
             </div>
         </fieldset>
-                    <fieldset>
-            <div className="form-group">
+
+        <fieldset>
+            <div className="form-group input-group-sm">
+
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" required autoFocus className="form-control"
             placeholder="Tour Run Name"
             onChange={handleControlledInputChange}
             value={tourRun.name}/>
+
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" required autoFocus className="form-control"
+            placeholder="Tour Run Name"
+            onChange={handleControlledInputChange}
+            value={tourRun.name}/>
+
             </div>
         </fieldset>
 
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
             <label htmlFor="description">Description: </label>
             <input type="text" id="description" required className="form-control"
             placeholder="Last Name"
@@ -157,7 +189,7 @@
         </fieldset>
 
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
                 <label htmlFor="dateStart">Date Start:</label>
                 <input type="text" id="dateStart" 
                 onChange={handleControlledInputChange}
@@ -168,7 +200,7 @@
         </fieldset>
 
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
                 <label htmlFor="dateEnd">Date Start:</label>
                 <input type="text" id="dateEnd" 
                 onChange={handleControlledInputChange}
@@ -179,7 +211,7 @@
         </fieldset>
 
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
                 <label htmlFor="timeLeave">Leave Time:</label>
                 <input type="text" id="timeLeave" 
                 onChange={handleControlledInputChange}
@@ -190,7 +222,7 @@
         </fieldset>
 
         <fieldset>
-            <div className="form-group">
+            <div className="form-group input-group-sm">
                 <label htmlFor="timeArrive">Arrive Time:</label>
                 <input type="text" id="timeArrive" 
                 onChange={handleControlledInputChange}

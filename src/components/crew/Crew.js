@@ -15,7 +15,9 @@ export const Crew = () => {
             <div className="container__crewSideMain">
 
                 <div className="container__crewSide">
+                    
                     <h2>All Crew</h2>
+                    
                     <div className="crewCardHeader">
                         <div>Name</div>
                         <div>Title</div>
