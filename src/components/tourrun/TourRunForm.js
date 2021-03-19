@@ -13,6 +13,7 @@ export const TourRunForm = () => {
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
     const { crew, getCrew } = useContext(CrewContext)
+    const [ denoms, setDenoms ] = useState()
 
     //create empty state var to hold form values
     const [tourRun, setTourRun] = useState({
@@ -44,7 +45,6 @@ export const TourRunForm = () => {
     }
 
     const handleDeleteTourRun = (event) => {
-        console.log("Delete ID " + event.target.id)
         if(window.confirm("Are you sure?")===true){
         deleteTourRun(event.target.id)
         .then(() => {
@@ -54,27 +54,57 @@ export const TourRunForm = () => {
     }
 
 const calcDenoms = () => {
-        let weekTotal = 375
+        let dayRate = 35
+        let dayTotal = 15
+        let weekTotal = dayRate*dayTotal
 
-        let denomArray = [
-            [100,"",0],
-            [50,"",0],
-            [20,"",0],
-            [10,"",0],
-            [5,"",0],
-            [1,"",0]
+        let denArr = [
+            [100,1,],
+            [50,1,],
+            [20,15,],
+            [10,,],
+            [5,,],
+            [1,,]
         ]
 
-        console.log("123"+denomArray[0])
+        let calcStr
+        let remVar
+        let modVar
+        let calcTotal = weekTotal
 
-        // for (let x = 0; x < denomArray.length; x++) {
-        //     const element = array[index];
-        // }
-        // Math.trunc(375/100)-(375%100)
+        //calculate the # of bills denoms per week
+        for (let x = 0; x < denArr.length; x++) {
+            remVar = Math.trunc(calcTotal/denArr[x][0])
+            modVar = weekTotal%denArr[x][0]
+            if(denArr[x][1]===undefined){denArr[x][2]=remVar}
+            if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
+            if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
+            calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
+            if (calcTotal===0){break}
+        }
+
+        //calculate the total # of bills for the entire tour run
+        let totalBillsArray = [
+            [100,0],
+            [50,0],
+            [20,0],
+            [10,0],
+            [5,0],
+            [1,0]
+        ]
+
+        for (let x = 0; x < denArr.length; x++) {
+            if (denArr[x][2]>0){
+                totalBillsArray[x][1] = denArr[x][0]*denArr[x][2] 
+            }
+        }
+        
+        // setDenoms(totalBillsArray)
+        console.table(denArr);
+        console.table(totalBillsArray);
+        return denArr
 
 }
-
-calcDenoms()
 
     const handleSaveTourRun = () => {
 
@@ -282,8 +312,8 @@ calcDenoms()
                         <input type="text" id="100s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="" 
+                        defaultValue="*"/>
                 </div>
 
                 <div className="form-group ">
@@ -291,8 +321,8 @@ calcDenoms()
                         <input type="text" id="50s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="Any" 
+                        defaultValue="*"/>
                 </div>
 
                 <div className="form-group ">
@@ -300,8 +330,8 @@ calcDenoms()
                         <input type="text" id="20s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="Any" 
+                        defaultValue="*"/>
                 </div>
 
                 <div className="form-group ">
@@ -309,8 +339,8 @@ calcDenoms()
                         <input type="text" id="10" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="Any" 
+                        defaultValue="*"/>
                 </div>
 
                 <div className="form-group ">
@@ -318,8 +348,8 @@ calcDenoms()
                         <input type="text" id="5s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="Any" 
+                        defaultValue="*"/>
                 </div>
 
                 <div className="form-group ">
@@ -327,8 +357,8 @@ calcDenoms()
                         <input type="text" id="1s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="0" 
-                        defaultValue="0"/>
+                        placeholder="Any" 
+                        defaultValue="*"/>
                 </div>
                 
             </div>
@@ -336,7 +366,8 @@ calcDenoms()
             <div>Crew total: {crew.length} (array length of crew fetch)</div>
             <div>Per Diem total: calculate this from state vars</div>
             <div>
-
+                Denoms: {calcDenoms()}
+                
             </div>
         </div>
 
