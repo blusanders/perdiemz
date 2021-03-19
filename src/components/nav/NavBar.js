@@ -24,10 +24,10 @@ export const NavBar = (props) => {
           <Link className="nav-link link-secondary" to="/crew">Crew</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/tourrun">Tour Runs</Link>
+          <Link className="nav-link" to="/tourrun">Tour Runz</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/reports">Reports</Link>
+          <Link className="nav-link" to="/reports">Reportz</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" onClick={LogOut}>Logout</Link>

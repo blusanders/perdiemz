@@ -11,7 +11,10 @@ export const TourProvider = (props) => {
         return fetch("http://localhost:8088/tours")
         .then(res => res.json())
         .then(sorted => {
-            sorted = sorted.sort((a,b)=>a.name-b.name) //change a,b to sort most recent last
+            sorted = sorted.sort((a,b)=>{
+                if(a.name < b.name) { return -1; }
+                if(a.name > b.name) { return 1; }
+            })
             setTours(sorted)
         })
     }

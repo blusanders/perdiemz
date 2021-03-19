@@ -11,7 +11,7 @@ export const TourRunCard = ({ tourRun }) => (
         <div className="tourRun__text">{tourRun.dateStart}-{tourRun.dateEnd}</div>
         <div>
             <Button className="btn-sm" href={`/tourrun/${tourRun.id}`}>
-                PD
+                ...
             </Button>
             </div>
             </div>

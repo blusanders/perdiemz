@@ -125,8 +125,7 @@
       "firstName": "Catrin",
       "lastName": "Pemberton",
       "title": "PA",
-      "crewTypeId": 2,
-      "available": true
+      "crewTypeId": 2
     },
     {
       "id": 6,

@@ -11,8 +11,11 @@ export const CrewProvider = (props) => {
         return fetch("http://localhost:8088/crew?_expand=crewTypeId")
         .then(res => res.json())
         .then(sorted => {
-            sorted = sorted.sort((a,b)=>a.lName-b.lName) //change a,b to sort most recent last
-            setCrew(sorted)
+            sorted = sorted.sort((a,b)=>{
+                if(a.lastName < b.lastName) { return -1; }
+                if(a.lastName > b.lastName) { return 1; }
+            })
+        setCrew(sorted)
         })
     }
 

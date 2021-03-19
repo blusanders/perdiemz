@@ -9,12 +9,12 @@ export const TourRun = () => {
         <div className="container__tourRun">
 
         <div className="containerHeader">
-            <h1><i>Tour Runs</i></h1>
+            <h1><i>Tour Runz</i></h1>
         </div>
 
         <div className="container__tourRunSideMain">
             <div className="container__tourRunSide">
-                <h2>All Tour Runs</h2>
+                <h2>All Tour Runz</h2>
                 <div className="tourRunCardHeader">
                     <div>Name</div>
                     <div>Date</div>

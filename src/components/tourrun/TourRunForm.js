@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 
+import { CrewContext } from "../crew/CrewProvider";
 import { TourContext } from "../tour/TourProvider";
 import { TourRunContext } from "./TourRunProvider";
 import "./TourRun.css"
@@ -11,6 +12,7 @@ export const TourRunForm = () => {
 
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
+    const { crew, getCrew } = useContext(CrewContext)
 
     //create empty state var to hold form values
     const [tourRun, setTourRun] = useState({
@@ -129,67 +131,49 @@ export const TourRunForm = () => {
 
     useEffect(() => {
         getTours()
+        .then(getCrew())
         .then(setIsLoading(false))
     }, [])
 
     return (
-        <div>
-        <form className="tourRunForm">
-        <h2 className="tourRunForm__title">{tourRunId ? "" : "Add TourRun"}</h2>
 
-        {/* {validMsg.length > 0 ? "" : validMsg} */}
+        <div className="wrapper">
 
-        <div class="input-group">
-        One <input type="text" class="form-control" placeholder="Start"/>
-        <label for="one">Two</label>
-        <input name="one" type="text" class="form-control" placeholder="End"/>
-        </div>
-        
-        <fieldset>
-            <div className="form-group input-group-sm">
-            <label htmlFor="location">Tour: </label>
-            <select value={tours.tourId} id="tourId" className="form-control" 
-            onChange={handleControlledInputChange}>
-                <option value="0">Select a Tour</option>
-                {tours.map(l => (
-                <option key={l.id} value={l.id}>
-                    {l.name}
-                </option>
-                ))}
-            </select>
+        {/* form is first column */}
+        <form className="tourRunForm ">
+
+        <h2 className="tourRunForm__title">{tourRunId ? "" : "Add TourRunz"}</h2>
+
+            <div className="form-group ">
+                <label htmlFor="location">Tour: </label>
+                <select value={tours.tourId} id="tourId" className="form-control" 
+                onChange={handleControlledInputChange}>
+                    <option value="0">Select a Tour</option>
+                    {tours.map(l => (
+                    <option key={l.id} value={l.id}>
+                        {l.name}
+                    </option>
+                    ))}
+                </select>
             </div>
-        </fieldset>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
-
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" required autoFocus className="form-control"
-            placeholder="Tour Run Name"
-            onChange={handleControlledInputChange}
-            value={tourRun.name}/>
-
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" required autoFocus className="form-control"
-            placeholder="Tour Run Name"
-            onChange={handleControlledInputChange}
-            value={tourRun.name}/>
-
+            <div className="form-group ">
+                <label htmlFor="name">Name:</label>
+                <input type="text" id="name" required autoFocus className="form-control"
+                placeholder="Tour Run Name"
+                onChange={handleControlledInputChange}
+                value={tourRun.name}/>
             </div>
-        </fieldset>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
-            <label htmlFor="description">Description: </label>
-            <input type="text" id="description" required className="form-control"
-            placeholder="Last Name"
-            onChange={handleControlledInputChange}
-            value={tourRun.description}/>
-            </div>
-        </fieldset>
+            <div className="form-group ">
+                <label htmlFor="description">Description: </label>
+                <input type="text" id="description" required className="form-control"
+                placeholder="Last Name"
+                onChange={handleControlledInputChange}
+                value={tourRun.description}/>
+                </div>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
+            <div className="form-group ">
                 <label htmlFor="dateStart">Date Start:</label>
                 <input type="text" id="dateStart" 
                 onChange={handleControlledInputChange}
@@ -197,10 +181,8 @@ export const TourRunForm = () => {
                 placeholder="Start Date" 
                 value={tourRun.dateStart}/>
             </div>
-        </fieldset>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
+            <div className="form-group ">
                 <label htmlFor="dateEnd">Date Start:</label>
                 <input type="text" id="dateEnd" 
                 onChange={handleControlledInputChange}
@@ -208,10 +190,8 @@ export const TourRunForm = () => {
                 placeholder="End Date" 
                 value={tourRun.dateEnd}/>
             </div>
-        </fieldset>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
+            <div className="form-group ">
                 <label htmlFor="timeLeave">Leave Time:</label>
                 <input type="text" id="timeLeave" 
                 onChange={handleControlledInputChange}
@@ -219,43 +199,121 @@ export const TourRunForm = () => {
                 placeholder="Leave Time" 
                 value={tourRun.timeLeave}/>
             </div>
-        </fieldset>
 
-        <fieldset>
-            <div className="form-group input-group-sm">
-                <label htmlFor="timeArrive">Arrive Time:</label>
-                <input type="text" id="timeArrive" 
-                onChange={handleControlledInputChange}
-                required className="form-control" 
-                placeholder="Arrival Time" 
-                value={tourRun.timeArrive}/>
-            </div>
-        </fieldset>
+            
 
-        <button className="btn btn-secondary"
-            type="submit"
-            disabled={isLoading}
-            onClick={event => {
-            event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-            handleSaveTourRun()
-            }}>
+            <button className="btn btn-secondary"
+                type="submit"
+                disabled={isLoading}
+                onClick={event => {
+                event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+                handleSaveTourRun()
+                }}>
 
-            {/* show ADD or SAVE if adding or editing  */}
-            {tourRunId ? "Save TourRun" : "Add TourRun"}
+                {/* show ADD or SAVE if adding or editing  */}
+                {tourRunId ? "Save TourRun" : "Add TourRun"}
 
-        </button>
+            </button>
+
         <div className="divider"/>
-        {/* only show delete button if editing */}
-        {tourRunId ?
-        <button type="button" id={tourRunId} className="btn btn-secondary" onClick={handleDeleteTourRun}>
-            Delete TourRun
-        </button>
-        :
-        ""
-        }
-        <div>&nbsp;</div>
+
+            {/* only show delete button if editing */}
+            {tourRunId ?
+            <button type="button" id={tourRunId} className="btn btn-secondary" onClick={handleDeleteTourRun}>
+                Delete TourRun
+            </button>
+            :
+            ""
+            }
+            <div>&nbsp;</div>
+        
         <div className="formNotice">*All Fields Required</div>
+        
         </form>
+
+        {/* second column */}
+        <div>
+
+            <h2 className="tourRunForm__title">Calcz</h2>
+
+            <div className="form-group ">
+                    <label htmlFor="perDiemAmount">Per Diem:</label>
+                    <input type="text" id="perDiemAmount" 
+                    
+                    required className="form-control" 
+                    placeholder="Per Diem Amount" 
+                    defaultValue="25"/>
+            </div>
+
+            <div className="form-group ">
+                    <label htmlFor="timeArrive">Days Out:</label>
+                    <input type="text" id="daysOut" 
+                    onChange={handleControlledInputChange}
+                    required className="form-control" 
+                    placeholder="Days Out" 
+                    defaultValue="5"/>
+            </div>
+
+            <div className="calc">
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">100s</label>
+                        <input type="text" id="100" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">50s</label>
+                        <input type="text" id="50" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">20s</label>
+                        <input type="text" id="20" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">10s</label>
+                        <input type="text" id="10" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">5s</label>
+                        <input type="text" id="5" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+
+                <div className="form-group ">
+                        <label htmlFor="timeArrive">1s</label>
+                        <input type="text" id="1" 
+                        onChange={handleControlledInputChange}
+                        required className="form-control" 
+                        placeholder="0" 
+                        defaultValue="0"/>
+                </div>
+                
+            </div>
+
+            <div>Crew total: {crew.length} (array length of crew fetch)</div>
+            <div>Per Diem total: calculate this from state vars</div>
+        </div>
 
     </div>
     )

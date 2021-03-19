@@ -14,7 +14,7 @@ export const CrewCard = ({ crew }) => {
     
     return (
         <div className="crewCard">
-            <div className="crew__text crew__name">{crew.firstName} {crew.lastName}</div>
+            <div className="crew__text crew__name">{crew.lastName}, {crew.firstName}</div>
             <div className="crew__text">{crew.title}</div>
             <div>   
     

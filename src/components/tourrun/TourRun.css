@@ -64,3 +64,29 @@
     color: red;
     font-size: 10px;
 }
+
+.wrapper {
+    /* border: gray dotted 1px; */
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+/* form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+} */
+
+.calc {
+    /* border: gray solid 1px; */
+    background-color: lightgray;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". . ."
+    ". . .";
+    margin: 3px;
+}
