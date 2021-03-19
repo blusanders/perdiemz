@@ -53,6 +53,29 @@ export const TourRunForm = () => {
         }
     }
 
+const calcDenoms = () => {
+        let weekTotal = 375
+
+        let denomArray = [
+            [100,"",0],
+            [50,"",0],
+            [20,"",0],
+            [10,"",0],
+            [5,"",0],
+            [1,"",0]
+        ]
+
+        console.log("123"+denomArray[0])
+
+        // for (let x = 0; x < denomArray.length; x++) {
+        //     const element = array[index];
+        // }
+        // Math.trunc(375/100)-(375%100)
+
+}
+
+calcDenoms()
+
     const handleSaveTourRun = () => {
 
         let validForm=false
@@ -76,7 +99,6 @@ export const TourRunForm = () => {
             }
         }
         
-
         if (validForm===false) {
             window.alert(validMsgString)
         } else {
@@ -166,14 +188,6 @@ export const TourRunForm = () => {
             </div>
 
             <div className="form-group ">
-                <label htmlFor="description">Description: </label>
-                <input type="text" id="description" required className="form-control"
-                placeholder="Last Name"
-                onChange={handleControlledInputChange}
-                value={tourRun.description}/>
-                </div>
-
-            <div className="form-group ">
                 <label htmlFor="dateStart">Date Start:</label>
                 <input type="text" id="dateStart" 
                 onChange={handleControlledInputChange}
@@ -183,7 +197,7 @@ export const TourRunForm = () => {
             </div>
 
             <div className="form-group ">
-                <label htmlFor="dateEnd">Date Start:</label>
+                <label htmlFor="dateEnd">Date End:</label>
                 <input type="text" id="dateEnd" 
                 onChange={handleControlledInputChange}
                 required className="form-control" 
@@ -200,6 +214,14 @@ export const TourRunForm = () => {
                 value={tourRun.timeLeave}/>
             </div>
 
+            <div className="form-group ">
+                <label htmlFor="timeArrive">Arrive Time:</label>
+                <input type="text" id="timeArrive" 
+                onChange={handleControlledInputChange}
+                required className="form-control" 
+                placeholder="Arrive Time" 
+                value={tourRun.timeArrive}/>
+            </div>
             
 
             <button className="btn btn-secondary"
@@ -256,8 +278,8 @@ export const TourRunForm = () => {
 
             <div className="calc">
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">100s</label>
-                        <input type="text" id="100" 
+                        <label htmlFor="100s">100s</label>
+                        <input type="text" id="100s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="0" 
@@ -265,8 +287,8 @@ export const TourRunForm = () => {
                 </div>
 
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">50s</label>
-                        <input type="text" id="50" 
+                        <label htmlFor="50s">50s</label>
+                        <input type="text" id="50s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="0" 
@@ -274,8 +296,8 @@ export const TourRunForm = () => {
                 </div>
 
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">20s</label>
-                        <input type="text" id="20" 
+                        <label htmlFor="20s">20s</label>
+                        <input type="text" id="20s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="0" 
@@ -283,7 +305,7 @@ export const TourRunForm = () => {
                 </div>
 
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">10s</label>
+                        <label htmlFor="10s">10s</label>
                         <input type="text" id="10" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
@@ -292,8 +314,8 @@ export const TourRunForm = () => {
                 </div>
 
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">5s</label>
-                        <input type="text" id="5" 
+                        <label htmlFor="5s">5s</label>
+                        <input type="text" id="5s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="0" 
@@ -301,8 +323,8 @@ export const TourRunForm = () => {
                 </div>
 
                 <div className="form-group ">
-                        <label htmlFor="timeArrive">1s</label>
-                        <input type="text" id="1" 
+                        <label htmlFor="1s">1s</label>
+                        <input type="text" id="1s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="0" 
@@ -313,6 +335,9 @@ export const TourRunForm = () => {
 
             <div>Crew total: {crew.length} (array length of crew fetch)</div>
             <div>Per Diem total: calculate this from state vars</div>
+            <div>
+
+            </div>
         </div>
 
     </div>

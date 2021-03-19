@@ -25,8 +25,9 @@ export const TourRun = () => {
 
         </div>
             <div className="container__tourRunMain">
-                {/* Tour Run Form */}
+ 
                 <TourRunForm />
+ 
             </div>
         </div>
 
