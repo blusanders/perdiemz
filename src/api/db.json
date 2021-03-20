@@ -191,19 +191,25 @@
       "available": true
     },
     {
+      "id": 15,
       "firstName": "Test",
       "lastName": "Person",
-      "title": "Tech",
-      "crewTypeId": 3,
-      "id": 14,
-      "available": true
+      "title": "Boss Man",
+      "crewTypeId": 2
     },
     {
-      "id": 15,
-      "firstName": "Test123",
+      "firstName": "Test",
       "lastName": "Person",
-      "title": "123",
-      "crewTypeId": 3
+      "title": "Boss",
+      "crewTypeId": 2,
+      "id": 16
+    },
+    {
+      "firstName": "123",
+      "lastName": "456",
+      "title": "789",
+      "crewTypeId": 4,
+      "id": 17
     }
   ],
   "tourRun": [

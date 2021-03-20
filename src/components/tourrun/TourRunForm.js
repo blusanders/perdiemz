@@ -13,7 +13,16 @@ export const TourRunForm = () => {
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
     const { crew, getCrew } = useContext(CrewContext)
-    const [ denoms, setDenoms ] = useState()
+    const [ denoms, setDenoms ] = useState(
+        [
+            [100,,0,0],
+            [500,,0,0],
+            [20,,0,0],
+            [10,,0,0],
+            [5,,0,0],
+            [1,,0,0]
+        ]
+    )
 
     //create empty state var to hold form values
     const [tourRun, setTourRun] = useState({
@@ -54,56 +63,41 @@ export const TourRunForm = () => {
     }
 
 const calcDenoms = () => {
-        let dayRate = 35
-        let dayTotal = 15
-        let weekTotal = dayRate*dayTotal
+        let dayRate = 25
+        let dayTotal = 13
+        let crewTotal = 14
+        let calcTotal = dayRate*dayTotal
 
+        //1-denomintion, 2-max bills, 3-total bills for denomination, 4-total bills for week 
         let denArr = [
-            [100,1,],
-            [50,1,],
-            [20,15,],
-            [10,,],
-            [5,,],
-            [1,,]
+            [100,1,,0],
+            [50,2,,0],
+            [20,,,0],
+            [10,,,0],
+            [5,,,0],
+            [1,,,0]
         ]
 
-        let calcStr
-        let remVar
-        let modVar
-        let calcTotal = weekTotal
+        let remVar      //integer after dividing and .trunc 
+        let modVar      //modulo after dividing 
 
-        //calculate the # of bills denoms per week
+        //iterate through 
         for (let x = 0; x < denArr.length; x++) {
+
             remVar = Math.trunc(calcTotal/denArr[x][0])
-            modVar = weekTotal%denArr[x][0]
+            modVar = calcTotal%denArr[x][0]
+
             if(denArr[x][1]===undefined){denArr[x][2]=remVar}
             if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
             if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
+
+            denArr[x][3]=denArr[x][2]*crewTotal
+
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
-            if (calcTotal===0){break}
         }
 
-        //calculate the total # of bills for the entire tour run
-        let totalBillsArray = [
-            [100,0],
-            [50,0],
-            [20,0],
-            [10,0],
-            [5,0],
-            [1,0]
-        ]
-
-        for (let x = 0; x < denArr.length; x++) {
-            if (denArr[x][2]>0){
-                totalBillsArray[x][1] = denArr[x][0]*denArr[x][2] 
-            }
-        }
-        
-        // setDenoms(totalBillsArray)
         console.table(denArr);
-        console.table(totalBillsArray);
         return denArr
-
 }
 
     const handleSaveTourRun = () => {
@@ -312,8 +306,8 @@ const calcDenoms = () => {
                         <input type="text" id="100s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="" 
-                        defaultValue="*"/>
+                        placeholder="Any" 
+                        defaultValue=""/>
                 </div>
 
                 <div className="form-group ">
@@ -322,7 +316,7 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        defaultValue="*"/>
+                        defaultValue=""/>
                 </div>
 
                 <div className="form-group ">
@@ -331,7 +325,7 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        defaultValue="*"/>
+                        defaultValue=""/>
                 </div>
 
                 <div className="form-group ">
@@ -340,7 +334,7 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        defaultValue="*"/>
+                        defaultValue=""/>
                 </div>
 
                 <div className="form-group ">
@@ -349,7 +343,7 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        defaultValue="*"/>
+                        defaultValue=""/>
                 </div>
 
                 <div className="form-group ">
@@ -358,7 +352,7 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        defaultValue="*"/>
+                        defaultValue=""/>
                 </div>
                 
             </div>
@@ -366,7 +360,7 @@ const calcDenoms = () => {
             <div>Crew total: {crew.length} (array length of crew fetch)</div>
             <div>Per Diem total: calculate this from state vars</div>
             <div>
-                Denoms: {calcDenoms()}
+                Denoms: {calcDenoms()[0][3]}
                 
             </div>
         </div>
