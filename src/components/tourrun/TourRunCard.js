@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 
 export const TourRunCard = ({ tourRun }) => (
     <>
-                        <div className="tourRunCard">
+    <div className="tourRunCard">
 
         <div className="tourRun__text tourRun__name">{tourRun.name} </div>
         <div className="tourRun__text">{tourRun.dateStart}-{tourRun.dateEnd}</div>
@@ -13,7 +13,12 @@ export const TourRunCard = ({ tourRun }) => (
             <Button className="btn-sm" href={`/tourrun/${tourRun.id}`}>
                 ...
             </Button>
-            </div>
-            </div>
+        </div>
+        <div>
+            <Button className="btn-sm" href={`/tourrun/pd/${tourRun.id}`}>
+                PD
+            </Button>
+        </div>
+    </div>
     </>
 )

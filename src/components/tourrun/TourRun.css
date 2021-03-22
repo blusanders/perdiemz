@@ -33,7 +33,7 @@
     /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: 50% 35% 15%;
+    grid-template-columns: 50% 30% 10% 10%;
     padding: 1px;
     margin: 1px;
     font-size: 12px;
@@ -99,7 +99,7 @@
     text-align: center;
 }
 
-tr td {
+.denomsTableCells {
     border: 1px solid black;
     background-color: lightgray;
     text-align: center;

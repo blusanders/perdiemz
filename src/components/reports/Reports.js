@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { ReportTourRun } from "./ReportTourRun";
 
 export const Reports = () => {
 
@@ -12,9 +12,11 @@ export const Reports = () => {
 
             <div className="container__crewSideMain">
                 <div className="container__crewSide">
-                    <h2>All Reports</h2>
+                    <h2>Tour Runs by Tour</h2>
                 </div>
                 <div className="container__crewMain">
+
+                <ReportTourRun />
                 </div>
             </div>
 

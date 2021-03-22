@@ -6,6 +6,7 @@ export const TourRunContext = createContext()
 // This component establishes what data can be used.
 export const TourRunProvider = (props) => {
     const [tourRuns, setTourRuns] = useState([])
+    const [tourRunsByTourId, setTourRunsByTourId] = useState([])
 
     const getTourRuns = () => {
         return fetch("http://localhost:8088/tourrun?_expand=tour")
@@ -32,6 +33,14 @@ export const TourRunProvider = (props) => {
             .then(res => res.json())
     }
 
+    const getTourRunsByTourId = (tourId) => {
+        // debugger
+        let fetchURL =`http://localhost:8088/tourrun/?tourId=${tourId}` 
+        return fetch(fetchURL)
+            .then(res => res.json())
+            .then(setTourRunsByTourId)
+    }
+    
     const addTourRun = tourRunObj => {
         return fetch("http://localhost:8088/tourrun", {
             method: "POST",
@@ -63,7 +72,7 @@ export const TourRunProvider = (props) => {
 
     return (
         <TourRunContext.Provider value={{
-            tourRuns, getTourRuns, getTourRunById, addTourRun, deleteTourRun, updateTourRun
+            tourRuns, getTourRuns, tourRunsByTourId, getTourRunById, addTourRun, deleteTourRun, updateTourRun, getTourRunsByTourId
         }}>
             {props.children}
         </TourRunContext.Provider>

@@ -62,7 +62,11 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route exact path="/reports">
-                <Reports />
+            <TourRunProvider>
+                        <TourProvider>
+                            <Reports />
+                        </TourProvider>
+                    </TourRunProvider>
             </Route>
         </>
     );

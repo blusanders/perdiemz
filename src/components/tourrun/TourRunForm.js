@@ -462,36 +462,36 @@ export const TourRunForm = () => {
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody>
-                <tr>
-                        <td>100s</td>
-                        <td>{calcDenoms()[0][2]}</td>
-                        <td>{calcDenoms()[0][3]}</td>
+                <tbody className="denomsTableCells">
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">100s</td>
+                        <td className="denomsTableCells">{calcDenoms()[0][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[0][3]}</td>
                     </tr>
-                    <tr>
-                        <td>50s</td>
-                        <td>{calcDenoms()[1][2]}</td>
-                        <td>{calcDenoms()[1][3]}</td>
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">50s</td>
+                        <td className="denomsTableCells">{calcDenoms()[1][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[1][3]}</td>
                     </tr>
-                    <tr>
-                        <td>20s</td>
-                        <td>{calcDenoms()[2][2]}</td>
-                        <td>{calcDenoms()[2][3]}</td>
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">20s</td>
+                        <td className="denomsTableCells">{calcDenoms()[2][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[2][3]}</td>
                     </tr>
-                    <tr>
-                        <td>10s</td>
-                        <td>{calcDenoms()[3][2]}</td>
-                        <td>{calcDenoms()[3][3]}</td>
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">10s</td>
+                        <td className="denomsTableCells">{calcDenoms()[3][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[3][3]}</td>
                     </tr>
-                    <tr>
-                        <td>5s</td>
-                        <td>{calcDenoms()[4][2]}</td>
-                        <td>{calcDenoms()[4][3]}</td>
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">5s</td>
+                        <td className="denomsTableCells">{calcDenoms()[4][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[4][3]}</td>
                     </tr>
-                    <tr>
-                        <td>1s</td>
-                        <td>{calcDenoms()[5][2]}</td>
-                        <td>{calcDenoms()[5][3]}</td>
+                    <tr className="denomsTableCells">
+                        <td className="denomsTableCells">1s</td>
+                        <td className="denomsTableCells">{calcDenoms()[5][2]}</td>
+                        <td className="denomsTableCells">{calcDenoms()[5][3]}</td>
                     </tr>
                 </tbody>
             </table>
