@@ -129,7 +129,7 @@ export const CrewForm = () => {
     return (
       <div>
       <form className="crewForm ">
-        <h2 className="crewForm__title">{crewId ? "Edit Crew" : "Add Crew"}</h2>
+        <h2 className="crewForm__title">{crewId ? "Edit Crewz" : "Add Crewz"}</h2>
 
         {validMsg.length > 0 ? "" : validMsg}
 

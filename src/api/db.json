@@ -281,19 +281,19 @@
     },
     {
       "id": 5,
-      "tourId": 2,
       "name": "C 2 Test Run Three, Tour Two",
+      "description": "This is the first run of the tour",
       "dateStart": "8/1/2021",
       "dateEnd": "8/10/2021",
-      "timeArrive": "",
       "timeLeave": "",
-      "description": "This is the first run of the tour",
-      "perDiem": 25,
-      "daysOut": 5,
+      "timeArrive": "",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 13,
       "denoms": [
-        0,
-        "*",
-        "*",
+        "1",
+        "0",
+        "12",
         "*",
         "*",
         "*"
@@ -378,6 +378,26 @@
         "*"
       ],
       "id": 10
+    },
+    {
+      "name": "Test Name",
+      "description": "",
+      "dateStart": "1/1/2000",
+      "dateEnd": "1/5/2000",
+      "timeLeave": "10p",
+      "timeArrive": "9a",
+      "tourId": 5,
+      "perDiem": 25,
+      "daysOut": 9,
+      "denoms": [
+        "0",
+        "0",
+        "8",
+        "*",
+        "*",
+        "*"
+      ],
+      "id": 11
     }
   ],
   "tourRunCrew": [

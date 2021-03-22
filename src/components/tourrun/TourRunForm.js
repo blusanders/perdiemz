@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, useMemo } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 
 import { CrewContext } from "../crew/CrewProvider";
@@ -91,7 +91,7 @@ export const TourRunForm = () => {
         }
     }
 
-const calcDenoms = () => {
+    const calcDenoms = () => {
         let dayRate = tourRun.perDiem
         let dayTotal = tourRun.daysOut
         let crewTotal = crew.length
@@ -114,27 +114,18 @@ const calcDenoms = () => {
 
         //1-denomintion, 2-max bills, 3-total bills for denomination, 4-total bills for week 
         let denArr =[ 
-            [100,max100,,0],
-            [50,max50,,0],
-            [20,max20,,0],
-            [10,max10,,0],
-            [5,max5,,0],
-            [1,max1,,0]
+            [100,max100,"",0],
+            [50,max50,"",0],
+            [20,max20,"",0],
+            [10,max10,"",0],
+            [5,max5,"",0],
+            [1,max1,"",0]
         ]
-
-        // let denArr = [
-        //     [100,0,,0],
-        //     [50,0,,0],
-        //     [20,10,,0],
-        //     [10,,,0],
-        //     [5,,,0],
-        //     [1,,,0]
-        // ]
 
         let remVar      //integer after dividing and .trunc 
         let modVar      //modulo after dividing 
 
-        //iterate through 
+        //iterate through denoms
         for (let x = 0; x < denArr.length; x++) {
 
             //divide remaining total into bill denom
@@ -154,9 +145,9 @@ const calcDenoms = () => {
         }
 
         // setDenArrState(denArr)
-        console.table(denArr);
+        // console.table(denArr);
         return denArr
-}
+    }
 
     const handleSaveTourRun = () => {
 
@@ -266,10 +257,6 @@ const calcDenoms = () => {
         })
     }, [])
 
-    useEffect(() => {
-        // calcDenoms() //this is not working?
-    }, [])
-
     return (
 
         <div className="wrapper">
@@ -281,7 +268,7 @@ const calcDenoms = () => {
 
             <div className="form-group ">
                 <label htmlFor="location">Tour: </label>
-                <select value={tourRun.tourId} id="tourId" className="form-control" 
+                <select autoFocus value={tourRun.tourId} id="tourId" className="form-control" 
                 onChange={handleControlledInputChange}>
                     <option value="0">Select a Tour</option>
                     {tours.map(l => (
@@ -294,7 +281,7 @@ const calcDenoms = () => {
 
             <div className="form-group ">
                 <label htmlFor="name">Name:</label>
-                <input type="text" id="name" required autoFocus className="form-control"
+                <input type="text" id="name" required className="form-control"
                 placeholder="Tour Run Name"
                 onChange={handleControlledInputChange}
                 value={tourRun.name}/>
@@ -403,7 +390,6 @@ const calcDenoms = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any"
-                        defaultValue="*"
                         maxlength="2"
                         value={tourRun.denoms[0]}
                         />
@@ -416,7 +402,6 @@ const calcDenoms = () => {
                         required className="form-control" 
                         placeholder="Any" 
                         maxlength="2"
-                        defaultValue="*"
                         value={tourRun.denoms[1]}
                         />
                 </div>
@@ -428,7 +413,6 @@ const calcDenoms = () => {
                         required className="form-control" 
                         placeholder="Any" 
                         maxlength="2"
-                        defaultValue="*"
                         value={tourRun.denoms[2]}
                         />
                 </div>
@@ -440,7 +424,6 @@ const calcDenoms = () => {
                         required className="form-control" 
                         placeholder="Any" 
                         maxlength="2"
-                        defaultValue="*"
                         value={tourRun.denoms[3]}
                         />
                 </div>
@@ -452,7 +435,6 @@ const calcDenoms = () => {
                         required className="form-control" 
                         placeholder="Any" 
                         maxlength="2"
-                        defaultValue="*"
                         value={tourRun.denoms[4]}
                         />
                 </div>
@@ -462,32 +444,54 @@ const calcDenoms = () => {
                         <input type="text" id="1s" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
-                        placeholder="Any"
+                        placeholder="Any" 
                         value={tourRun.denoms[5]}
-                        defaultValue="*"/>
+                        />
                 </div>
                 
             </div>
 
-            <div>Crew total: {crew.length}</div>
-            <div>Per Diem total: {tourRun.perDiem*tourRun.daysOut*crew.length}</div>
-            <div>
-            <table>
+            <div align="center">
+            <table className="denomsTable">
                 <thead>
+                <tr><th colspan="3">Crew: {crew.length}</th></tr>
+                <tr><th colspan="3">Per Diem total: ${tourRun.perDiem*tourRun.daysOut*crew.length}</th></tr>
                     <tr>
-                        <th colspan="3">Denomz</th>
+                        <th>Denom</th>
+                        <th>Each</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>100s - {calcDenoms()[0][3]}</td>
-                        <td>50s - {calcDenoms()[1][3]}</td>
-                        <td>20s - {calcDenoms()[2][3]}</td>
+                <tr>
+                        <td>100s</td>
+                        <td>{calcDenoms()[0][2]}</td>
+                        <td>{calcDenoms()[0][3]}</td>
                     </tr>
                     <tr>
-                        <td>10s - {calcDenoms()[3][3]}</td>
-                        <td>5s - {calcDenoms()[4][3]}</td>
-                        <td>1s - {calcDenoms()[5][3]}</td>
+                        <td>50s</td>
+                        <td>{calcDenoms()[1][2]}</td>
+                        <td>{calcDenoms()[1][3]}</td>
+                    </tr>
+                    <tr>
+                        <td>20s</td>
+                        <td>{calcDenoms()[2][2]}</td>
+                        <td>{calcDenoms()[2][3]}</td>
+                    </tr>
+                    <tr>
+                        <td>10s</td>
+                        <td>{calcDenoms()[3][2]}</td>
+                        <td>{calcDenoms()[3][3]}</td>
+                    </tr>
+                    <tr>
+                        <td>5s</td>
+                        <td>{calcDenoms()[4][2]}</td>
+                        <td>{calcDenoms()[4][3]}</td>
+                    </tr>
+                    <tr>
+                        <td>1s</td>
+                        <td>{calcDenoms()[5][2]}</td>
+                        <td>{calcDenoms()[5][3]}</td>
                     </tr>
                 </tbody>
             </table>

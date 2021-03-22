@@ -23,7 +23,7 @@ export const Crew = () => {
 
                 <div className="container__crewSide">
                     
-                    <h2>All Crew ({crew.length})</h2>
+                    <h2>All Crewz ({crew.length})</h2>
                     
                     <div className="crewCardHeader">
                         <div>Name</div>
