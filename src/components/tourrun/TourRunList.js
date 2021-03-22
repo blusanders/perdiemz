@@ -18,3 +18,17 @@ export const TourRunList = () => {
         })
         )
 }
+
+
+// .then(()=>{
+//     let tourRunsSort = tourRuns.sort((a, b) => {
+//         let retval = 0;
+//         if (a.name > b.name)
+//             retval = -1;
+//         if (a.name < b.name)
+//             retval = 1;
+//         if (retval === 0)
+//             retval = a.name < b.name ? -1 : 1;
+//         return retval;
+//         })
+//     })

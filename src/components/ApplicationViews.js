@@ -51,6 +51,16 @@ export const ApplicationViews = () => {
                 </CrewProvider>
             </Route>
 
+            <Route exact path="/tourrun/:tourRunId(\d+)">
+            <CrewProvider>
+                    <TourRunProvider>
+                        <TourProvider>
+                            <TourRun />
+                        </TourProvider>
+                    </TourRunProvider>
+                </CrewProvider>
+            </Route>
+
             <Route exact path="/reports">
                 <Reports />
             </Route>

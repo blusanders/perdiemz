@@ -16,12 +16,12 @@ export const NavBar = (props) => {
   return (
     <nav className="navbar bg-custom-2 bg-white">
 
-      <ul className="nav nav-pills nav-fill">
-        <li className="navbar-brand">
-          <Link className="nav-link" to="/"><img src={PerDiemzLogo} width="100"></img></Link>
+      <ul className="nav  navbar-collapse nav-fill">
+        <li className="">
+          <Link className="nav-link inactive" activeClassName="active" to="/"><img src={PerDiemzLogo} width="100"></img></Link>
         </li>
-        <li className="nav-item text-black">
-          <Link className="nav-link link-secondary" to="/crew">Crew</Link>
+        <li className="nav-item">
+          <Link className="nav-link" to="/crew">Crew</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/tourrun">Tour Runz</Link>

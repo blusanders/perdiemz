@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect }  from "react";
 import "./Crew.css"
 import { CrewForm } from "./CrewForm";
 import { CrewList } from "./CrewList";
+import { CrewContext } from "./CrewProvider";
 
 export const Crew = () => {
+
+    const { crew, getCrew } = useContext(CrewContext)
+
+    useEffect(() => {
+        getCrew()
+    }, [])
 
     return (
         <div className="container__crew">
@@ -16,7 +23,7 @@ export const Crew = () => {
 
                 <div className="container__crewSide">
                     
-                    <h2>All Crew</h2>
+                    <h2>All Crew ({crew.length})</h2>
                     
                     <div className="crewCardHeader">
                         <div>Name</div>

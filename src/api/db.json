@@ -191,58 +191,58 @@
       "available": true
     },
     {
-      "id": 15,
       "firstName": "Test",
       "lastName": "Person",
-      "title": "Boss Man",
-      "crewTypeId": 2
-    },
-    {
-      "firstName": "Test",
-      "lastName": "Person",
-      "title": "Boss",
-      "crewTypeId": 2,
-      "id": 16
-    },
-    {
-      "firstName": "123",
-      "lastName": "456",
-      "title": "789",
-      "crewTypeId": 4,
-      "id": 17
+      "title": "Tech",
+      "crewTypeId": 3,
+      "id": 14
     }
   ],
   "tourRun": [
     {
       "id": 1,
       "tourId": 1,
-      "name": "Test Run One, Tour One",
+      "name": "B 1 Test Run One, Tour One",
       "dateStart": "5/1/2021",
       "dateEnd": "5/10/2021",
-      "timeArrive": "",
-      "timeLeave": "12:00:pm",
+      "timeArrive": "8a",
+      "timeLeave": "11:50p",
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": []
+      "denoms": [
+        0,
+        1,
+        "*",
+        "*",
+        "*",
+        "*"
+      ]
     },
     {
       "id": 2,
       "tourId": 1,
-      "name": "Test Run Two, Tour One",
+      "name": "A 1 Test Run Two, Tour One",
       "dateStart": "6/1/2021",
       "dateEnd": "6/10/2021",
       "timeArrive": "",
       "timeLeave": "",
       "description": "This is the first run of the tour",
-      "perDiem": 25,
+      "perDiem": 30,
       "daysOut": 5,
-      "denoms": []
+      "denoms": [
+        0,
+        0,
+        "*",
+        "*",
+        "*",
+        "*"
+      ]
     },
     {
       "id": 3,
       "tourId": 2,
-      "name": "Test Run One, Tour Two",
+      "name": "B 2 Test Run One, Tour Two",
       "dateStart": "7/1/2021",
       "dateEnd": "7/10/2021",
       "timeArrive": "",
@@ -250,12 +250,19 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": []
+      "denoms": [
+        "*",
+        "*",
+        "*",
+        "*",
+        "*",
+        "*"
+      ]
     },
     {
       "id": 4,
       "tourId": 2,
-      "name": "Test Run Two, Tour Two",
+      "name": "A 2 Test Run Two, Tour Two",
       "dateStart": "8/1/2021",
       "dateEnd": "8/10/2021",
       "timeArrive": "",
@@ -263,12 +270,19 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": []
+      "denoms": [
+        0,
+        1,
+        "*",
+        "*",
+        "*",
+        "*"
+      ]
     },
     {
       "id": 5,
       "tourId": 2,
-      "name": "Test Run Three, Tour Two",
+      "name": "C 2 Test Run Three, Tour Two",
       "dateStart": "8/1/2021",
       "dateEnd": "8/10/2021",
       "timeArrive": "",
@@ -276,7 +290,94 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": []
+      "denoms": [
+        0,
+        "*",
+        "*",
+        "*",
+        "*",
+        "*"
+      ]
+    },
+    {
+      "name": "Go Play",
+      "description": "",
+      "dateStart": "1/1/2000",
+      "dateEnd": "1/5/2000",
+      "timeLeave": "10p",
+      "timeArrive": "9a",
+      "tourId": 3,
+      "perDiem": 25,
+      "daysOut": 6,
+      "denoms": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "id": 7
+    },
+    {
+      "name": "Test123",
+      "description": "",
+      "dateStart": "1/1/2000",
+      "dateEnd": "1/5/2000",
+      "timeLeave": "10p",
+      "timeArrive": "9a",
+      "tourId": 1,
+      "perDiem": 25,
+      "daysOut": 4,
+      "denoms": [
+        "6",
+        "5",
+        "4",
+        "1",
+        "2",
+        "3"
+      ],
+      "id": 8
+    },
+    {
+      "id": 9,
+      "name": "111333",
+      "description": "",
+      "dateStart": "1/1/2005",
+      "dateEnd": "1/5/2005",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 4,
+      "perDiem": 35,
+      "daysOut": 13,
+      "denoms": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "name": "Test Add Crew",
+      "description": "",
+      "dateStart": "1/1/2000",
+      "dateEnd": "1/5/2005",
+      "timeLeave": "10p",
+      "timeArrive": "9a",
+      "tourId": 5,
+      "perDiem": 35,
+      "daysOut": 13,
+      "denoms": [
+        "0",
+        "1",
+        "*",
+        "*",
+        "*",
+        "*"
+      ],
+      "id": 10
     }
   ],
   "tourRunCrew": [
