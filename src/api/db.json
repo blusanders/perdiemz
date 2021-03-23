@@ -1,0 +1,323 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com"
+    },
+    {
+      "email": "one@one.com",
+      "name": "Another Test",
+      "id": 2
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "name": "Melinda Talbert"
+    },
+    {
+      "id": 2,
+      "name": "Rustin Pynch"
+    }
+  ],
+  "tours": [
+    {
+      "id": 1,
+      "name": "Big Bottles of Boot Booze Tour 2021",
+      "dateStart": "5/1/2021",
+      "dateEnd": "5/31/2021",
+      "artistId": 1
+    },
+    {
+      "id": 2,
+      "name": "Let Your Best People Go During the Pandemic Tour 2020",
+      "dateStart": "7/1/2021",
+      "dateEnd": "7/31/2021",
+      "artistId": 1
+    },
+    {
+      "id": 3,
+      "name": "My Smile is Amazing 2021",
+      "dateStart": "5/1/2021",
+      "dateEnd": "6/30/2021",
+      "artistId": 2
+    },
+    {
+      "id": 4,
+      "name": "Lots of Covers in My Set 2021",
+      "dateStart": "7/10/2021",
+      "dateEnd": "8/20/2021",
+      "artistId": 2
+    },
+    {
+      "id": 5,
+      "name": "Another Tour Like the Last One 2021",
+      "dateStart": "8/31/2021",
+      "dateEnd": "9/16/2021",
+      "artistId": 2
+    }
+  ],
+  "crewTypes": [
+    {
+      "id": 1,
+      "name": "Band"
+    },
+    {
+      "id": 2,
+      "name": "Production"
+    },
+    {
+      "id": 3,
+      "name": "Audio"
+    },
+    {
+      "id": 4,
+      "name": "Stage/Rigging"
+    },
+    {
+      "id": 5,
+      "name": "Video"
+    },
+    {
+      "id": 6,
+      "name": "Lighting"
+    },
+    {
+      "id": 7,
+      "name": "Rigging"
+    },
+    {
+      "id": 8,
+      "name": "Drivers"
+    },
+    {
+      "id": 9,
+      "name": "Backline"
+    }
+  ],
+  "crew": [
+    {
+      "id": 2,
+      "firstName": "Reginald",
+      "lastName": "Lake",
+      "crewTypeId": 2,
+      "title": "TM",
+      "available": true
+    },
+    {
+      "id": 3,
+      "firstName": "Lee",
+      "lastName": "Dotson",
+      "crewTypeId": 2,
+      "title": "PM",
+      "available": true
+    },
+    {
+      "id": 4,
+      "firstName": "Rahim",
+      "lastName": "Castillo",
+      "crewTypeId": 2,
+      "title": "Asst TM",
+      "available": true
+    },
+    {
+      "id": 5,
+      "firstName": "Catrin",
+      "lastName": "Pemberton",
+      "title": "PA",
+      "crewTypeId": 2,
+      "available": true
+    },
+    {
+      "id": 6,
+      "firstName": "Dale",
+      "lastName": "Beil",
+      "title": "Merch",
+      "crewTypeId": 2,
+      "available": true
+    },
+    {
+      "id": 7,
+      "firstName": "Roy",
+      "lastName": "Hamer",
+      "crewTypeId": 2,
+      "title": "Security",
+      "available": true
+    },
+    {
+      "id": 8,
+      "firstName": "Asia",
+      "lastName": "Davidson",
+      "title": "Guitar",
+      "crewTypeId": 1,
+      "available": true
+    },
+    {
+      "id": 9,
+      "firstName": "Siyana",
+      "lastName": "Curry",
+      "title": "Guitar 2",
+      "crewTypeId": 1,
+      "available": true
+    },
+    {
+      "id": 10,
+      "firstName": "Zayn",
+      "lastName": "Pugh",
+      "crewTypeId": 1,
+      "title": "Steel",
+      "available": true
+    },
+    {
+      "id": 11,
+      "firstName": "Amy",
+      "lastName": "Tyson",
+      "crewTypeId": 1,
+      "title": "Keys",
+      "available": true
+    },
+    {
+      "id": 12,
+      "firstName": "Herbert",
+      "lastName": "Sharp",
+      "crewTypeId": 1,
+      "title": "Bass",
+      "available": true
+    },
+    {
+      "id": 13,
+      "firstName": "Ranveer",
+      "lastName": "Wu",
+      "title": "Drums",
+      "crewTypeId": 1,
+      "available": true
+    },
+    {
+      "id": 16,
+      "firstName": "Bob",
+      "lastName": "Crew Guy",
+      "title": "Tech",
+      "crewTypeId": 6,
+      "available": true
+    },
+    {
+      "id": 18,
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "111",
+      "crewTypeId": 6,
+      "available": true
+    }
+  ],
+  "tourRun": [
+    {
+      "id": 1,
+      "tourId": 1,
+      "name": "B 1 Test Run One, Tour One",
+      "dateStart": "5/1/21",
+      "dateEnd": "5/10/21",
+      "timeArrive": "8a",
+      "timeLeave": "11:50p",
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5,
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
+    },
+    {
+      "id": 2,
+      "name": "A 1 Test Run Two, Tour One",
+      "description": "This is the first run of the tour",
+      "dateStart": "6/1/21",
+      "dateEnd": "6/10/21",
+      "timeLeave": "",
+      "timeArrive": "",
+      "tourId": 1,
+      "perDiem": 30,
+      "daysOut": 5,
+      "d100": 0,
+      "d50": 0,
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
+    },
+    {
+      "id": 3,
+      "tourId": 2,
+      "name": "B 2 Test Run One, Tour Two",
+      "dateStart": "7/1/21",
+      "dateEnd": "7/10/21",
+      "timeArrive": "",
+      "timeLeave": "",
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5,
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
+    },
+    {
+      "id": 4,
+      "tourId": 2,
+      "name": "A 2 Test Run Two, Tour Two",
+      "dateStart": "8/1/21",
+      "dateEnd": "8/10/21",
+      "timeArrive": "",
+      "timeLeave": "",
+      "description": "This is the first run of the tour",
+      "perDiem": 25,
+      "daysOut": 5,
+      "d100": "0",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
+    },
+    {
+      "id": 5,
+      "name": "C 2 Test Run Three, Tour Two",
+      "description": "This is the first run of the tour",
+      "dateStart": "8/1/21",
+      "dateEnd": "8/10/21",
+      "timeLeave": "",
+      "timeArrive": "",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 13,
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
+    },
+    {
+      "name": "Go Play",
+      "description": "",
+      "dateStart": "1/1/00",
+      "dateEnd": "1/5/00",
+      "timeLeave": "10p",
+      "timeArrive": "9a",
+      "tourId": 3,
+      "perDiem": 25,
+      "daysOut": 6,
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
+      "id": 7
+    }
+  ],
+  "tourRunCrew": []
+}
