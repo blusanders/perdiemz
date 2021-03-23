@@ -10,6 +10,7 @@ import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
 import { TourRun } from "./tourrun/TourRun";
 import { TourRunProvider } from "./tourrun/TourRunProvider";
 import { TourProvider } from "./tour/TourProvider";
+import { TourRunCrewProvider } from "./tourruncrew/TourRunCrewProvider";
 
 import { Reports } from "./reports/Reports";
 
@@ -43,30 +44,36 @@ export const ApplicationViews = () => {
 
             <Route exact path="/tourrun">
                 <CrewProvider>
+                <TourRunCrewProvider>
                     <TourRunProvider>
                         <TourProvider>
                             <TourRun />
                         </TourProvider>
                     </TourRunProvider>
+                    </TourRunCrewProvider>
                 </CrewProvider>
             </Route>
 
             <Route exact path="/tourrun/:tourRunId(\d+)">
             <CrewProvider>
-                    <TourRunProvider>
-                        <TourProvider>
-                            <TourRun />
-                        </TourProvider>
-                    </TourRunProvider>
+                    <TourRunCrewProvider>
+                        <TourRunProvider>
+                            <TourProvider>
+                                <TourRun />
+                            </TourProvider>
+                        </TourRunProvider>
+                    </TourRunCrewProvider>
                 </CrewProvider>
             </Route>
 
             <Route exact path="/reports">
-            <TourRunProvider>
-                        <TourProvider>
-                            <Reports />
-                        </TourProvider>
-                    </TourRunProvider>
+            <CrewProvider>
+                <TourRunProvider>
+                            <TourProvider>
+                                <Reports />
+                            </TourProvider>
+                        </TourRunProvider>
+            </CrewProvider>
             </Route>
         </>
     );

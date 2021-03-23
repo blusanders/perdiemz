@@ -13,17 +13,16 @@ export const TourRunForm = () => {
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours, } = useContext(TourContext)
     const { crew, getCrew } = useContext(CrewContext)
-    const [ denArrState, setDenArrState ] = useState()
-
-    //     [
-    //         [100,,0,0],
-    //         [500,,0,0],
-    //         [20,,0,0],
-    //         [10,,0,0],
-    //         [5,,0,0],
-    //         [1,,0,0]
-    //     ]
-    // )
+    const [ denArrState, setDenArrState ] = useState(
+            [ 
+            [100,"*","",0],
+            [50,"*","",0],
+            [20,"*","",0],
+            [10,"*","",0],
+            [5,"*","",0],
+            [1,"*","",0]
+            ]
+    )
 
     //create empty state var to hold form values
     //initial values for add form only
@@ -38,7 +37,12 @@ export const TourRunForm = () => {
         timeArrive: "9a",
         perDiem: 25,
         daysOut: 5,
-        denoms: ["*","*","*","*","*","*",]
+        d100: "*",
+        d50: "*",
+        d20: "*",
+        d10: "*",
+        d5: "*",
+        d1: "*"
     })
 
     //create state var to stop quick clicks on edits
@@ -53,32 +57,7 @@ export const TourRunForm = () => {
     const handleControlledInputChange = (event) => {
         event.preventDefault()
         const newTourRun = { ...tourRun }
-
-        //if max bills fields change then put them in the appropriate array location in denoms
-        switch(event.target.id) {
-            case "100s":
-                newTourRun["denoms"][0] = event.target.value
-                break;
-            case "50s":
-                newTourRun["denoms"][1] = event.target.value
-                break;
-            case "20s":
-                newTourRun["denoms"][2] = event.target.value
-                break;
-            case "10s":
-                newTourRun["denoms"][3] = event.target.value
-                break;
-            case "5s":
-                newTourRun["denoms"][4] = event.target.value
-                break;
-            case "1s":
-                newTourRun["denoms"][5] = event.target.value
-                break;
-            default: //if not max bills field then add to object normally 
-                newTourRun[event.target.id] = event.target.value
-        }
-        
-        //set the tourRun object with values after input change
+        newTourRun[event.target.id] = event.target.value
         setTourRun(newTourRun)
     }
 
@@ -98,14 +77,16 @@ export const TourRunForm = () => {
         let calcTotal = dayRate*dayTotal
         let runTotal = calcTotal*crewTotal
 
-        let max100=tourRun.denoms[0]
-        let max50=tourRun.denoms[1]
-        let max20=tourRun.denoms[2]
-        let max10=tourRun.denoms[3]
-        let max5=tourRun.denoms[4]
-        let max1=tourRun.denoms[5]
+        let max100=tourRun.d100
+        let max50=tourRun.d50
+        let max20=tourRun.d20
+        let max10=tourRun.d10
+        let max5=tourRun.d5
+        let max1=tourRun.d1
+        
+        // debugger
 
-        if (tourRun.denoms[0]==="*") {max100=100}else{max100=parseInt(max100)} 
+        if (max100==="*") {max100=100}else{max100=parseInt(max100)} 
         if (max50==="*") {max50=100}else{max50=parseInt(max50)} 
         if (max20==="*") {max20=100}else{max20=parseInt(max20)} 
         if (max10==="*") {max10=100}else{max10=parseInt(max10)} 
@@ -144,7 +125,7 @@ export const TourRunForm = () => {
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
         }
 
-        // setDenArrState(denArr)
+        setDenArrState(denArr)
         // console.table(denArr);
         return denArr
     }
@@ -192,14 +173,12 @@ export const TourRunForm = () => {
                 tourId: parseInt(tourRun.tourId),
                 perDiem: parseInt(tourRun.perDiem),
                 daysOut: parseInt(tourRun.daysOut),
-                denoms:[
-                    tourRun.denoms[0],
-                    tourRun.denoms[1],
-                    tourRun.denoms[2],
-                    tourRun.denoms[3],
-                    tourRun.denoms[4],
-                    tourRun.denoms[5]
-                ]
+                d100: tourRun.d100,
+                d50: tourRun.d50,
+                d20: tourRun.d20,
+                d10: tourRun.d10,
+                d5: tourRun.d5,
+                d1: tourRun.d1
             })
                 .then(() => history.push(`/tourrun`))
         }else{
@@ -214,14 +193,12 @@ export const TourRunForm = () => {
                 tourId: parseInt(tourRun.tourId),
                 perDiem: parseInt(tourRun.perDiem),
                 daysOut: parseInt(tourRun.daysOut),
-                denoms:[
-                    tourRun.denoms[0],
-                    tourRun.denoms[1],
-                    tourRun.denoms[2],
-                    tourRun.denoms[3],
-                    tourRun.denoms[4],
-                    tourRun.denoms[5]
-                ]
+                d100: tourRun.d100,
+                d50: tourRun.d50,
+                d20: tourRun.d20,
+                d10: tourRun.d10,
+                d5: tourRun.d5,
+                d1: tourRun.d1
             })
             .then(setTourRun({  //reset state obj as blank to zero out add form
                 name: "",
@@ -233,7 +210,12 @@ export const TourRunForm = () => {
                 tourId: 0,
                 perDiem: 25,
                 daysOut: 5,
-                denoms: ["*","*","*","*","*","*",]
+                d100: "*",
+                d50: "*",
+                d20: "*",
+                d10: "*",
+                d5: "*",
+                d1: "*"
             }))
             .then(setIsLoading(false))
             .then(() => history.push("/tourRun"))
@@ -256,6 +238,22 @@ export const TourRunForm = () => {
         }
         })
     }, [])
+
+    useEffect(()=>{
+        calcDenoms()
+    },[
+        tourRun.d100,
+        tourRun.d50,
+        tourRun.d20,
+        tourRun.d10,
+        tourRun.d5,
+        tourRun.d1,
+        tourRun.perDiem,
+        tourRun.daysOut
+    ])
+
+    //get only available crew members
+    let crewTotalAvailableVar = crew.filter(crewMember => crewMember.available === true).length
 
     return (
 
@@ -364,8 +362,7 @@ export const TourRunForm = () => {
                     onChange={handleControlledInputChange}
                     required className="form-control" 
                     placeholder="Per Diem Amount" 
-                    defaultValue=""
-                    maxlength="2"
+                    maxLength="2"
                     value={tourRun.perDiem}
                     />
             </div>
@@ -376,8 +373,7 @@ export const TourRunForm = () => {
                     onChange={handleControlledInputChange}
                     required className="form-control" 
                     placeholder="Days Out" 
-                    maxlength="2"
-                    defaultValue=""
+                    maxLength="2"
                     value={tourRun.daysOut}
                     />
             </div>
@@ -386,66 +382,66 @@ export const TourRunForm = () => {
             <div className="calc">
                 <div className="form-group ">
                         <label htmlFor="100s">100s</label>
-                        <input type="text" id="100s" 
+                        <input type="text" id="d100" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any"
-                        maxlength="2"
-                        value={tourRun.denoms[0]}
+                        maxLength="2"
+                        value={tourRun.d100}
                         />
                 </div>
 
                 <div className="form-group ">
                         <label htmlFor="50s">50s</label>
-                        <input type="text" id="50s" 
+                        <input type="text" id="d50" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        maxlength="2"
-                        value={tourRun.denoms[1]}
+                        maxLength="2"
+                        value={tourRun.d50}
                         />
                 </div>
 
                 <div className="form-group ">
                         <label htmlFor="20s">20s</label>
-                        <input type="text" id="20s" 
+                        <input type="text" id="d20" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        maxlength="2"
-                        value={tourRun.denoms[2]}
+                        maxLength="2"
+                        value={tourRun.d20}
                         />
                 </div>
 
                 <div className="form-group ">
                         <label htmlFor="10s">10s</label>
-                        <input type="text" id="10s" 
+                        <input type="text" id="d10" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        maxlength="2"
-                        value={tourRun.denoms[3]}
+                        maxLength="2"
+                        value={tourRun.d10}
                         />
                 </div>
 
                 <div className="form-group ">
                         <label htmlFor="5s">5s</label>
-                        <input type="text" id="5s" 
+                        <input type="text" id="d5" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        maxlength="2"
-                        value={tourRun.denoms[4]}
+                        maxLength="2"
+                        value={tourRun.d5}
                         />
                 </div>
 
                 <div className="form-group ">
                         <label htmlFor="1s">1s</label>
-                        <input type="text" id="1s" 
+                        <input type="text" id="d1" 
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
-                        value={tourRun.denoms[5]}
+                        value={tourRun.d1}
                         />
                 </div>
                 
@@ -454,8 +450,7 @@ export const TourRunForm = () => {
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colspan="3">Crew: {crew.length}</th></tr>
-                <tr><th colspan="3">Per Diem total: ${tourRun.perDiem*tourRun.daysOut*crew.length}</th></tr>
+                <tr><th colSpan="3">Crew: {crewTotalAvailableVar} / PD total: ${tourRun.perDiem*tourRun.daysOut*crew.length}</th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>
@@ -465,34 +460,34 @@ export const TourRunForm = () => {
                 <tbody className="denomsTableCells">
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">100s</td>
-                        <td className="denomsTableCells">{calcDenoms()[0][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[0][3]}</td>
+                        <td className="denomsTableCells">{denArrState[0][2]}</td>
+                        <td className="denomsTableCells">{denArrState[0][3]}</td>
                     </tr>
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">50s</td>
-                        <td className="denomsTableCells">{calcDenoms()[1][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[1][3]}</td>
+                        <td className="denomsTableCells">{denArrState[1][2]}</td>
+                        <td className="denomsTableCells">{denArrState[1][3]}</td>
                     </tr>
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">20s</td>
-                        <td className="denomsTableCells">{calcDenoms()[2][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[2][3]}</td>
+                        <td className="denomsTableCells">{denArrState[2][2]}</td>
+                        <td className="denomsTableCells">{denArrState[2][3]}</td>
                     </tr>
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">10s</td>
-                        <td className="denomsTableCells">{calcDenoms()[3][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[3][3]}</td>
+                        <td className="denomsTableCells">{denArrState[3][2]}</td>
+                        <td className="denomsTableCells">{denArrState[3][3]}</td>
                     </tr>
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">5s</td>
-                        <td className="denomsTableCells">{calcDenoms()[4][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[4][3]}</td>
+                        <td className="denomsTableCells">{denArrState[4][2]}</td>
+                        <td className="denomsTableCells">{denArrState[4][3]}</td>
                     </tr>
                     <tr className="denomsTableCells">
                         <td className="denomsTableCells">1s</td>
-                        <td className="denomsTableCells">{calcDenoms()[5][2]}</td>
-                        <td className="denomsTableCells">{calcDenoms()[5][3]}</td>
-                    </tr>
+                        <td className="denomsTableCells">{denArrState[5][2]}</td>
+                        <td className="denomsTableCells">{denArrState[5][3]}</td>
+                    </tr> 
                 </tbody>
             </table>
  

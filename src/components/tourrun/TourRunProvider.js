@@ -1,4 +1,5 @@
-import React, { useState, createContext } from "react"
+import React, { useContext, useState, createContext } from "react"
+import { TourRunCrewContext } from "../tourruncrew/TourRunCrewProvider";
 
 // The context is imported and used by individual components that need data
 export const TourRunContext = createContext()
@@ -7,6 +8,8 @@ export const TourRunContext = createContext()
 export const TourRunProvider = (props) => {
     const [tourRuns, setTourRuns] = useState([])
     const [tourRunsByTourId, setTourRunsByTourId] = useState([])
+
+    const { addTourRunCrew } = useContext(TourRunCrewContext)
 
     const getTourRuns = () => {
         return fetch("http://localhost:8088/tourrun?_expand=tour")
@@ -25,7 +28,7 @@ export const TourRunProvider = (props) => {
                 })
                 setTourRuns(sorted)
             }
-                    )
+            )
         }
 
     const getTourRunById = (id) => {
@@ -49,8 +52,18 @@ export const TourRunProvider = (props) => {
             },
             body: JSON.stringify(tourRunObj)
         })
+        .then(res => res.json())
+        .then(newTourRunObj => {
+            console.log(newTourRunObj.id)
+            //for unique PD per crew member
+            //could accept an array parameter of all crew/pd/daysOut
+            //and then that into addTourRunCrew as well
+            // addTourRunCrew(newTourRunObj.id)
+        })
         .then(getTourRuns)
     }
+
+
 
     const updateTourRun = tourRun => {
         return fetch(`http://localhost:8088/tourrun/${tourRun.id}`, {

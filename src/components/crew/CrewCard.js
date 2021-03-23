@@ -12,10 +12,16 @@ export const CrewCard = ({ crew }) => {
         history.push(path);
     }
     
+    //change background color if unavailable
+    let availVar
+    crew.available ? availVar = "crewCard" : availVar = "crewCard crewCardAlt"
+
     return (
-        <div className="crewCard">
+        <>
+        <div className={availVar}>
             <div className="crew__text crew__name">{crew.lastName}, {crew.firstName}</div>
             <div className="crew__text">{crew.title}</div>
+            <div className="crew__text">{crew.crewType.name.substring(0,4)}...</div>
             <div>   
     
                 {/* <Link to={`/crew/${crew.id}`} className="btn btn-primary">...</Link> */}
@@ -24,5 +30,6 @@ export const CrewCard = ({ crew }) => {
                 </Button>
             </div>
         </div>
+        </>
     )
 }

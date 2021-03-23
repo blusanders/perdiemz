@@ -1,4 +1,4 @@
-import React, { useContext, useEffect }  from "react";
+import React, { useState, useContext, useEffect }  from "react";
 import "./Crew.css"
 import { CrewForm } from "./CrewForm";
 import { CrewList } from "./CrewList";
@@ -7,10 +7,14 @@ import { CrewContext } from "./CrewProvider";
 export const Crew = () => {
 
     const { crew, getCrew } = useContext(CrewContext)
+    // const [crewTotalAvailable, getCrewAvailable ] = useState()
+    const [crewTotalAvailable, setCrewTotalAvailable ] = useState()
 
     useEffect(() => {
         getCrew()
     }, [])
+
+    let crewTotalAvailableVar = crew.filter(crewMember => crewMember.available === true).length
 
     return (
         <div className="container__crew">
@@ -23,7 +27,7 @@ export const Crew = () => {
 
                 <div className="container__crewSide">
                     
-                    <h2>All Crewz ({crew.length})</h2>
+                    <h2>All Crewz ({crewTotalAvailableVar} avail)</h2>
                     
                     <div className="crewCardHeader">
                         <div>Name</div>

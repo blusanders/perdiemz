@@ -8,24 +8,25 @@ export const CrewTypeProvider = (props) => {
     const [crewTypes, setCrewTypes] = useState([])
 
     const getCrewTypes = () => {
-        return fetch("http://localhost:8088/crewType")
+        return fetch("http://localhost:8088/crewTypes")
         .then(res => res.json())
         .then(sorted => {
             sorted = sorted.sort((a,b)=>{
                 if(a.name < b.name) { return -1; }
                 if(a.name > b.name) { return 1; }
             })
-        setCrewTypes(sorted)
+
+            setCrewTypes(sorted)
         })
     }
 
     const getCrewTypeById = (id) => {
-        return fetch(`http://localhost:8088/crewType/${id}`)
+        return fetch(`http://localhost:8088/crewTypes/${id}`)
             .then(res => res.json())
     }
 
     const addCrewType = crewObj => {
-        return fetch("http://localhost:8088/crewType", {
+        return fetch("http://localhost:8088/crewTypes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -36,7 +37,7 @@ export const CrewTypeProvider = (props) => {
     }
 
     const deleteCrewType = crewId => {
-        return fetch(`http://localhost:8088/crewType/${crewId}`, {
+        return fetch(`http://localhost:8088/crewTypes/${crewId}`, {
             method: "DELETE"
         })
             .then(getCrewTypes)

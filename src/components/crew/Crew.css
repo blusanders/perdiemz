@@ -33,7 +33,7 @@
     /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: 50% 35% 15%;
+    grid-template-columns: 40% 25% 25% 15%;
     padding: 1px;
     margin: 1px;
     font-size: 12px;
@@ -41,11 +41,15 @@
     align-items:center;
 }
 
+.crewCardAlt{
+    background-color: #ededed;
+}
+
 .crewCardHeader{
     /* border: gray solid 1px; */
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: 50% 35% 15%;
+    grid-template-columns: 40% 25% 25% 15%;
     padding: 1px;
     margin: 1px;
     font-size: 15px;

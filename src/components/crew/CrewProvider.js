@@ -6,17 +6,32 @@ export const CrewContext = createContext()
 // This component establishes what data can be used.
 export const CrewProvider = (props) => {
     const [crew, setCrew] = useState([])
+    const [crewAvailable, setCrewAvailable] = useState([])
 
     const getCrew = () => {
-        return fetch("http://localhost:8088/crew?_expand=crewTypeId")
+        return fetch("http://localhost:8088/crew?_expand=crewType")
         .then(res => res.json())
         .then(sorted => {
-            sorted = sorted.sort((a,b)=>{
-                if(a.lastName < b.lastName) { return -1; }
-                if(a.lastName > b.lastName) { return 1; }
-            })
-        setCrew(sorted)
+
+            sorted = sorted.sort((a, b) => {
+                let retval = 0;
+                if (a.available > b.available)
+                    retval = -1;
+                if (a.available < b.available)
+                    retval = 1;
+                if (retval === 0)
+                    retval = a.lastName < b.lastName ? -1 : 1;
+                return retval;
+                })
+
+            setCrew(sorted)
         })
+    }
+
+    const getCrewAvailable = (id) => {
+        return fetch(`http://localhost:8088/crew/?available=true`)
+            .then(res => res.json())
+            .then(setCrewAvailable)
     }
 
     const getCrewById = (id) => {
@@ -55,7 +70,7 @@ export const CrewProvider = (props) => {
 
     return (
         <CrewContext.Provider value={{
-            crew, getCrew, getCrewById, addCrew, deleteCrew, updateCrew
+            crew, getCrew, getCrewById, addCrew, deleteCrew, updateCrew, getCrewAvailable
         }}>
             {props.children}
         </CrewContext.Provider>

@@ -16,6 +16,7 @@ export const CrewForm = () => {
       firstName: "",
       lastName: "",
       title: "",
+      available: true,
       crewTypeId: 0
     })
 
@@ -33,9 +34,22 @@ export const CrewForm = () => {
 
     const history = useHistory();
 
+    const handleCheckChange = (event) => {
+        // event.preventDefault()
+
+        const newCrew = { ...crew }
+
+        if (crew.available===true) {
+          newCrew[event.target.id] = false
+        }else{
+          newCrew[event.target.id] = true
+        }
+
+        setCrew(newCrew)
+    }
+
     //update state on every field change
     const handleControlledInputChange = (event) => {
-      event.preventDefault()
       const newCrew = { ...crew }
       newCrew[event.target.id] = event.target.value
       setCrew(newCrew)
@@ -87,7 +101,8 @@ export const CrewForm = () => {
               firstName: crew.firstName,
               lastName: crew.lastName,
               title: crew.title,
-              crewTypeId: parseInt(crew.crewTypeId)
+              crewTypeId: parseInt(crew.crewTypeId),
+              available: crew.available
           })
           .then(() => history.push(`/crew`))
         }else {
@@ -96,13 +111,17 @@ export const CrewForm = () => {
             firstName: crew.firstName,
             lastName: crew.lastName,
             title: crew.title,
-            crewTypeId: parseInt(crew.crewTypeId)
+            available: true,
+            crewTypeId: parseInt(crew.crewTypeId),
+            available: crew.available
           })
           .then(setCrew({  //reset state obj as blank to zero out add form
             firstName: "",
             lastName: "",
             title: "",
-            crewTypeId: 0
+            available: true,
+            crewTypeId: 0,
+            available: true
           }))
           .then(setIsLoading(false))
           .then(() => history.push("/crew"))
@@ -135,7 +154,7 @@ export const CrewForm = () => {
 
           <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">First:</label>
+            <label htmlFor="firstName">First:</label>
             <input type="text" id="firstName" required autoFocus className="form-control"
             placeholder="First Name"
             onChange={handleControlledInputChange}
@@ -145,7 +164,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="crewName">Last name: </label>
+            <label htmlFor="lastName">Last name: </label>
             <input type="text" id="lastName" required className="form-control"
             placeholder="Last Name"
             onChange={handleControlledInputChange}
@@ -155,7 +174,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-              <label htmlFor="breed">Title:</label>
+              <label htmlFor="title">Title:</label>
               <input type="text" id="title" 
               onChange={handleControlledInputChange}
               required className="form-control" 
@@ -166,7 +185,7 @@ export const CrewForm = () => {
 
         <fieldset>
           <div className="form-group">
-            <label htmlFor="location">Crew Type: </label>
+            <label htmlFor="crewTypeId">Crew Type: </label>
             <select value={crew.crewTypeId} id="crewTypeId" className="form-control" 
             onChange={handleControlledInputChange}>
               <option value="0">Select a Crew Type</option>
@@ -176,6 +195,21 @@ export const CrewForm = () => {
                 </option>
               ))}
             </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div className="form-group">
+          
+          <label htmlFor="available">Available:&nbsp;</label>
+
+          <input 
+            checked={crew.available}
+            onChange={handleCheckChange}
+            id="available"
+            type="checkbox"
+          />
+          
           </div>
         </fieldset>
 

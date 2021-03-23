@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState, useMemo } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 import { TourContext } from "../tour/TourProvider";
 import { TourRunContext } from "../tourrun/TourRunProvider";
+import { CrewContext } from "../crew/CrewProvider";
 import "./Reports.css"
 
 export const ReportTourRun = () => {
 
+    const { crew, getCrew } = useContext(CrewContext)
+    const [crewTotalActive, setCrewTotalActive ] = useState()
     const { tourRunsByTourId, getTourRunsByTourId } = useContext(TourRunContext)
     const { tours, getTours, } = useContext(TourContext)
     const [tour, setTour] = useState({
@@ -13,7 +16,12 @@ export const ReportTourRun = () => {
     })
     
     useEffect(() => {
-        getTours()
+        getCrew()
+        .then(()=>{
+            let crewTotalActiveVar = crew.filter(crewMember => crewMember.available === true).length
+            setCrewTotalActive(crewTotalActiveVar)
+        })
+        .then(getTours())
     }, [])
 
     const handleControlledInputChange = (event) => {

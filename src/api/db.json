@@ -57,7 +57,7 @@
       "artistId": 2
     }
   ],
-  "crewType": [
+  "crewTypes": [
     {
       "id": 1,
       "name": "Band"
@@ -125,14 +125,15 @@
       "firstName": "Catrin",
       "lastName": "Pemberton",
       "title": "PA",
-      "crewTypeId": 2
+      "crewTypeId": 2,
+      "available": true
     },
     {
       "id": 6,
       "firstName": "Dale",
       "lastName": "Beil",
-      "crewTypeId": 2,
       "title": "Merch",
+      "crewTypeId": 2,
       "available": true
     },
     {
@@ -148,14 +149,15 @@
       "firstName": "Asia",
       "lastName": "Davidson",
       "title": "Guitar",
-      "crewTypeId": 1
+      "crewTypeId": 1,
+      "available": true
     },
     {
       "id": 9,
       "firstName": "Siyana",
       "lastName": "Curry",
-      "crewTypeId": 1,
       "title": "Guitar 2",
+      "crewTypeId": 1,
       "available": true
     },
     {
@@ -186,16 +188,25 @@
       "id": 13,
       "firstName": "Ranveer",
       "lastName": "Wu",
-      "crewTypeId": 1,
       "title": "Drums",
+      "crewTypeId": 1,
       "available": true
     },
     {
-      "firstName": "Test",
-      "lastName": "Person",
+      "id": 16,
+      "firstName": "Bob",
+      "lastName": "Crew Guy",
       "title": "Tech",
-      "crewTypeId": 3,
-      "id": 14
+      "crewTypeId": 6,
+      "available": true
+    },
+    {
+      "id": 18,
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "111",
+      "crewTypeId": 6,
+      "available": true
     }
   ],
   "tourRun": [
@@ -210,34 +221,30 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": [
-        0,
-        1,
-        "*",
-        "*",
-        "*",
-        "*"
-      ]
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
     },
     {
       "id": 2,
-      "tourId": 1,
       "name": "A 1 Test Run Two, Tour One",
+      "description": "This is the first run of the tour",
       "dateStart": "6/1/21",
       "dateEnd": "6/10/21",
-      "timeArrive": "",
       "timeLeave": "",
-      "description": "This is the first run of the tour",
+      "timeArrive": "",
+      "tourId": 1,
       "perDiem": 30,
       "daysOut": 5,
-      "denoms": [
-        0,
-        0,
-        "*",
-        "*",
-        "*",
-        "*"
-      ]
+      "d100": 0,
+      "d50": 0,
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
     },
     {
       "id": 3,
@@ -250,14 +257,12 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": [
-        "*",
-        "*",
-        "*",
-        "*",
-        "*",
-        "*"
-      ]
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
     },
     {
       "id": 4,
@@ -270,14 +275,12 @@
       "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
-      "denoms": [
-        0,
-        1,
-        "*",
-        "*",
-        "*",
-        "*"
-      ]
+      "d100": "0",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
     },
     {
       "id": 5,
@@ -290,14 +293,12 @@
       "tourId": 2,
       "perDiem": 35,
       "daysOut": 13,
-      "denoms": [
-        "1",
-        "0",
-        "12",
-        "*",
-        "*",
-        "*"
-      ]
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*"
     },
     {
       "name": "Go Play",
@@ -309,174 +310,14 @@
       "tourId": 3,
       "perDiem": 25,
       "daysOut": 6,
-      "denoms": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "d100": "*",
+      "d50": "*",
+      "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
       "id": 7
-    },
-    {
-      "name": "Test123",
-      "description": "",
-      "dateStart": "1/1/00",
-      "dateEnd": "1/5/00",
-      "timeLeave": "10p",
-      "timeArrive": "9a",
-      "tourId": 1,
-      "perDiem": 25,
-      "daysOut": 4,
-      "denoms": [
-        "6",
-        "5",
-        "4",
-        "1",
-        "2",
-        "3"
-      ],
-      "id": 8
-    },
-    {
-      "id": 9,
-      "name": "111333",
-      "description": "",
-      "dateStart": "1/1/05",
-      "dateEnd": "1/5/05",
-      "timeLeave": "11p",
-      "timeArrive": "11a",
-      "tourId": 4,
-      "perDiem": 35,
-      "daysOut": 13,
-      "denoms": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "8",
-        "9"
-      ]
-    },
-    {
-      "name": "Test Add Crew",
-      "description": "",
-      "dateStart": "1/1/00",
-      "dateEnd": "1/5/00",
-      "timeLeave": "10p",
-      "timeArrive": "9a",
-      "tourId": 5,
-      "perDiem": 35,
-      "daysOut": 13,
-      "denoms": [
-        "0",
-        "1",
-        "*",
-        "*",
-        "*",
-        "*"
-      ],
-      "id": 10
-    },
-    {
-      "id": 11,
-      "name": "Test Name",
-      "description": "",
-      "dateStart": "1/1/20",
-      "dateEnd": "1/5/20",
-      "timeLeave": "10p",
-      "timeArrive": "9a",
-      "tourId": 5,
-      "perDiem": 25,
-      "daysOut": 6,
-      "denoms": [
-        "0",
-        "0",
-        "6",
-        "*",
-        "*",
-        "*"
-      ]
     }
   ],
-  "tourRunCrew": [
-    {
-      "id": 1,
-      "tourRunId": 1,
-      "crewId": 3,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 2,
-      "tourRunId": 1,
-      "crewId": 4,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 3,
-      "tourRunId": 1,
-      "crewId": 5,
-      "perDiemAmount": 25,
-      "daysOut": 6
-    },
-    {
-      "id": 4,
-      "tourRunId": 1,
-      "crewId": 10,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 5,
-      "tourRunId": 1,
-      "crewId": 11,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 6,
-      "tourRunId": 1,
-      "crewId": 9,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 7,
-      "tourRunId": 2,
-      "crewId": 3,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 8,
-      "tourRunId": 2,
-      "crewId": 4,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 9,
-      "tourRunId": 2,
-      "crewId": 5,
-      "perDiemAmount": 25,
-      "daysOut": 6
-    },
-    {
-      "id": 10,
-      "tourRunId": 2,
-      "crewId": 10,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    },
-    {
-      "id": 11,
-      "tourRunId": 2,
-      "crewId": 3,
-      "perDiemAmount": 25,
-      "daysOut": 5
-    }
-  ]
+  "tourRunCrew": []
 }
