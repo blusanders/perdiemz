@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { authApi, userStorageKey } from "./../auth/authSettings"
+import { authApi, userStorageKey, userStorageName } from "./../auth/authSettings"
 
 import PerDiemzLogo from "./../../images/perDiemzLogo.jpg"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -10,6 +10,7 @@ export const NavBar = (props) => {
   const LogOut = () => {
     if (window.confirm("Logout?")) {
       sessionStorage.setItem(userStorageKey, "")
+      sessionStorage.setItem(userStorageName, "")
     }
   }
 

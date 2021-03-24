@@ -9,6 +9,11 @@
       "email": "one@one.com",
       "name": "One Onederson",
       "id": 2
+    },
+    {
+      "email": "aja@aja.com",
+      "name": "Aja Washington",
+      "id": 3
     }
   ],
   "artists": [
@@ -106,8 +111,8 @@
       "id": 2,
       "firstName": "Reginald",
       "lastName": "Lake",
-      "crewTypeId": 2,
       "title": "TM",
+      "crewTypeId": 2,
       "available": true
     },
     {
@@ -212,7 +217,15 @@
       "lastName": "Sanders",
       "title": "111",
       "crewTypeId": 6,
-      "available": true
+      "available": false
+    },
+    {
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "Tech",
+      "available": true,
+      "crewTypeId": 6,
+      "id": 19
     }
   ],
   "tourRun": [

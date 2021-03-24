@@ -13,8 +13,9 @@ export const TourRunForm = () => {
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours, } = useContext(TourContext)
     const { crew, getCrew } = useContext(CrewContext)
+    const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const [ validMsgString, setValidMsgString ] = useState("") 
-    const [ crewTotalAvailableVar, setCrewTotalAvailableVar ] = useState(0)
+
     const [ denArrState, setDenArrState ] = useState(
             [ 
             [100,"*","",0],
@@ -228,10 +229,6 @@ export const TourRunForm = () => {
 
     useEffect(() => {
         getCrew()
-        .then(()=>{
-            let availVar = crew.filter(crewMember => crewMember.available === true).length
-            setCrewTotalAvailableVar(availVar)
-        })
         .then(getTours())
         .then(() => {
         if (tourRunId) {
@@ -251,10 +248,8 @@ export const TourRunForm = () => {
     // }
 
     useEffect(()=>{
-        getCrew()
-        .then(setCrewTotalAvailableVar(crew.filter(crewMember => crewMember.available === true).length))
-        .then(calcDenoms())
-        // calcDenoms()
+        getCrewAvailable()
+        calcDenoms()
     },[
         tourRun.d100,
         tourRun.d50,
@@ -463,7 +458,7 @@ export const TourRunForm = () => {
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colSpan="3">Crew: {crewTotalAvailableVar} / PD total: ${tourRun.perDiem*tourRun.daysOut*crewTotalAvailableVar}</th></tr>
+                <tr><th colSpan="3">Crew: {crewAvailable.length} / PD total: ${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}</th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>

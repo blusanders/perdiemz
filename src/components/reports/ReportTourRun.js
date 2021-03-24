@@ -8,7 +8,7 @@ import "./Reports.css"
 export const ReportTourRun = () => {
 
     const { crew, getCrew } = useContext(CrewContext)
-    const [ crewTotalActive, setCrewTotalActive ] = useState(0)
+    const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const [ pdTotal, setPdTotal ] = useState()
     const { tourRunsByTourId, getTourRunsByTourId } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
@@ -17,15 +17,11 @@ export const ReportTourRun = () => {
         getTours()
     }, [])
 
-useEffect(() => {
-    getCrew()
-    .then(()=>{
-        let crewTotalActiveVar = crew.filter(crewMember => crewMember.available === true).length
-        // console.log(crew.length);
-        setCrewTotalActive(crewTotalActiveVar)
-        // console.log(crewTotalActive);
-    })
-}, [])
+    useEffect(() => {
+        getCrew()
+        .then(getCrewAvailable)
+        console.log(crewAvailable);
+    }, [])
 
     const handleControlledInputChange = (event) => {
         let tourId = event.target.value
@@ -74,9 +70,9 @@ useEffect(() => {
                                 <td className="reportTourRunList">{tour.dateEnd}</td>
                                 <td className="reportTourRunList">{tour.perDiem}</td>
                                 <td className="reportTourRunList">{tour.daysOut}</td>
-                                <td className="reportTourRunList">{crewTotalActive}</td>
+                                <td className="reportTourRunList">{crewAvailable.length}</td>
                                 <td className="reportTourRunList">{tour.perDiem*tour.daysOut}</td>
-                                <td className="reportTourRunList">{tour.perDiem*tour.daysOut*crewTotalActive}</td>
+                                <td className="reportTourRunList">{tour.perDiem*tour.daysOut*crewAvailable.length}</td>
                             </tr>
                         ) 
                     })
