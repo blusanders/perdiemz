@@ -20,7 +20,7 @@ export const Crew = () => {
         <div className="container__crew">
 
             <div className="containerHeader">
-                <h1><i>Crew</i></h1>
+                <h1><i>Crewz</i></h1>
             </div>
 
             <div className="container__crewSideMain">

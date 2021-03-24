@@ -25,13 +25,16 @@ export const NavBar = (props) => {
           <Link className="nav-link" to="/crew">Crewz</Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/tour">Tourz</Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/tourrun">Tour Runz</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/reports">Reportz</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={LogOut}>Logout - {sessionStorage.getItem("app_user_name")}</Link>
+          <Link className="nav-link" onClick={LogOut}>Logoutz - {sessionStorage.getItem("app_user_name")}</Link>
         </li>
       </ul>
     </nav>
