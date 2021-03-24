@@ -10,7 +10,7 @@ import { CrewTypeProvider } from "./CrewType/CrewTypeProvider";
 import { TourRun } from "./tourrun/TourRun";
 import { TourRunProvider } from "./tourrun/TourRunProvider";
 import { TourProvider } from "./tour/TourProvider";
-import { TourRunCrewProvider } from "./tourruncrew/TourRunCrewProvider";
+import { TourRunCrewProvider } from "./tourRunCrew/TourRunCrewProvider";
 
 import { Reports } from "./reports/Reports";
 
@@ -45,11 +45,11 @@ export const ApplicationViews = () => {
             <Route exact path="/tourrun">
                 <CrewProvider>
                 <TourRunCrewProvider>
+                <TourProvider>
                     <TourRunProvider>
-                        <TourProvider>
                             <TourRun />
-                        </TourProvider>
                     </TourRunProvider>
+                    </TourProvider>
                     </TourRunCrewProvider>
                 </CrewProvider>
             </Route>
@@ -68,11 +68,13 @@ export const ApplicationViews = () => {
 
             <Route exact path="/reports">
             <CrewProvider>
+            <TourRunCrewProvider>
                 <TourRunProvider>
                             <TourProvider>
                                 <Reports />
                             </TourProvider>
                         </TourRunProvider>
+            </TourRunCrewProvider>
             </CrewProvider>
             </Route>
         </>

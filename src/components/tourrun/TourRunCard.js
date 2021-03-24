@@ -14,11 +14,7 @@ export const TourRunCard = ({ tourRun }) => (
                 ...
             </Button>
         </div>
-        <div>
-            <Button className="btn-sm" href={`/tourrun/pd/${tourRun.id}`}>
-                PD
-            </Button>
-        </div>
+
     </div>
     </>
 )

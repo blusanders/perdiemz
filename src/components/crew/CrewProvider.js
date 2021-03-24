@@ -28,7 +28,7 @@ export const CrewProvider = (props) => {
         })
     }
 
-    const getCrewAvailable = (id) => {
+    const getCrewAvailable = () => {
         return fetch(`http://localhost:8088/crew/?available=true`)
             .then(res => res.json())
             .then(setCrewAvailable)
@@ -70,7 +70,7 @@ export const CrewProvider = (props) => {
 
     return (
         <CrewContext.Provider value={{
-            crew, getCrew, getCrewById, addCrew, deleteCrew, updateCrew, getCrewAvailable
+            crew, getCrew, getCrewById, addCrew, deleteCrew, updateCrew, getCrewAvailable, crewAvailable
         }}>
             {props.children}
         </CrewContext.Provider>

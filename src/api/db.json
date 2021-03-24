@@ -2,12 +2,18 @@
   "users": [
     {
       "id": 1,
+      "name": "Test Testerson",
       "email": "test@test.com"
     },
     {
       "email": "one@one.com",
-      "name": "Another Test",
+      "name": "One Onederson",
       "id": 2
+    },
+    {
+      "email": "aja@aja.com",
+      "name": "Aja Washington",
+      "id": 3
     }
   ],
   "artists": [
@@ -26,35 +32,40 @@
       "name": "Big Bottles of Boot Booze Tour 2021",
       "dateStart": "5/1/2021",
       "dateEnd": "5/31/2021",
-      "artistId": 1
+      "artistId": 1,
+      "userId": 1
     },
     {
       "id": 2,
       "name": "Let Your Best People Go During the Pandemic Tour 2020",
       "dateStart": "7/1/2021",
       "dateEnd": "7/31/2021",
-      "artistId": 1
+      "artistId": 1,
+      "userId": 1
     },
     {
       "id": 3,
       "name": "My Smile is Amazing 2021",
       "dateStart": "5/1/2021",
       "dateEnd": "6/30/2021",
-      "artistId": 2
+      "artistId": 2,
+      "userId": 2
     },
     {
       "id": 4,
       "name": "Lots of Covers in My Set 2021",
       "dateStart": "7/10/2021",
       "dateEnd": "8/20/2021",
-      "artistId": 2
+      "artistId": 2,
+      "userId": 2
     },
     {
       "id": 5,
       "name": "Another Tour Like the Last One 2021",
       "dateStart": "8/31/2021",
       "dateEnd": "9/16/2021",
-      "artistId": 2
+      "artistId": 2,
+      "userId": 1
     }
   ],
   "crewTypes": [
@@ -100,8 +111,8 @@
       "id": 2,
       "firstName": "Reginald",
       "lastName": "Lake",
-      "crewTypeId": 2,
       "title": "TM",
+      "crewTypeId": 2,
       "available": true
     },
     {
@@ -206,110 +217,118 @@
       "lastName": "Sanders",
       "title": "111",
       "crewTypeId": 6,
-      "available": true
+      "available": false
+    },
+    {
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "Tech",
+      "available": true,
+      "crewTypeId": 6,
+      "id": 19
     }
   ],
   "tourRun": [
     {
-      "id": 1,
-      "tourId": 1,
-      "name": "B 1 Test Run One, Tour One",
-      "dateStart": "5/1/21",
-      "dateEnd": "5/10/21",
-      "timeArrive": "8a",
-      "timeLeave": "11:50p",
-      "description": "This is the first run of the tour",
-      "perDiem": 25,
-      "daysOut": 5,
-      "d100": "*",
-      "d50": "*",
-      "d20": "*",
-      "d10": "*",
-      "d5": "*",
-      "d1": "*"
-    },
-    {
-      "id": 2,
-      "name": "A 1 Test Run Two, Tour One",
-      "description": "This is the first run of the tour",
-      "dateStart": "6/1/21",
-      "dateEnd": "6/10/21",
-      "timeLeave": "",
-      "timeArrive": "",
-      "tourId": 1,
-      "perDiem": 30,
-      "daysOut": 5,
-      "d100": 0,
-      "d50": 0,
-      "d20": "*",
-      "d10": "*",
-      "d5": "*",
-      "d1": "*"
-    },
-    {
-      "id": 3,
+      "name": "Nash - Indy - Chicago",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "10a",
       "tourId": 2,
-      "name": "B 2 Test Run One, Tour Two",
-      "dateStart": "7/1/21",
-      "dateEnd": "7/10/21",
-      "timeArrive": "",
-      "timeLeave": "",
-      "description": "This is the first run of the tour",
-      "perDiem": 25,
-      "daysOut": 5,
-      "d100": "*",
-      "d50": "*",
-      "d20": "*",
-      "d10": "*",
-      "d5": "*",
-      "d1": "*"
-    },
-    {
-      "id": 4,
-      "tourId": 2,
-      "name": "A 2 Test Run Two, Tour Two",
-      "dateStart": "8/1/21",
-      "dateEnd": "8/10/21",
-      "timeArrive": "",
-      "timeLeave": "",
-      "description": "This is the first run of the tour",
       "perDiem": 25,
       "daysOut": 5,
       "d100": "0",
-      "d50": "*",
+      "d50": "0",
       "d20": "*",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
+      "id": 1
+    },
+    {
+      "name": "ATL - Charlotte - Greenville",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "10a",
+      "tourId": 4,
+      "perDiem": 25,
+      "daysOut": 6,
+      "d100": "0",
+      "d50": "0",
+      "d20": "5",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Hou - Dal - Aus",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "10a",
+      "tourId": 3,
+      "perDiem": 25,
+      "daysOut": 5,
+      "d100": "0",
+      "d50": "0",
+      "d20": "4",
       "d10": "*",
       "d5": "*",
       "d1": "*"
     },
     {
-      "id": 5,
-      "name": "C 2 Test Run Three, Tour Two",
-      "description": "This is the first run of the tour",
-      "dateStart": "8/1/21",
-      "dateEnd": "8/10/21",
-      "timeLeave": "",
-      "timeArrive": "",
+      "name": "SAN - LA -SAC",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "10a",
       "tourId": 2,
       "perDiem": 35,
       "daysOut": 13,
-      "d100": "*",
-      "d50": "*",
-      "d20": "*",
-      "d10": "*",
+      "d100": "0",
+      "d50": "1",
+      "d20": "15",
+      "d10": "8",
       "d5": "*",
-      "d1": "*"
+      "d1": "*",
+      "id": 4
     },
     {
-      "name": "Go Play",
+      "name": "Portland - Seattle -Vancouver",
       "description": "",
-      "dateStart": "1/1/00",
-      "dateEnd": "1/5/00",
-      "timeLeave": "10p",
-      "timeArrive": "9a",
-      "tourId": 3,
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 8,
+      "d100": "0",
+      "d50": "0",
+      "d20": "10",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
+      "id": 6
+    },
+    {
+      "name": "Test",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 5,
       "perDiem": 25,
-      "daysOut": 6,
+      "daysOut": 5,
       "d100": "*",
       "d50": "*",
       "d20": "*",
