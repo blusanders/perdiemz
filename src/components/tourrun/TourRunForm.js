@@ -13,6 +13,8 @@ export const TourRunForm = () => {
     const { getTourRuns, addTourRun, getTourRunById, updateTourRun, deleteTourRun } = useContext(TourRunContext)
     const { tours, getTours, } = useContext(TourContext)
     const { crew, getCrew } = useContext(CrewContext)
+    const [ validMsgString, setValidMsgString ] = useState("") 
+    const [ crewTotalAvailableVar, setCrewTotalAvailableVar ] = useState(0)
     const [ denArrState, setDenArrState ] = useState(
             [ 
             [100,"*","",0],
@@ -33,10 +35,10 @@ export const TourRunForm = () => {
         description: "",
         dateStart: "",
         dateEnd: "",
-        timeLeave: "10p",
-        timeArrive: "9a",
-        perDiem: 25,
-        daysOut: 5,
+        timeLeave: "",
+        timeArrive: "",
+        perDiem: 0,
+        daysOut: 0,
         d100: "*",
         d50: "*",
         d20: "*",
@@ -136,7 +138,7 @@ export const TourRunForm = () => {
         let validMsgString=""
 
         if (tourRun.name.length === 0) {
-            validMsgString = "Name is required."
+            validMsgString += "Name is required."
         }else{
             if (tourRun.dateStart.length === 0) {
                 validMsgString += "Start date required."
@@ -152,6 +154,7 @@ export const TourRunForm = () => {
                 }
             }
         }
+    
         
         if (validForm===false) {
             window.alert(validMsgString)
@@ -225,6 +228,10 @@ export const TourRunForm = () => {
 
     useEffect(() => {
         getCrew()
+        .then(()=>{
+            let availVar = crew.filter(crewMember => crewMember.available === true).length
+            setCrewTotalAvailableVar(availVar)
+        })
         .then(getTours())
         .then(() => {
         if (tourRunId) {
@@ -239,8 +246,15 @@ export const TourRunForm = () => {
         })
     }, [])
 
+    // const calcCrewLenth = () => {
+    //     setCrewTotalAvailableVar(crew.filter(crewMember => crewMember.available === true).length)
+    // }
+
     useEffect(()=>{
-        calcDenoms()
+        getCrew()
+        .then(setCrewTotalAvailableVar(crew.filter(crewMember => crewMember.available === true).length))
+        .then(calcDenoms())
+        // calcDenoms()
     },[
         tourRun.d100,
         tourRun.d50,
@@ -252,12 +266,11 @@ export const TourRunForm = () => {
         tourRun.daysOut
     ])
 
-    //get only available crew members
-    let crewTotalAvailableVar = crew.filter(crewMember => crewMember.available === true).length
-
     return (
 
         <div className="wrapper">
+
+        {/* {validMsgString} */}
 
         {/* form is first column */}
         <form className="tourRunForm ">
@@ -450,7 +463,7 @@ export const TourRunForm = () => {
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colSpan="3">Crew: {crewTotalAvailableVar} / PD total: ${tourRun.perDiem*tourRun.daysOut*crew.length}</th></tr>
+                <tr><th colSpan="3">Crew: {crewTotalAvailableVar} / PD total: ${tourRun.perDiem*tourRun.daysOut*crewTotalAvailableVar}</th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>

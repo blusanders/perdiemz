@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom";
-import { authApi, userStorageKey } from "./authSettings"
+import { authApi, userStorageKey, userStorageName } from "./authSettings"
 import { Button } from 'reactstrap';
 //import "./Login.css"
 
@@ -31,6 +31,7 @@ export const Login = () => {
             .then(exists => {
                 if (exists) {
                     sessionStorage.setItem(userStorageKey, exists.id)
+                    sessionStorage.setItem(userStorageName, exists.name)
                     history.push("/")
                 } else {
                     setExistDialog(true)

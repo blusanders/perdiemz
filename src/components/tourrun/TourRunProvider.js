@@ -1,5 +1,5 @@
 import React, { useContext, useState, createContext } from "react"
-import { TourRunCrewContext } from "../tourruncrew/TourRunCrewProvider";
+import { TourRunCrewContext } from "../tourRunCrew/TourRunCrewProvider";
 
 // The context is imported and used by individual components that need data
 export const TourRunContext = createContext()
@@ -8,7 +8,6 @@ export const TourRunContext = createContext()
 export const TourRunProvider = (props) => {
     const [tourRuns, setTourRuns] = useState([])
     const [tourRunsByTourId, setTourRunsByTourId] = useState([])
-
     const { addTourRunCrew } = useContext(TourRunCrewContext)
 
     const getTourRuns = () => {
@@ -27,9 +26,8 @@ export const TourRunProvider = (props) => {
                 return retval;
                 })
                 setTourRuns(sorted)
-            }
-            )
-        }
+        })
+    }
 
     const getTourRunById = (id) => {
         return fetch(`http://localhost:8088/tourrun/${id}`)
@@ -85,7 +83,7 @@ export const TourRunProvider = (props) => {
 
     return (
         <TourRunContext.Provider value={{
-            tourRuns, getTourRuns, tourRunsByTourId, getTourRunById, addTourRun, deleteTourRun, updateTourRun, getTourRunsByTourId
+            tourRuns, setTourRuns, getTourRuns, tourRunsByTourId, getTourRunById, addTourRun, deleteTourRun, updateTourRun, getTourRunsByTourId
         }}>
             {props.children}
         </TourRunContext.Provider>

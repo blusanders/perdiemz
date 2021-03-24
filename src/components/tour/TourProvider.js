@@ -8,7 +8,10 @@ export const TourProvider = (props) => {
     const [tours, setTours] = useState([])
 
     const getTours = () => {
-        return fetch("http://localhost:8088/tours")
+        // debugger
+        //only pull tours for logged in user
+        let fetchURL = "http://localhost:8088/tours?userId="+sessionStorage.getItem("app_user_id") 
+        return fetch(fetchURL)
         .then(res => res.json())
         .then(sorted => {
             sorted = sorted.sort((a,b)=>{

@@ -8,27 +8,29 @@ import "./Reports.css"
 export const ReportTourRun = () => {
 
     const { crew, getCrew } = useContext(CrewContext)
-    const [crewTotalActive, setCrewTotalActive ] = useState()
+    const [ crewTotalActive, setCrewTotalActive ] = useState(0)
+    const [ pdTotal, setPdTotal ] = useState()
     const { tourRunsByTourId, getTourRunsByTourId } = useContext(TourRunContext)
-    const { tours, getTours, } = useContext(TourContext)
-    const [tour, setTour] = useState({
-        tourId: 0,
-    })
+    const { tours, getTours } = useContext(TourContext)
     
     useEffect(() => {
-        getCrew()
-        .then(()=>{
-            let crewTotalActiveVar = crew.filter(crewMember => crewMember.available === true).length
-            setCrewTotalActive(crewTotalActiveVar)
-        })
-        .then(getTours())
+        getTours()
     }, [])
+
+useEffect(() => {
+    getCrew()
+    .then(()=>{
+        let crewTotalActiveVar = crew.filter(crewMember => crewMember.available === true).length
+        // console.log(crew.length);
+        setCrewTotalActive(crewTotalActiveVar)
+        // console.log(crewTotalActive);
+    })
+}, [])
 
     const handleControlledInputChange = (event) => {
         let tourId = event.target.value
         if(tourId!==0){
             //show report if selected
-            console.log(tourId);
             getTourRunsByTourId(tourId)
         }
     }
@@ -58,7 +60,9 @@ export const ReportTourRun = () => {
                         <th>End</th>
                         <th>$PD</th>
                         <th>Days Out</th>
+                        <th>Crew</th>
                         <th>$PD Per</th>
+                        <th>$PD Total</th>
                     </tr>
                 </thead>
                 {
@@ -70,7 +74,9 @@ export const ReportTourRun = () => {
                                 <td className="reportTourRunList">{tour.dateEnd}</td>
                                 <td className="reportTourRunList">{tour.perDiem}</td>
                                 <td className="reportTourRunList">{tour.daysOut}</td>
+                                <td className="reportTourRunList">{crewTotalActive}</td>
                                 <td className="reportTourRunList">{tour.perDiem*tour.daysOut}</td>
+                                <td className="reportTourRunList">{tour.perDiem*tour.daysOut*crewTotalActive}</td>
                             </tr>
                         ) 
                     })

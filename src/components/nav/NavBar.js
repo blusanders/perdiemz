@@ -30,7 +30,7 @@ export const NavBar = (props) => {
           <Link className="nav-link" to="/reports">Reportz</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={LogOut}>Logout</Link>
+          <Link className="nav-link" onClick={LogOut}>Logout - {sessionStorage.getItem("app_user_name")}</Link>
         </li>
       </ul>
     </nav>
