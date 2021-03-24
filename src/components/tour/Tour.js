@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect }  from "react";
 import "./Tour.css"
 import { TourForm } from "./TourForm";
 import { TourList } from "./TourList";
-import { TourContext } from "./TourProvider";
 
 export const Tour = () => {
 

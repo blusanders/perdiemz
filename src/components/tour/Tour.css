@@ -1,0 +1,70 @@
+.container__tour{
+    /* border:black 1px solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHeader{
+    background-color: #e9ecef;
+}
+
+.container__tourSideMain{
+    /* border:green 1px solid; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.container__tourSide{
+    /* border:black 1px solid; */
+    /* border-radius: 15px; */
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.container__tourMain{
+    /* border:black 1px solid; */
+    /* border-radius: 15px; */
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.tourCard{
+    /* border: gray solid 1px; */
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 40% 25% 25% 15%;
+    padding: 1px;
+    margin: 1px;
+    font-size: 12px;
+    border-top: 1px solid gray;
+    align-items:center;
+}
+
+.tourCardAlt{
+    background-color: #ededed;
+}
+
+.tourCardHeader{
+    /* border: gray solid 1px; */
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 40% 25% 25% 15%;
+    padding: 1px;
+    margin: 1px;
+    font-size: 15px;
+    align-items:center;
+    /* color: gray; */
+    /* background-color: #e9ecef; */
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.formNotice{
+    color: red;
+    font-size: 10px;
+}

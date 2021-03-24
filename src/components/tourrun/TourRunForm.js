@@ -121,7 +121,7 @@ export const TourRunForm = () => {
             modVar = calcTotal%denArr[x][0]
 
             //calculate max bills per single crew member per denom
-            if(denArr[x][1]===undefined){denArr[x][2]=remVar}
+            // if(denArr[x][1]===undefined){denArr[x][2]=remVar}
             if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
             if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
 
@@ -214,8 +214,8 @@ export const TourRunForm = () => {
                 timeLeave: "",
                 timeArrive: "",
                 tourId: 0,
-                perDiem: 25,
-                daysOut: 5,
+                perDiem: 0,
+                daysOut: 0,
                 d100: "*",
                 d50: "*",
                 d20: "*",

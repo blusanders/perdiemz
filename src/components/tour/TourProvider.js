@@ -23,12 +23,12 @@ export const TourProvider = (props) => {
     }
 
     const getTourById = (id) => {
-        return fetch(`http://localhost:8088/tour/${id}`)
+        return fetch(`http://localhost:8088/tours/${id}`)
             .then(res => res.json())
     }
 
     const addTour = tourObj => {
-        return fetch("http://localhost:8088/tour", {
+        return fetch("http://localhost:8088/tours", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,8 +38,20 @@ export const TourProvider = (props) => {
         .then(getTours)
     }
 
+    const updateTour = tour => {
+        return fetch(`http://localhost:8088/tours/${tour.id}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tour)
+        })
+            .then(getTours)
+        }
+
+
     const deleteTour = tourId => {
-        return fetch(`http://localhost:8088/tour/${tourId}`, {
+        return fetch(`http://localhost:8088/tours/${tourId}`, {
             method: "DELETE"
         })
             .then(getTours)
@@ -47,7 +59,7 @@ export const TourProvider = (props) => {
 
     return (
         <TourContext.Provider value={{
-            tours, getTours, getTourById, addTour, deleteTour
+            tours, getTours, getTourById, addTour, deleteTour, updateTour
         }}>
             {props.children}
         </TourContext.Provider>
