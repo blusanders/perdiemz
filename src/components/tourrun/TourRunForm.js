@@ -245,9 +245,6 @@ export const TourRunForm = () => {
         })
     }, [])
 
-    // const calcCrewLenth = () => {
-    //     setCrewTotalAvailableVar(crew.filter(crewMember => crewMember.available === true).length)
-    // }
 
     useEffect(()=>{
         getCrewAvailable()
@@ -266,8 +263,6 @@ export const TourRunForm = () => {
     return (
 
         <div className="wrapper">
-
-        {/* {validMsgString} */}
 
         {/* form is first column */}
         <form className="tourRunForm ">

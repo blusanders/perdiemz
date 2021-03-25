@@ -56,7 +56,6 @@ export const CrewForm = () => {
     }
 
     const handleDeleteCrew = (event) => {
-      console.log("Delete ID " + event.target.id)
       if(window.confirm("Are you sure?")===true){
         deleteCrew(event.target.id)
         .then(() => {

@@ -52,7 +52,6 @@ export const TourRunProvider = (props) => {
         })
         .then(res => res.json())
         .then(newTourRunObj => {
-            console.log(newTourRunObj.id)
             //for unique PD per crew member
             //could accept an array parameter of all crew/pd/daysOut
             //and then that into addTourRunCrew as well

@@ -28,6 +28,7 @@ export const TourProvider = (props) => {
     }
 
     const addTour = tourObj => {
+        debugger
         return fetch("http://localhost:8088/tours", {
             method: "POST",
             headers: {
@@ -39,6 +40,7 @@ export const TourProvider = (props) => {
     }
 
     const updateTour = tour => {
+        debugger
         return fetch(`http://localhost:8088/tours/${tour.id}`, {
             method: "PUT",
             headers: {
