@@ -5,6 +5,7 @@ import { userStorageKey } from "./auth/authSettings"
 
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./../components/nav/NavBar"
+import { Footer } from "./Footer"
 
 export const PerDiemz = () => (
 
@@ -15,7 +16,7 @@ export const PerDiemz = () => (
         <>
               <NavBar />
               <ApplicationViews />
-              
+              <Footer/>
         </>
       )
     } else {

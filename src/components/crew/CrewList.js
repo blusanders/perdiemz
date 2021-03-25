@@ -12,7 +12,7 @@ export const CrewList = () => {
 
     return (
         crew.map(crewMember => {
-            return <CrewCard key={crew.id} crew={crewMember} />
+            return <CrewCard key={crewMember.id} crew={crewMember} />
         }
         )
     )

@@ -19,7 +19,7 @@ export const TourRunList = () => {
     return (
         tourRuns.map(tourRun => {
             if(tours.find(tour=>tour.id===tourRun.tourId)){
-                return <TourRunCard key={tourRuns.id} tourRun={tourRun}/>
+                return <TourRunCard key={tourRun.id} tourRun={tourRun}/>
             }
         })
     )
