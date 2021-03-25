@@ -20,6 +20,9 @@ Artist/CrewTypes were pre-added to the db. However, what Artist a tour is relate
 
 #
 
+
+![Per Diemz Screenshot](https://res.cloudinary.com/dp6mbc90b/image/upload/v1616694110/perDiemzScreenshot_gigzly.png)
+
 ## Crewz
 CRUD your tour crew. Add crew members who will be on the road with you for a particular week.
 
