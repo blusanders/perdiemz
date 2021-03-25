@@ -14,7 +14,8 @@ export const PerDiemz = () => (
       return (
         <>
               <NavBar />
-              <ApplicationViews />       
+              <ApplicationViews />
+              
         </>
       )
     } else {

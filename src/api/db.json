@@ -231,6 +231,14 @@
       "available": true,
       "crewTypeId": 6,
       "id": 19
+    },
+    {
+      "id": 20,
+      "firstName": "Testerson",
+      "lastName": "Person",
+      "title": "12345",
+      "crewTypeId": 2,
+      "available": true
     }
   ],
   "tourRun": [
@@ -395,6 +403,24 @@
       "d5": "*",
       "d1": "*",
       "id": 12
+    },
+    {
+      "name": "Test Run",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 1,
+      "perDiem": 35,
+      "daysOut": 9,
+      "d100": "0",
+      "d50": "1",
+      "d20": "8",
+      "d10": "8",
+      "d5": "*",
+      "d1": "*",
+      "id": 13
     }
   ],
   "tourRunCrew": []
