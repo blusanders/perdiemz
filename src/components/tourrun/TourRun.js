@@ -18,6 +18,7 @@ export const TourRun = () => {
                 <div className="tourRunCardHeader">
                     <div>Name</div>
                     <div>Date</div>
+                    <div>Tour</div>
                     <div></div>
                 </div>
                 

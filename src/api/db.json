@@ -67,9 +67,9 @@
     },
     {
       "userId": 3,
-      "name": "123",
-      "dateStart": "456",
-      "dateEnd": "789",
+      "name": "Aja World Tour",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
       "id": 6
     }
   ],
@@ -325,24 +325,6 @@
       "id": 6
     },
     {
-      "name": "123",
-      "description": "",
-      "dateStart": "456",
-      "dateEnd": "789",
-      "timeLeave": "000",
-      "timeArrive": "",
-      "tourId": 6,
-      "perDiem": 25,
-      "daysOut": 13,
-      "d100": "0",
-      "d50": "0",
-      "d20": "10",
-      "d10": "8",
-      "d5": "*",
-      "d1": "*",
-      "id": 8
-    },
-    {
       "name": "Boston - NYC - DC",
       "description": "",
       "dateStart": "1/1/20",
@@ -359,6 +341,60 @@
       "d5": "*",
       "d1": "*",
       "id": 9
+    },
+    {
+      "name": "Tampa - Jacksonville - Macon",
+      "description": "",
+      "dateStart": "1/1/21",
+      "dateEnd": "1/14/21",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 5,
+      "perDiem": 25,
+      "daysOut": 13,
+      "d100": "0",
+      "d50": "0",
+      "d20": "10",
+      "d10": "8",
+      "d5": "*",
+      "d1": "*",
+      "id": 10
+    },
+    {
+      "name": "Week 1",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 6,
+      "perDiem": 35,
+      "daysOut": 5,
+      "d100": "0",
+      "d50": "0",
+      "d20": "6",
+      "d10": "*",
+      "d5": "*",
+      "d1": "*",
+      "id": 11
+    },
+    {
+      "name": "Week 2",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 6,
+      "perDiem": 35,
+      "daysOut": 13,
+      "d100": "0",
+      "d50": "1",
+      "d20": "12",
+      "d10": "10",
+      "d5": "*",
+      "d1": "*",
+      "id": 12
     }
   ],
   "tourRunCrew": []

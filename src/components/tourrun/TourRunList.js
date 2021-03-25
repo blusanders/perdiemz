@@ -15,6 +15,7 @@ export const TourRunList = () => {
         .then(getTourRuns())
     }, [])
 
+    //only pull tour runs from tours with logged in userId
     return (
         tourRuns.map(tourRun => {
             if(tours.find(tour=>tour.id===tourRun.tourId)){

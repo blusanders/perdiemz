@@ -19,7 +19,7 @@ export const NavBar = (props) => {
 
       <ul className="nav  navbar-collapse nav-fill">
         <li className="">
-          <Link className="nav-link inactive" activeClassName="active" to="/"><img src={PerDiemzLogo} width="100"></img></Link>
+          <Link className="nav-link inactive" to="/"><img src={PerDiemzLogo} width="100"></img></Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/crew">Crewz</Link>
@@ -34,7 +34,7 @@ export const NavBar = (props) => {
           <Link className="nav-link" to="/reports">Reportz</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={LogOut}>Logoutz - {sessionStorage.getItem("app_user_name")}</Link>
+          <Link className="nav-link" to="" onClick={LogOut}>Logout - {sessionStorage.getItem("app_user_name")}</Link>
         </li>
       </ul>
     </nav>

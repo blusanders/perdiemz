@@ -39,7 +39,6 @@
     }
 
     const handleDeleteTour = (event) => {
-        console.log("Delete ID " + event.target.id)
         if(window.confirm("Are you sure?")===true){
         deleteTour(event.target.id)
         .then(() => {
@@ -65,11 +64,12 @@
         //disable the button - no extra clicks
         setIsLoading(true);
 
+        debugger
         //if params has tourId then UPDATE else ADD
         if (tourId){
             //PUT - update
             updateTour({
-                id: tour.tourId,
+                id: tour.id,
                 userId: tour.userId, 
                 name: tour.name,
                 dateStart: tour.dateStart,

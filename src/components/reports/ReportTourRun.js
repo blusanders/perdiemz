@@ -11,7 +11,9 @@ export const ReportTourRun = () => {
     const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const { tourRunsByTourId, getTourRunsByTourId } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
+
     const [ pdTotal, setPdTotal ] = useState(0)
+    const [ showReport, setShowReport ] = useState(false)
     
     useEffect(() => {
         getTours()
@@ -21,21 +23,30 @@ export const ReportTourRun = () => {
         getCrewAvailable()
     }, [])
 
+    //refresh report if tour selected from dropdown
     const handleControlledInputChange = (event) => {
-        let tourId = event.target.value
+        // debugger
+        let tourId = parseInt(event.target.value)
         if(tourId!==0){
             getTourRunsByTourId(tourId)
-            // .then(console.log("Sum: "+sumPerDiem()))
-            // .then(setPdTotal(sumPerDiem()))
+            setShowReport(true)
+        }else{
+            setShowReport(false)
         }
     }
 
+    //calculate total perdiem for all runs in selected tour
     const sumPerDiem = () => {
         let sumVar = 0
             tourRunsByTourId.forEach(x => {
                 sumVar += x.perDiem*x.daysOut*crewAvailable.length
             })
             return sumVar
+    }
+
+    // return total with commas
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     return (
@@ -55,6 +66,7 @@ export const ReportTourRun = () => {
             </select>
         </div>
     
+    {showReport===true ? 
         <div>
             <table className="reportTourRun">
                 <thead>
@@ -69,6 +81,7 @@ export const ReportTourRun = () => {
                         <th>$PD Total</th>
                     </tr>
                 </thead>
+                <tbody>
                 {
                     tourRunsByTourId.map(tour =>{
                         return(
@@ -87,9 +100,14 @@ export const ReportTourRun = () => {
                         ) 
                     })
                 }
-                            <tr><td colSpan="8" align="right"><b>Tour Total:{sumPerDiem()}</b></td></tr>
+                            <tr><td colSpan="8" align="right"><b>Tour Total: ${numberWithCommas(sumPerDiem())}</b></td></tr>
+                </tbody>
             </table>
         </div>
+
+        :
+        ""
+        }
 
     </div>
 
