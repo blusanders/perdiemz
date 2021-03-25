@@ -25,8 +25,8 @@ export const ReportTourRun = () => {
         let tourId = event.target.value
         if(tourId!==0){
             getTourRunsByTourId(tourId)
-            .then(console.log("Sum: "+sumPerDiem()))
-            .then(setPdTotal(sumPerDiem()))
+            // .then(console.log("Sum: "+sumPerDiem()))
+            // .then(setPdTotal(sumPerDiem()))
         }
     }
 
@@ -87,7 +87,7 @@ export const ReportTourRun = () => {
                         ) 
                     })
                 }
-                            <tr><td colSpan="8" align="right">Tour Total: {pdTotal}</td></tr>
+                            <tr><td colSpan="8" align="right"><b>Tour Total:{sumPerDiem()}</b></td></tr>
             </table>
         </div>
 
