@@ -69,7 +69,7 @@
         if (tourId){
             //PUT - update
             updateTour({
-                id: tourId,
+                id: tour.tourId,
                 userId: tour.userId, 
                 name: tour.name,
                 dateStart: tour.dateStart,
