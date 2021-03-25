@@ -73,6 +73,8 @@ export const TourRunForm = () => {
         }
     }
 
+    //takes per diem * days out and max bill denoms to calculate
+    //how many of each demon to request for the tour run
     const calcDenoms = () => {
         let dayRate = tourRun.perDiem
         let dayTotal = tourRun.daysOut
@@ -80,6 +82,7 @@ export const TourRunForm = () => {
         let calcTotal = dayRate*dayTotal
         let runTotal = calcTotal*crewTotal
 
+        //changed names for...not sure why.  
         let max100=tourRun.d100
         let max50=tourRun.d50
         let max20=tourRun.d20
@@ -87,8 +90,9 @@ export const TourRunForm = () => {
         let max5=tourRun.d5
         let max1=tourRun.d1
         
-        // debugger
-
+        //chose * for asthetics and to not have to deal with null vs blank values
+        //explicitly selecting * means you definitely want any # of bills
+        //setting each value to 100 bc * is not something calculable and 100 will never be reached 
         if (max100==="*") {max100=100}else{max100=parseInt(max100)} 
         if (max50==="*") {max50=100}else{max50=parseInt(max50)} 
         if (max20==="*") {max20=100}else{max20=parseInt(max20)} 
@@ -113,12 +117,11 @@ export const TourRunForm = () => {
         for (let x = 0; x < denArr.length; x++) {
 
             //divide remaining total into bill denom
-            //first total is grand total
             remVar = Math.trunc(calcTotal/denArr[x][0])
             modVar = calcTotal%denArr[x][0]
 
             //calculate max bills per single crew member per denom
-            if(denArr[x][1]===undefined){denArr[x][2]=remVar}
+            // if(denArr[x][1]===undefined){denArr[x][2]=remVar}
             if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
             if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
 
@@ -129,7 +132,6 @@ export const TourRunForm = () => {
         }
 
         setDenArrState(denArr)
-        // console.table(denArr);
         return denArr
     }
 
@@ -212,8 +214,8 @@ export const TourRunForm = () => {
                 timeLeave: "",
                 timeArrive: "",
                 tourId: 0,
-                perDiem: 25,
-                daysOut: 5,
+                perDiem: 0,
+                daysOut: 0,
                 d100: "*",
                 d50: "*",
                 d20: "*",

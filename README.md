@@ -33,4 +33,4 @@ Select your tour. Give your tour run a name, date/time, per diem amount, days ou
 Select the maximum # of bills you want for each denomination. Typically this is 0-100s and/or 0-50s. But if that results in 24-20s then you can play with the numbers and get the counts you prefer.
 
 ## Why do this? 
-Because often on the road crew memebers want to use cash but plent of places don't want to change 100s or 50s. Especially in the middle on nowhere. It just makes is easier for your crew and everything you can do to make it smoother on the road, the better.
+Because often on the road crew members want to use cash but plent of places don't want to change 100s or 50s. Especially in the middle on nowhere. It just makes is easier for your crew and everything you can do to make it smoother on the road, the better.

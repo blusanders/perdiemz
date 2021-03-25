@@ -29,11 +29,10 @@
   "tours": [
     {
       "id": 1,
-      "name": "Big Bottles of Boot Booze Tour 2021",
+      "userId": 1,
+      "name": "You Clean Up My Mess Tour 2021",
       "dateStart": "5/1/2021",
-      "dateEnd": "5/31/2021",
-      "artistId": 1,
-      "userId": 1
+      "dateEnd": "5/31/2021"
     },
     {
       "id": 2,
@@ -61,11 +60,17 @@
     },
     {
       "id": 5,
-      "name": "Another Tour Like the Last One 2021",
-      "dateStart": "8/31/2021",
-      "dateEnd": "9/16/2021",
-      "artistId": 2,
-      "userId": 1
+      "userId": 1,
+      "name": "Another Tour Just Like the Last One 2021",
+      "dateStart": "4/1/21",
+      "dateEnd": "4/30/21"
+    },
+    {
+      "userId": 3,
+      "name": "123",
+      "dateStart": "456",
+      "dateEnd": "789",
+      "id": 6
     }
   ],
   "crewTypes": [
@@ -320,22 +325,40 @@
       "id": 6
     },
     {
-      "name": "Test",
+      "name": "123",
+      "description": "",
+      "dateStart": "456",
+      "dateEnd": "789",
+      "timeLeave": "000",
+      "timeArrive": "",
+      "tourId": 6,
+      "perDiem": 25,
+      "daysOut": 13,
+      "d100": "0",
+      "d50": "0",
+      "d20": "10",
+      "d10": "8",
+      "d5": "*",
+      "d1": "*",
+      "id": 8
+    },
+    {
+      "name": "Boston - NYC - DC",
       "description": "",
       "dateStart": "1/1/20",
       "dateEnd": "1/5/20",
       "timeLeave": "11p",
       "timeArrive": "11a",
-      "tourId": 5,
-      "perDiem": 25,
-      "daysOut": 5,
-      "d100": "*",
-      "d50": "*",
-      "d20": "*",
-      "d10": "*",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 9,
+      "d100": "0",
+      "d50": "1",
+      "d20": "8",
+      "d10": "8",
       "d5": "*",
       "d1": "*",
-      "id": 7
+      "id": 9
     }
   ],
   "tourRunCrew": []

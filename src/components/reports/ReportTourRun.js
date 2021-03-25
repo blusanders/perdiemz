@@ -7,34 +7,42 @@ import "./Reports.css"
 
 export const ReportTourRun = () => {
 
-    const { crew, getCrew } = useContext(CrewContext)
+    // const { crew, getCrew } = useContext(CrewContext)
     const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
-    const [ pdTotal, setPdTotal ] = useState()
     const { tourRunsByTourId, getTourRunsByTourId } = useContext(TourRunContext)
     const { tours, getTours } = useContext(TourContext)
+    const [ pdTotal, setPdTotal ] = useState(0)
     
     useEffect(() => {
         getTours()
     }, [])
 
     useEffect(() => {
-        getCrew()
-        .then(getCrewAvailable)
-        console.log(crewAvailable);
+        getCrewAvailable()
     }, [])
 
     const handleControlledInputChange = (event) => {
         let tourId = event.target.value
         if(tourId!==0){
-            //show report if selected
             getTourRunsByTourId(tourId)
+            // .then(console.log("Sum: "+sumPerDiem()))
+            // .then(setPdTotal(sumPerDiem()))
         }
+    }
+
+    const sumPerDiem = () => {
+        let sumVar = 0
+            tourRunsByTourId.forEach(x => {
+                sumVar += x.perDiem*x.daysOut*crewAvailable.length
+            })
+            return sumVar
     }
 
     return (
 
     <div>
 
+        {/* all tours for dropdown */}
         <div className="form-group ">
             <select autoFocus id="tourId" className="form-control" 
             onChange={handleControlledInputChange}>
@@ -64,6 +72,7 @@ export const ReportTourRun = () => {
                 {
                     tourRunsByTourId.map(tour =>{
                         return(
+                            <>
                             <tr>
                                 <td className="reportTourRunList">{tour.name}</td>
                                 <td className="reportTourRunList">{tour.dateStart}</td>
@@ -74,9 +83,11 @@ export const ReportTourRun = () => {
                                 <td className="reportTourRunList">{tour.perDiem*tour.daysOut}</td>
                                 <td className="reportTourRunList">{tour.perDiem*tour.daysOut*crewAvailable.length}</td>
                             </tr>
+                            </>
                         ) 
                     })
                 }
+                            <tr><td colSpan="8" align="right"><b>Tour Total:{sumPerDiem()}</b></td></tr>
             </table>
         </div>
 
