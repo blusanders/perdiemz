@@ -10,13 +10,13 @@ export const Reports = () => {
                 <h1><i>Reportz</i></h1>
             </div>
 
-            <div className="container__crewSideMain">
+            <div className="container__reportsSideMain">
 
-                <div className="container__crewSide">
+                <div className="container__reportsSide">
                     <h2>Tour Runz by Tour</h2>
                 </div>
             
-                <div className="container__crewMain">
+                <div className="container__reportsMain">
 
                 <ReportTourRun />
                 

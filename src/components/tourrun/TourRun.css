@@ -29,6 +29,10 @@
     padding: 10px;
 }
 
+.tourRunForm{
+    padding: 0px;
+}
+
 .tourRunCard{
     /* border: gray solid 1px; */
     display: grid;

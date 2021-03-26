@@ -44,7 +44,7 @@ export const ReportTourRun = () => {
             return sumVar
     }
 
-    // return total with commas
+    // return $total with commas
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -86,7 +86,7 @@ export const ReportTourRun = () => {
                     tourRunsByTourId.map(tour =>{
                         return(
                             <>
-                            <tr>
+                            <tr key={tour.id}>
                                 <td className="reportTourRunList">{tour.name}</td>
                                 <td className="reportTourRunList">{tour.dateStart}</td>
                                 <td className="reportTourRunList">{tour.dateEnd}</td>

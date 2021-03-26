@@ -40,12 +40,12 @@ export const TourRunForm = () => {
         timeArrive: "",
         perDiem: 0,
         daysOut: 0,
-        d100: "*",
-        d50: "*",
-        d20: "*",
-        d10: "*",
-        d5: "*",
-        d1: "*"
+        d100: "",
+        d50: "",
+        d20: "",
+        d10: "",
+        d5: "",
+        d1: ""
     })
 
     //create state var to stop quick clicks on edits
@@ -78,7 +78,7 @@ export const TourRunForm = () => {
     const calcDenoms = () => {
         let dayRate = tourRun.perDiem
         let dayTotal = tourRun.daysOut
-        let crewTotal = crew.length
+        let crewTotal = crewAvailable.length
         let calcTotal = dayRate*dayTotal
         let runTotal = calcTotal*crewTotal
 
@@ -93,12 +93,12 @@ export const TourRunForm = () => {
         //chose * for asthetics and to not have to deal with null vs blank values
         //explicitly selecting * means you definitely want any # of bills
         //setting each value to 100 bc * is not something calculable and 100 will never be reached 
-        if (max100==="*") {max100=100}else{max100=parseInt(max100)} 
-        if (max50==="*") {max50=100}else{max50=parseInt(max50)} 
-        if (max20==="*") {max20=100}else{max20=parseInt(max20)} 
-        if (max10==="*") {max10=100}else{max10=parseInt(max10)} 
-        if (max5==="*") {max5=100}else{max5=parseInt(max5)} 
-        if (max1==="*") {max1=100}else{max1=parseInt(max1)} 
+        if (max100==="") {max100=1000}else{max100=parseInt(max100)} 
+        if (max50==="") {max50=1000}else{max50=parseInt(max50)} 
+        if (max20==="") {max20=1000}else{max20=parseInt(max20)} 
+        if (max10==="") {max10=1000}else{max10=parseInt(max10)} 
+        if (max5==="") {max5=1000}else{max5=parseInt(max5)} 
+        if (max1==="") {max1=1000}else{max1=parseInt(max1)} 
 
         //1-denomintion, 2-max bills, 3-total bills for denomination, 4-total bills for week 
         let denArr =[ 
@@ -121,7 +121,7 @@ export const TourRunForm = () => {
             modVar = calcTotal%denArr[x][0]
 
             //calculate max bills per single crew member per denom
-            // if(denArr[x][1]===undefined){denArr[x][2]=remVar}
+            if(denArr[x][1]===undefined){denArr[x][2]=remVar}
             if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
             if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
 
@@ -129,6 +129,20 @@ export const TourRunForm = () => {
             denArr[x][3]=denArr[x][2]*crewTotal
 
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
+
+            // if (x===5){
+            //     let checkTotal = 0
+            //     for (let index = 0; index < 6; index++) {
+            //         checkTotal = checkTotal + (denArr[index][0]*denArr[index][2]*crewAvailable.length)
+            //         console.log(index +" : "+ denArr[index][0]+" : "+denArr[index][2]+" : "+crewAvailable.length+" : "+checkTotal)
+            //     }
+            //     if(checkTotal!==tourRun.perDiem*tourRun.daysOut*crewAvailable.length){
+            //         // denArr[5][1]=""
+            //         // tourRun.d1=""
+            //         console.log("No");
+            //     }else{console.log("Yes");
+            //     };
+            // }
         }
 
         setDenArrState(denArr)
@@ -216,12 +230,12 @@ export const TourRunForm = () => {
                 tourId: 0,
                 perDiem: 0,
                 daysOut: 0,
-                d100: "*",
-                d50: "*",
-                d20: "*",
-                d10: "*",
-                d5: "*",
-                d1: "*"
+                d100: "",
+                d50: "",
+                d20: "",
+                d10: "",
+                d5: "",
+                d1: ""
             }))
             .then(setIsLoading(false))
             .then(() => history.push("/tourRun"))
@@ -265,9 +279,9 @@ export const TourRunForm = () => {
         <div className="wrapper">
 
         {/* form is first column */}
-        <form className="tourRunForm ">
-
+        <div>
         <h2 className="tourRunForm__title">{tourRunId ? "Edit TourRun" : "Add TourRunz"}</h2>
+        <form className="tourRunForm ">
 
             <div className="form-group ">
                 <label htmlFor="location">Tour: </label>
@@ -355,7 +369,7 @@ export const TourRunForm = () => {
         <div className="formNotice">*All Fields Required</div>
         
         </form>
-
+        </div>
         {/* second column */}
         <div>
 
@@ -499,6 +513,6 @@ export const TourRunForm = () => {
             </div>
         </div>
 
-    </div>
+        </div>
     )
     }
