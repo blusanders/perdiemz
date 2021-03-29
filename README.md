@@ -8,10 +8,18 @@ I came from the country touring world where we were in and out often, which mean
 
 #
 
+## Get Perdiemz
+Fork or Clone the perdiemz repo
+json-server -w db.json -p 8080
+npm start
+
+
+#
+
 ## Tech Stack
 HTML/CSS/Javascript/React/JSON
 ## New things (to me) I used for formatting:
-Reactstrap, CSS Grid (life saver for lots of data)
+Reactstrap, CSS Grid
 
 # 
 

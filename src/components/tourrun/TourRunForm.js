@@ -246,7 +246,9 @@ export const TourRunForm = () => {
     useEffect(() => {
         getCrew()
         .then(getTours())
-        .then(() => {
+    }, [])
+    
+    useEffect(()=>{
         if (tourRunId) {
             getTourRunById(tourRunId)
             .then(tourRunObj => {
@@ -256,9 +258,7 @@ export const TourRunForm = () => {
         } else {
             setIsLoading(false)
         }
-        })
-    }, [])
-
+    }, [tourRunId])
 
     useEffect(()=>{
         getCrewAvailable()
@@ -460,6 +460,7 @@ export const TourRunForm = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
+                        maxLength="2"
                         value={tourRun.d1}
                         />
                 </div>

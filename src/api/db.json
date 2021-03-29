@@ -129,8 +129,8 @@
       "id": 3,
       "firstName": "Lee",
       "lastName": "Dotson",
-      "crewTypeId": 2,
       "title": "PM",
+      "crewTypeId": 2,
       "available": true
     },
     {
@@ -222,14 +222,6 @@
       "available": true
     },
     {
-      "id": 18,
-      "firstName": "Blu",
-      "lastName": "Sanders",
-      "title": "111",
-      "crewTypeId": 6,
-      "available": false
-    },
-    {
       "id": 19,
       "firstName": "Blu",
       "lastName": "Sanders",
@@ -252,6 +244,14 @@
       "available": true,
       "crewTypeId": 2,
       "id": 21
+    },
+    {
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "Boss",
+      "available": true,
+      "crewTypeId": 3,
+      "id": 22
     }
   ],
   "tourRun": [
@@ -335,7 +335,7 @@
       "dateEnd": "1/5/20",
       "timeLeave": "11p",
       "timeArrive": "11a",
-      "tourId": 2,
+      "tourId": 5,
       "perDiem": 35,
       "daysOut": 8,
       "d100": "0",
@@ -416,42 +416,6 @@
       "d5": "*",
       "d1": "*",
       "id": 12
-    },
-    {
-      "id": 14,
-      "name": "Nashville - Indy - Peoria",
-      "description": "",
-      "dateStart": "1/1/20",
-      "dateEnd": "1/5/20",
-      "timeLeave": "11p",
-      "timeArrive": "11a",
-      "tourId": 2,
-      "perDiem": 35,
-      "daysOut": 9,
-      "d100": "0",
-      "d50": "1",
-      "d20": "8",
-      "d10": "5",
-      "d5": "",
-      "d1": ""
-    },
-    {
-      "name": "111",
-      "description": "",
-      "dateStart": "222",
-      "dateEnd": "333",
-      "timeLeave": "444",
-      "timeArrive": "555",
-      "tourId": 5,
-      "perDiem": 25,
-      "daysOut": 13,
-      "d100": "0",
-      "d50": "1",
-      "d20": "10",
-      "d10": "4",
-      "d5": "",
-      "d1": "",
-      "id": 15
     }
   ],
   "tourRunCrew": []

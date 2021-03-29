@@ -98,8 +98,9 @@
     // Get customers and locations. If tourId is in the URL, getTourById
     useEffect(() => {
         getTours()
-        .then(() => {
-            // debugger
+    }, [])
+    
+    useEffect(() => {
         if (tourId) {
             getTourById(tourId)
             .then(tour => {
@@ -109,9 +110,8 @@
         } else {
             setIsLoading(false)
         }
-        })
-    }, [])
-
+    }, [tourId])
+        
     return (
         <div>
         <form className="tourForm ">
