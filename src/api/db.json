@@ -252,6 +252,14 @@
       "available": true,
       "crewTypeId": 3,
       "id": 22
+    },
+    {
+      "id": 23,
+      "firstName": "This One",
+      "lastName": "Guy",
+      "title": "Guitar Tech",
+      "crewTypeId": 9,
+      "available": true
     }
   ],
   "tourRun": [
@@ -416,6 +424,24 @@
       "d5": "*",
       "d1": "*",
       "id": 12
+    },
+    {
+      "name": "Nashville - Evansville - Indy",
+      "description": "",
+      "dateStart": "4/15",
+      "dateEnd": "4/21",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 2,
+      "perDiem": 25,
+      "daysOut": 6,
+      "d100": "0",
+      "d50": "0",
+      "d20": "5",
+      "d10": "4",
+      "d5": "",
+      "d1": "",
+      "id": 13
     }
   ],
   "tourRunCrew": []
