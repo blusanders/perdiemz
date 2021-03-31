@@ -442,6 +442,24 @@
       "d5": "",
       "d1": "",
       "id": 13
+    },
+    {
+      "name": "Nashville - Indy - Peoria",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 2,
+      "perDiem": 25,
+      "daysOut": 9,
+      "d100": "0",
+      "d50": "0",
+      "d20": "8",
+      "d10": "4",
+      "d5": "",
+      "d1": "",
+      "id": 14
     }
   ],
   "tourRunCrew": []
