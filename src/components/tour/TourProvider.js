@@ -28,7 +28,7 @@ export const TourProvider = (props) => {
     }
 
     const addTour = tourObj => {
-        debugger
+        // debugger
         return fetch("http://localhost:8088/tours", {
             method: "POST",
             headers: {

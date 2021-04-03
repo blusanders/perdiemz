@@ -64,7 +64,7 @@
         //disable the button - no extra clicks
         setIsLoading(true);
 
-        debugger
+        // debugger
         //if params has tourId then UPDATE else ADD
         if (tourId){
             //PUT - update

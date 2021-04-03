@@ -222,14 +222,6 @@
       "available": true
     },
     {
-      "id": 19,
-      "firstName": "Blu",
-      "lastName": "Sanders",
-      "title": "Tech",
-      "crewTypeId": 6,
-      "available": false
-    },
-    {
       "id": 20,
       "firstName": "Testerson",
       "lastName": "Person",
@@ -246,23 +238,23 @@
       "id": 21
     },
     {
-      "firstName": "Blu",
-      "lastName": "Sanders",
-      "title": "Boss",
-      "available": true,
-      "crewTypeId": 3,
-      "id": 22
-    },
-    {
       "id": 23,
       "firstName": "This One",
       "lastName": "Guy",
       "title": "Guitar Tech",
       "crewTypeId": 9,
       "available": true
+    },
+    {
+      "id": 24,
+      "firstName": "Blu",
+      "lastName": "Sanders",
+      "title": "Boss",
+      "crewTypeId": 2,
+      "available": false
     }
   ],
-  "tourRun": [
+  "tourRuns": [
     {
       "id": 1,
       "name": "Nash - Indy - Chicago",
@@ -426,24 +418,6 @@
       "id": 12
     },
     {
-      "name": "Nashville - Evansville - Indy",
-      "description": "",
-      "dateStart": "4/15",
-      "dateEnd": "4/21",
-      "timeLeave": "11p",
-      "timeArrive": "11a",
-      "tourId": 2,
-      "perDiem": 25,
-      "daysOut": 6,
-      "d100": "0",
-      "d50": "0",
-      "d20": "5",
-      "d10": "4",
-      "d5": "",
-      "d1": "",
-      "id": 13
-    },
-    {
       "name": "Nashville - Indy - Peoria",
       "description": "",
       "dateStart": "1/1/20",
@@ -460,7 +434,215 @@
       "d5": "",
       "d1": "",
       "id": 14
+    },
+    {
+      "name": "Nashville - Evansville - Indy",
+      "description": "",
+      "dateStart": "1/1/20",
+      "dateEnd": "1/5/20",
+      "timeLeave": "11p",
+      "timeArrive": "11a",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 5,
+      "d100": "0",
+      "d50": "0",
+      "d20": "6",
+      "d10": "4",
+      "d5": "",
+      "d1": "",
+      "id": 18
+    },
+    {
+      "name": "321",
+      "description": "",
+      "dateStart": "321",
+      "dateEnd": "321",
+      "timeLeave": "321",
+      "timeArrive": "321",
+      "tourId": 2,
+      "perDiem": 35,
+      "daysOut": 9,
+      "d100": "0",
+      "d50": "0",
+      "d20": "10",
+      "d10": "8",
+      "d5": "",
+      "d1": "",
+      "id": 19
     }
   ],
-  "tourRunCrew": []
+  "tourRunCrew": [
+    {
+      "tourRunId": 18,
+      "crewId": 2,
+      "id": 52
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 3,
+      "id": 53
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 4,
+      "id": 54
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 5,
+      "id": 55
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 6,
+      "id": 56
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 7,
+      "id": 57
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 8,
+      "id": 58
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 9,
+      "id": 59
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 10,
+      "id": 60
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 11,
+      "id": 61
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 12,
+      "id": 62
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 13,
+      "id": 63
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 16,
+      "id": 64
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 20,
+      "id": 65
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 21,
+      "id": 66
+    },
+    {
+      "tourRunId": 18,
+      "crewId": 23,
+      "id": 67
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 2,
+      "id": 68
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 6,
+      "id": 69
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 3,
+      "id": 70
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 7,
+      "id": 71
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 8,
+      "id": 72
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 9,
+      "id": 73
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 4,
+      "id": 74
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 5,
+      "id": 75
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 10,
+      "id": 76
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 11,
+      "id": 77
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 12,
+      "id": 78
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 13,
+      "id": 79
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 16,
+      "id": 80
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 20,
+      "id": 81
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 21,
+      "id": 82
+    },
+    {
+      "tourRunId": 19,
+      "crewId": 23,
+      "id": 83
+    }
+  ],
+  "tests": [
+    {
+      "id": 2,
+      "name": "Two"
+    },
+    {
+      "id": 3,
+      "name": "Three"
+    }
+  ],
+  "test": []
 }

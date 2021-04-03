@@ -9,14 +9,6 @@ export const Crew = () => {
     const { crew, getCrew } = useContext(CrewContext)
     const [crewTotalAvailable, setCrewTotalAvailable ] = useState(0)
 
-    useEffect(() => {
-        getCrew()
-    }, [])
-
-    useEffect(()=>{
-        setCrewTotalAvailable(crew.filter(crewMember => crewMember.available === true).length)
-    },[crew])
-
     return (
         <div className="container__crew">
 
@@ -28,13 +20,7 @@ export const Crew = () => {
 
                 <div className="container__crewSide">
                     
-                    <h2>All Crewz ({crewTotalAvailable} avail)</h2>
-                    
-                    <div className="crewCardHeader">
-                        <div>Name</div>
-                        <div>Title</div>
-                        <div></div>
-                    </div>
+                    {/* moved header to crew list */}
 
                     <CrewList />
 

@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { CrewContext } from "../crew/CrewProvider";
 import { TourContext } from "../tour/TourProvider";
 import { TourRunContext } from "./TourRunProvider";
+import { TourRunCrewContext } from "../tourRunCrew/TourRunCrewProvider";
+
 import "./TourRun.css"
 
 import { Button } from 'reactstrap';
@@ -15,15 +17,16 @@ export const TourRunForm = () => {
     const { crew, getCrew } = useContext(CrewContext)
     const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const [ validMsgString, setValidMsgString ] = useState("") 
+    const { addTourRunCrew, deleteTourRunCrew } = useContext(TourRunCrewContext)
 
     const [ denArrState, setDenArrState ] = useState(
             [ 
-            [100,"*","",0],
-            [50,"*","",0],
-            [20,"*","",0],
-            [10,"*","",0],
-            [5,"*","",0],
-            [1,"*","",0]
+            [100,1000,0,0],
+            [50,1000,0,0],
+            [20,1000,0,0],
+            [10,1000,0,0],
+            [5,1000,0,0],
+            [1,1000,0,0]
             ]
     )
 
@@ -65,6 +68,7 @@ export const TourRunForm = () => {
     }
 
     const handleDeleteTourRun = (event) => {
+        // debugger
         if(window.confirm("Are you sure?")===true){
         deleteTourRun(event.target.id)
         .then(() => {
@@ -80,7 +84,7 @@ export const TourRunForm = () => {
         let dayTotal = tourRun.daysOut
         let crewTotal = crewAvailable.length
         let calcTotal = dayRate*dayTotal
-        let runTotal = calcTotal*crewTotal
+        // let runTotal = calcTotal*crewTotal
 
         //changed names for...not sure why.  
         let max100=tourRun.d100
@@ -116,6 +120,7 @@ export const TourRunForm = () => {
         //iterate through denoms
         for (let x = 0; x < denArr.length; x++) {
 
+// debugger
             //divide remaining total into bill denom
             remVar = Math.trunc(calcTotal/denArr[x][0])
             modVar = calcTotal%denArr[x][0]
@@ -130,19 +135,21 @@ export const TourRunForm = () => {
 
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
 
-            // if (x===5){
-            //     let checkTotal = 0
-            //     for (let index = 0; index < 6; index++) {
-            //         checkTotal = checkTotal + (denArr[index][0]*denArr[index][2]*crewAvailable.length)
-            //         console.log(index +" : "+ denArr[index][0]+" : "+denArr[index][2]+" : "+crewAvailable.length+" : "+checkTotal)
-            //     }
-            //     if(checkTotal!==tourRun.perDiem*tourRun.daysOut*crewAvailable.length){
-            //         // denArr[5][1]=""
-            //         // tourRun.d1=""
-            //         console.log("No");
-            //     }else{console.log("Yes");
-            //     };
-            // }
+            //this is to check and make sure bill denoms = grand total
+            //works but would like to make the grand total change to RED if total is wrong
+            if (x===5){
+                let checkTotal = 0
+                for (let index = 0; index < 6; index++) {
+                    checkTotal = checkTotal + (denArr[index][0]*denArr[index][2]*crewAvailable.length)
+                    // console.log(index +" : "+ denArr[index][0]+" : "+denArr[index][2]+" : "+crewAvailable.length+" : "+checkTotal)
+                }
+                if(checkTotal!==tourRun.perDiem*tourRun.daysOut*crewAvailable.length){
+                    // denArr[5][1]=""
+                    // tourRun.d1=""
+                    console.log("No total is wrong");
+                }else{console.log("Yes total is right");
+                };
+            }
         }
 
         setDenArrState(denArr)
@@ -220,6 +227,19 @@ export const TourRunForm = () => {
                 d5: tourRun.d5,
                 d1: tourRun.d1
             })
+            .then(newTourRunObj => { //get added tour run obj
+
+                //for every available crew member, add to tour crew join table with new id from addTourRun fetch
+                crewAvailable.map(crewMember=>{
+                    let crewMemberObj = {
+                        tourRunId: newTourRunObj.id,
+                        crewId: crewMember.id
+                    }
+                    addTourRunCrew(crewMemberObj)
+                    // console.log(newTourRunObj.id + " " + crewMember.firstName + " " + crewMember.lastName);
+                })
+            })
+            .then(getTourRuns) //reset list of tour runs with new added run 
             .then(setTourRun({  //reset state obj as blank to zero out add form
                 name: "",
                 description: "",
@@ -244,15 +264,30 @@ export const TourRunForm = () => {
     }
 
     useEffect(() => {
-        getCrew()
-        .then(getTours())
+        getTours()
+        // getCrew()
+        // .then(getTours())
     }, [])
     
     useEffect(()=>{
         if (tourRunId) {
             getTourRunById(tourRunId)
             .then(tourRunObj => {
+                // debugger
                 setTourRun(tourRunObj)
+debugger
+console.log(tourRun);
+                // let denArrEdit =[ 
+                //     [100,tourRunObj.d100,,0],
+                //     [50,tourRunObj.d50,,0],
+                //     [20,tourRunObj.d20,,0],
+                //     [10,tourRunObj.d10,,0],
+                //     [5,tourRunObj.d5,,0],
+                //     [1,tourRunObj.d1,,0]
+                // ]
+// 
+                // setDenArrState(denArrEdit)
+                calcDenoms()
                 setIsLoading(false)
             })
         } else {
@@ -262,7 +297,7 @@ export const TourRunForm = () => {
 
     useEffect(()=>{
         getCrewAvailable()
-        calcDenoms()
+        .then(calcDenoms())
     },[
         tourRun.d100,
         tourRun.d50,
@@ -470,7 +505,7 @@ export const TourRunForm = () => {
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colSpan="3">Crew: {crewAvailable.length} / PD total: ${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}</th></tr>
+                <tr><th colSpan="3">Crew: {crewAvailable.length}, PD total: ${tourRun.perDiem*tourRun.daysOut}/${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}</th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>

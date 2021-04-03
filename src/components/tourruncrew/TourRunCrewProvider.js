@@ -6,19 +6,30 @@ export const TourRunCrewContext = createContext()
 
 // This component establishes what data can be used.
 export const TourRunCrewProvider = (props) => {
-    const { crew, getCrew } = useContext(CrewContext)
+    const { tourRunCrew, setTourRunCrew } = useContext(CrewContext)
+    const [tourRunCrewByTourRunId, setTourRunCrewByTourRunId] = useState([])
 
-    const addTourRunCrew = tourRunId => {
+    const getTourRunCrew = (tourRunId) => {
+        return fetch("http://localhost:8088/tourruncrew?/"+tourRunId)
+        .then(res => res.json())
+        .then(setTourRunCrew)
+    }
 
-        getCrew()
-        .then(()=>{
-            let crewTotalAvailable = crew.filter(crewMember => crewMember.available === true)
-            debugger
-            crewTotalAvailable.map(crewMember=>{
-                let crewMemberObj = {
-                    tourRunId: tourRunId,
-                    crewId: crewMember.id
-                }
+    const getTourRunCrewByTourRunId = (tourRunId) => {
+        // debugger
+        let fetchURL =`http://localhost:8088/tourruns/?tourRunId=${tourRunId}` 
+        return fetch(fetchURL)
+            .then(res => res.json())
+            .then(setTourRunCrewByTourRunId)
+    }
+    
+    const getCrewByTourRunId = (crewId) => {
+        return fetch(`http://localhost:8088/tourRuncrew/${crewId}`)
+            .then(res => res.json())
+    }
+
+    const addTourRunCrew = crewMemberObj => {
+
                 return fetch("http://localhost:8088/tourruncrew", {
                     method: "POST",
                     headers: {
@@ -26,23 +37,18 @@ export const TourRunCrewProvider = (props) => {
                     },
                     body: JSON.stringify(crewMemberObj)
                 })
-                        
-            })
-        })
-
-        // .then(getTourRunCrew)
     }
 
     const deleteTourRunCrew = tourRunId => {
-        return fetch(`http://localhost:8088/tourruncrew/${tourRunId}`, {
+        return fetch(`http://localhost:8088/tourruncrew/?tourRunId=${tourRunId}`, {
             method: "DELETE"
         })
-            // .then(getTourRunCrew)
+            .then(getTourRunCrew)
     }
 
     return (    
         <TourRunCrewContext.Provider value={{
-            addTourRunCrew, deleteTourRunCrew
+            tourRunCrew, setTourRunCrew, addTourRunCrew, deleteTourRunCrew, tourRunCrewByTourRunId, setTourRunCrewByTourRunId, getCrewByTourRunId
         }}>
             {props.children}
         </TourRunCrewContext.Provider>
