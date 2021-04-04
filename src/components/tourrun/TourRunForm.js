@@ -18,15 +18,27 @@ export const TourRunForm = () => {
     const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const [ validMsgString, setValidMsgString ] = useState("") 
     const { addTourRunCrew, deleteTourRunCrew } = useContext(TourRunCrewContext)
+    const [ checkVar, setCheckVar ] = useState(true)
+
+    // const [ denArrState, setDenArrState ] = useState(
+    //         [ 
+    //         [100,1000,0,0],
+    //         [50,1000,0,0],
+    //         [20,1000,0,0],
+    //         [10,1000,0,0],
+    //         [5,1000,0,0],
+    //         [1,1000,0,0]
+    //         ]
+    // )
 
     const [ denArrState, setDenArrState ] = useState(
-            [ 
-            [100,1000,0,0],
-            [50,1000,0,0],
-            [20,1000,0,0],
-            [10,1000,0,0],
-            [5,1000,0,0],
-            [1,1000,0,0]
+            [
+            [100,"","",0],
+            [50,"","",0],
+            [20,"","",0],
+            [10,"","",0],
+            [5,"","",0],
+            [1,"","",0]
             ]
     )
 
@@ -120,7 +132,6 @@ export const TourRunForm = () => {
         //iterate through denoms
         for (let x = 0; x < denArr.length; x++) {
 
-// debugger
             //divide remaining total into bill denom
             remVar = Math.trunc(calcTotal/denArr[x][0])
             modVar = calcTotal%denArr[x][0]
@@ -135,8 +146,9 @@ export const TourRunForm = () => {
 
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
 
-            //this is to check and make sure bill denoms = grand total
-            //works but would like to make the grand total change to RED if total is wrong
+            //on the last iteration
+            //check the total vs bill denoms
+            //if it doesn't add up, change the styling of the total 
             if (x===5){
                 let checkTotal = 0
                 for (let index = 0; index < 6; index++) {
@@ -144,10 +156,11 @@ export const TourRunForm = () => {
                     // console.log(index +" : "+ denArr[index][0]+" : "+denArr[index][2]+" : "+crewAvailable.length+" : "+checkTotal)
                 }
                 if(checkTotal!==tourRun.perDiem*tourRun.daysOut*crewAvailable.length){
-                    // denArr[5][1]=""
-                    // tourRun.d1=""
-                    console.log("No total is wrong");
-                }else{console.log("Yes total is right");
+                    setCheckVar(false)
+                    // console.log("No total is wrong");
+                }else{
+                    setCheckVar(true)
+                    // console.log("Yes total is right");
                 };
             }
         }
@@ -273,9 +286,9 @@ export const TourRunForm = () => {
         if (tourRunId) {
             getTourRunById(tourRunId)
             .then(tourRunObj => {
-                // debugger
+// debugger
                 setTourRun(tourRunObj)
-debugger
+// debugger
 console.log(tourRun);
                 // let denArrEdit =[ 
                 //     [100,tourRunObj.d100,,0],
@@ -505,7 +518,11 @@ console.log(tourRun);
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colSpan="3">Crew: {crewAvailable.length}, PD total: ${tourRun.perDiem*tourRun.daysOut}/${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}</th></tr>
+                <tr><th colSpan="3">Crew: {crewAvailable.length}, 
+                    <div className={checkVar ? '' : 'totalNo'}>
+                    PD total: ${tourRun.perDiem*tourRun.daysOut}/${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}
+                    </div>
+                </th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>

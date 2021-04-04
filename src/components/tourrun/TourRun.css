@@ -96,6 +96,11 @@
     padding: 3px;
 }
 
+.totalNo{
+    color: red;
+    font-style: italic;
+}
+
 .denomsTable{
     width: 300px;
     margin: 3px;
