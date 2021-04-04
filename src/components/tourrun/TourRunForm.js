@@ -92,6 +92,9 @@ export const TourRunForm = () => {
     //takes per diem * days out and max bill denoms to calculate
     //how many of each demon to request for the tour run
     const calcDenoms = () => {
+        
+        // debugger
+
         let dayRate = tourRun.perDiem
         let dayTotal = tourRun.daysOut
         let crewTotal = crewAvailable.length
@@ -126,6 +129,7 @@ export const TourRunForm = () => {
             [1,max1,"",0]
         ]
 
+
         let remVar      //integer after dividing and .trunc 
         let modVar      //modulo after dividing 
 
@@ -133,8 +137,11 @@ export const TourRunForm = () => {
         for (let x = 0; x < denArr.length; x++) {
 
             //divide remaining total into bill denom
-            remVar = Math.trunc(calcTotal/denArr[x][0])
-            modVar = calcTotal%denArr[x][0]
+            remVar = Math.trunc(calcTotal/denArr[x][0]) // 3
+            modVar = calcTotal%denArr[x][0] //50
+
+            // console.log("rem :" + remVar+" ");
+            // console.log("mod:" + modVar);
 
             //calculate max bills per single crew member per denom
             if(denArr[x][1]===undefined){denArr[x][2]=remVar}
@@ -278,29 +285,14 @@ export const TourRunForm = () => {
 
     useEffect(() => {
         getTours()
-        // getCrew()
-        // .then(getTours())
     }, [])
     
     useEffect(()=>{
         if (tourRunId) {
             getTourRunById(tourRunId)
             .then(tourRunObj => {
-// debugger
                 setTourRun(tourRunObj)
-// debugger
-console.log(tourRun);
-                // let denArrEdit =[ 
-                //     [100,tourRunObj.d100,,0],
-                //     [50,tourRunObj.d50,,0],
-                //     [20,tourRunObj.d20,,0],
-                //     [10,tourRunObj.d10,,0],
-                //     [5,tourRunObj.d5,,0],
-                //     [1,tourRunObj.d1,,0]
-                // ]
-// 
-                // setDenArrState(denArrEdit)
-                calcDenoms()
+                // console.log(tourRun);
                 setIsLoading(false)
             })
         } else {
@@ -310,7 +302,10 @@ console.log(tourRun);
 
     useEffect(()=>{
         getCrewAvailable()
-        .then(calcDenoms())
+    },[])
+
+    useEffect(()=>{
+        calcDenoms()
     },[
         tourRun.d100,
         tourRun.d50,
@@ -319,7 +314,8 @@ console.log(tourRun);
         tourRun.d5,
         tourRun.d1,
         tourRun.perDiem,
-        tourRun.daysOut
+        tourRun.daysOut,
+        crewAvailable
     ])
 
     return (

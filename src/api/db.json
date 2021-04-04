@@ -76,6 +76,13 @@
       "dateStart": "1/1/20",
       "dateEnd": "1/5/20",
       "id": 6
+    },
+    {
+      "userId": 3,
+      "name": "World Tour",
+      "dateStart": "1/1/20",
+      "dateEnd": "4/30/21",
+      "id": 7
     }
   ],
   "crewTypes": [
@@ -211,7 +218,7 @@
       "lastName": "Wu",
       "title": "Drums",
       "crewTypeId": 1,
-      "available": true
+      "available": false
     },
     {
       "id": 16,
@@ -252,6 +259,14 @@
       "title": "Boss",
       "crewTypeId": 2,
       "available": false
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Person",
+      "title": "Minion",
+      "available": false,
+      "crewTypeId": 9,
+      "id": 25
     }
   ],
   "tourRuns": [
@@ -341,8 +356,8 @@
       "d100": "0",
       "d50": "0",
       "d20": "10",
-      "d10": "0",
-      "d5": "0",
+      "d10": "6",
+      "d5": "",
       "d1": "0"
     },
     {
@@ -382,6 +397,7 @@
       "d1": ""
     },
     {
+      "id": 11,
       "name": "Week 1",
       "description": "",
       "dateStart": "1/1/20",
@@ -394,12 +410,12 @@
       "d100": "0",
       "d50": "0",
       "d20": "6",
-      "d10": "*",
-      "d5": "*",
-      "d1": "*",
-      "id": 11
+      "d10": "",
+      "d5": "",
+      "d1": ""
     },
     {
+      "id": 12,
       "name": "Week 2",
       "description": "",
       "dateStart": "1/1/20",
@@ -413,9 +429,8 @@
       "d50": "1",
       "d20": "12",
       "d10": "10",
-      "d5": "*",
-      "d1": "*",
-      "id": 12
+      "d5": "",
+      "d1": ""
     },
     {
       "name": "Nashville - Indy - Peoria",
@@ -454,22 +469,22 @@
       "id": 18
     },
     {
-      "id": 19,
-      "name": "321",
+      "name": "312",
       "description": "",
       "dateStart": "321",
       "dateEnd": "321",
       "timeLeave": "321",
       "timeArrive": "321",
-      "tourId": 2,
-      "perDiem": 35,
-      "daysOut": 9,
+      "tourId": 6,
+      "perDiem": 25,
+      "daysOut": 13,
       "d100": "0",
       "d50": "1",
       "d20": "8",
       "d10": "8",
       "d5": "",
-      "d1": ""
+      "d1": "",
+      "id": 19
     }
   ],
   "tourRunCrew": [
@@ -555,32 +570,32 @@
     },
     {
       "tourRunId": 19,
-      "crewId": 2,
+      "crewId": 5,
       "id": 68
     },
     {
       "tourRunId": 19,
-      "crewId": 6,
+      "crewId": 2,
       "id": 69
     },
     {
       "tourRunId": 19,
-      "crewId": 3,
+      "crewId": 7,
       "id": 70
     },
     {
       "tourRunId": 19,
-      "crewId": 7,
+      "crewId": 6,
       "id": 71
     },
     {
       "tourRunId": 19,
-      "crewId": 8,
+      "crewId": 3,
       "id": 72
     },
     {
       "tourRunId": 19,
-      "crewId": 9,
+      "crewId": 8,
       "id": 73
     },
     {
@@ -590,7 +605,7 @@
     },
     {
       "tourRunId": 19,
-      "crewId": 5,
+      "crewId": 9,
       "id": 75
     },
     {
@@ -610,28 +625,23 @@
     },
     {
       "tourRunId": 19,
-      "crewId": 13,
+      "crewId": 16,
       "id": 79
     },
     {
       "tourRunId": 19,
-      "crewId": 16,
+      "crewId": 20,
       "id": 80
     },
     {
       "tourRunId": 19,
-      "crewId": 20,
+      "crewId": 21,
       "id": 81
     },
     {
       "tourRunId": 19,
-      "crewId": 21,
-      "id": 82
-    },
-    {
-      "tourRunId": 19,
       "crewId": 23,
-      "id": 83
+      "id": 82
     }
   ],
   "tests": [
