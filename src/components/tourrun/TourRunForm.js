@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { CrewContext } from "../crew/CrewProvider";
 import { TourContext } from "../tour/TourProvider";
 import { TourRunContext } from "./TourRunProvider";
-import { TourRunCrewContext } from "../tourRunCrew/TourRunCrewProvider";
+import { TourRunCrewContext } from "../touruncrew/TourRunCrewProvider";
 
 import "./TourRun.css"
 
