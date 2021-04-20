@@ -11,7 +11,7 @@ import { TourRun } from "./tourrun/TourRun";
 import { TourRunProvider } from "./tourrun/TourRunProvider";
 import { TourProvider } from "./tour/TourProvider";
 import { Tour } from "./tour/Tour";
-import { TourRunCrewProvider } from "./tourRunCrew/TourRunCrewProvider";
+import { TourRunCrewProvider } from "./tourruncrew/TourRunCrewProvider";
 
 import { Reports } from "./reports/Reports";
 
