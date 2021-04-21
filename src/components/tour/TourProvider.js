@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react"
+import { authApi } from "./../auth/authSettings"
 
 // The context is imported and used by individual components that need data
 export const TourContext = createContext()
@@ -10,7 +11,7 @@ export const TourProvider = (props) => {
     const getTours = () => {
         // debugger
         //only pull tours for logged in user
-        let fetchURL = "http://localhost:8088/tours?userId="+sessionStorage.getItem("app_user_id") 
+        let fetchURL = authApi.localApiBaseUrl+"/tours?userId="+sessionStorage.getItem("app_user_id") 
         return fetch(fetchURL)
         .then(res => res.json())
         .then(sorted => {
@@ -23,7 +24,7 @@ export const TourProvider = (props) => {
     }
 
     const getTourById = (id) => {
-        return fetch(`http://localhost:8088/tours/${id}`)
+        return fetch(authApi.localApiBaseUrl+`/tours/${id}`)
             .then(res => res.json())
     }
 
@@ -41,7 +42,7 @@ export const TourProvider = (props) => {
 
     const updateTour = tour => {
         debugger
-        return fetch(`http://localhost:8088/tours/${tour.id}`, {
+        return fetch(authApi.localApiBaseUrl+`/tours/${tour.id}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json"
@@ -53,7 +54,7 @@ export const TourProvider = (props) => {
 
 
     const deleteTour = tourId => {
-        return fetch(`http://localhost:8088/tours/${tourId}`, {
+        return fetch(authApi.localApiBaseUrl+`/tours/${tourId}`, {
             method: "DELETE"
         })
             .then(getTours)

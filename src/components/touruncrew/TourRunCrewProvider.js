@@ -1,5 +1,6 @@
 import React, { useContext, useState, createContext } from "react"
 import { CrewContext } from "../crew/CrewProvider";
+import { authApi } from "./../auth/authSettings"
 
 // The context is imported and used by individual components that need data
 export const TourRunCrewContext = createContext()
@@ -10,27 +11,27 @@ export const TourRunCrewProvider = (props) => {
     const [tourRunCrewByTourRunId, setTourRunCrewByTourRunId] = useState([])
 
     const getTourRunCrew = (tourRunId) => {
-        return fetch("http://localhost:8088/tourruncrew?/"+tourRunId)
+        return fetch(authApi.localApiBaseUrl+"/tourruncrew?/"+tourRunId)
         .then(res => res.json())
         .then(setTourRunCrew)
     }
 
     const getTourRunCrewByTourRunId = (tourRunId) => {
         // debugger
-        let fetchURL =`http://localhost:8088/tourruns/?tourRunId=${tourRunId}` 
+        let fetchURL =authApi.localApiBaseUrl+`/tourruns/?tourRunId=${tourRunId}` 
         return fetch(fetchURL)
             .then(res => res.json())
             .then(setTourRunCrewByTourRunId)
     }
     
     const getCrewByTourRunId = (crewId) => {
-        return fetch(`http://localhost:8088/tourRuncrew/${crewId}`)
+        return fetch(authApi.localApiBaseUrl+`/tourRuncrew/${crewId}`)
             .then(res => res.json())
     }
 
     const addTourRunCrew = crewMemberObj => {
 
-                return fetch("http://localhost:8088/tourruncrew", {
+                return fetch(authApi.localApiBaseUrl+"/tourruncrew", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -40,7 +41,7 @@ export const TourRunCrewProvider = (props) => {
     }
 
     const deleteTourRunCrew = tourRunId => {
-        return fetch(`http://localhost:8088/tourruncrew/?tourRunId=${tourRunId}`, {
+        return fetch(authApi.localApiBaseUrl+`/tourruncrew/?tourRunId=${tourRunId}`, {
             method: "DELETE"
         })
             .then(getTourRunCrew)
