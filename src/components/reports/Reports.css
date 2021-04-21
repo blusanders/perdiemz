@@ -1,3 +1,32 @@
+.container__reports{
+    /* border:black 1px solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.container__reportsSideMain{
+   /* border:green 1px solid; */
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 30% 70%;
+    flex-grow: 1;
+}
+
+.container__reportsSide{
+    /* border:black 1px solid; */
+    /* border-radius: 15px; */
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.container__reportsMain{
+    /* border:black 1px solid; */
+    /* border-radius: 15px; */
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+/* actual report data */
 .reportTourRun{
     width: 700px;
     margin: 3px;

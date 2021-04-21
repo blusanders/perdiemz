@@ -5,6 +5,8 @@ import { userStorageKey } from "./auth/authSettings"
 
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./../components/nav/NavBar"
+import { Footer } from "./Footer"
+import "./PerDiemz.css"
 
 export const PerDiemz = () => (
 
@@ -13,8 +15,11 @@ export const PerDiemz = () => (
     if (sessionStorage.getItem(userStorageKey)) {
       return (
         <>
+        <div id="page-container">
               <NavBar />
-              <ApplicationViews />       
+              <ApplicationViews />
+              <Footer/>
+        </div>
         </>
       )
     } else {

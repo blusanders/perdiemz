@@ -1,5 +1,6 @@
 import React, { useContext, useState, createContext } from "react"
-import { TourRunCrewContext } from "../tourRunCrew/TourRunCrewProvider";
+import { TourRunCrewContext } from "../touruncrew/TourRunCrewProvider";
+import { authApi } from "./../auth/authSettings"
 
 // The context is imported and used by individual components that need data
 export const TourRunContext = createContext()
@@ -8,10 +9,9 @@ export const TourRunContext = createContext()
 export const TourRunProvider = (props) => {
     const [tourRuns, setTourRuns] = useState([])
     const [tourRunsByTourId, setTourRunsByTourId] = useState([])
-    const { addTourRunCrew } = useContext(TourRunCrewContext)
 
     const getTourRuns = () => {
-        return fetch("http://localhost:8088/tourrun?_expand=tour")
+        return fetch(authApi.localApiBaseUrl+"/tourruns?_expand=tour")
         .then(res => res.json())
         .then(sorted => {
 
@@ -30,20 +30,20 @@ export const TourRunProvider = (props) => {
     }
 
     const getTourRunById = (id) => {
-        return fetch(`http://localhost:8088/tourrun/${id}`)
+        return fetch(authApi.localApiBaseUrl+`/tourruns/${id}`)
             .then(res => res.json())
     }
 
     const getTourRunsByTourId = (tourId) => {
         // debugger
-        let fetchURL =`http://localhost:8088/tourrun/?tourId=${tourId}` 
+        let fetchURL =authApi.localApiBaseUrl+`/tourruns/?tourId=${tourId}` 
         return fetch(fetchURL)
             .then(res => res.json())
             .then(setTourRunsByTourId)
     }
     
     const addTourRun = tourRunObj => {
-        return fetch("http://localhost:8088/tourrun", {
+        return fetch("http://localhost:8088/tourruns", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -51,19 +51,11 @@ export const TourRunProvider = (props) => {
             body: JSON.stringify(tourRunObj)
         })
         .then(res => res.json())
-        .then(newTourRunObj => {
-            //for unique PD per crew member
-            //could accept an array parameter of all crew/pd/daysOut
-            //and then that into addTourRunCrew as well
-            // addTourRunCrew(newTourRunObj.id)
-        })
-        .then(getTourRuns)
     }
 
 
-
     const updateTourRun = tourRun => {
-        return fetch(`http://localhost:8088/tourrun/${tourRun.id}`, {
+        return fetch(authApi.localApiBaseUrl+`/tourruns/${tourRun.id}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json"
@@ -74,7 +66,7 @@ export const TourRunProvider = (props) => {
     }
 
     const deleteTourRun = tourRunId => {
-        return fetch(`http://localhost:8088/tourrun/${tourRunId}`, {
+        return fetch(authApi.localApiBaseUrl+`/tourruns/${tourRunId}`, {
             method: "DELETE"
         })
             .then(getTourRuns)

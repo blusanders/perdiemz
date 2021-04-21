@@ -29,6 +29,10 @@
     padding: 10px;
 }
 
+.tourRunForm{
+    padding: 0px;
+}
+
 .tourRunCard{
     /* border: gray solid 1px; */
     display: grid;
@@ -90,6 +94,11 @@
     ". . .";
     margin: 3px;
     padding: 3px;
+}
+
+.totalNo{
+    color: red;
+    font-style: italic;
 }
 
 .denomsTable{

@@ -64,7 +64,7 @@
         //disable the button - no extra clicks
         setIsLoading(true);
 
-        debugger
+        // debugger
         //if params has tourId then UPDATE else ADD
         if (tourId){
             //PUT - update
@@ -98,8 +98,9 @@
     // Get customers and locations. If tourId is in the URL, getTourById
     useEffect(() => {
         getTours()
-        .then(() => {
-            // debugger
+    }, [])
+    
+    useEffect(() => {
         if (tourId) {
             getTourById(tourId)
             .then(tour => {
@@ -109,9 +110,8 @@
         } else {
             setIsLoading(false)
         }
-        })
-    }, [])
-
+    }, [tourId])
+        
     return (
         <div>
         <form className="tourForm ">

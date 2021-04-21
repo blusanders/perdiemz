@@ -8,8 +8,7 @@ export const CrewCard = ({ crew }) => {
     const history = useHistory()
 
     const routeChange = () =>{ 
-        let path = history.push(`/crew/${crew.id}`) 
-        history.push(path);
+        history.push(`/crew/${crew.id}`) 
     }
     
     //change background color if unavailable
@@ -25,7 +24,7 @@ export const CrewCard = ({ crew }) => {
             <div>   
     
                 {/* <Link to={`/crew/${crew.id}`} className="btn btn-primary">...</Link> */}
-                <Button type="button" className="btn-sm" href={`/crew/${crew.id}`}>
+                <Button type="button" className="btn-sm" onClick={routeChange}>
                     ...
                 </Button>
             </div>

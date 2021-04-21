@@ -16,3 +16,12 @@ code {
   /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace; */
 }
+
+ul.nav li a, ul.nav li a:visited {
+  color: gray !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+  color: darkgray !important;
+}
+

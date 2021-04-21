@@ -131,18 +131,19 @@ export const CrewForm = () => {
     // Get customers and locations. If crewId is in the URL, getCrewById
     useEffect(() => {
       getCrewTypes()
-      .then(() => {
-        if (crewId) {
-          getCrewById(crewId)
-          .then(crew => {
-              setCrew(crew)
-              setIsLoading(false)
-          })
-        } else {
-          setIsLoading(false)
-        }
-      })
     }, [])
+
+    useEffect(() => {
+      if (crewId) {
+        getCrewById(crewId)
+        .then(crew => {
+            setCrew(crew)
+            setIsLoading(false)
+        })
+      } else {
+        setIsLoading(false)
+      }
+    },[crewId])
 
     return (
       <div>

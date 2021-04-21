@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react"
+import { authApi } from "./../auth/authSettings"
 
 // The context is imported and used by individual components that need data
 export const CrewContext = createContext()
@@ -9,7 +10,7 @@ export const CrewProvider = (props) => {
     const [crewAvailable, setCrewAvailable] = useState([])
 
     const getCrew = () => {
-        return fetch("http://localhost:8088/crew?_expand=crewType")
+        return fetch(authApi.localApiBaseUrl+"/crew?_expand=crewType")
         .then(res => res.json())
         .then(sorted => {
 
@@ -29,13 +30,13 @@ export const CrewProvider = (props) => {
     }
 
     const getCrewAvailable = () => {
-        return fetch(`http://localhost:8088/crew/?available=true`)
+        return fetch(authApi.localApiBaseUrl+"/crew/?available=true")
             .then(res => res.json())
             .then(setCrewAvailable)
     }
 
     const getCrewById = (id) => {
-        return fetch(`http://localhost:8088/crew/${id}`)
+        return fetch(authApi.localApiBaseUrl+`/crew/${id}`)
             .then(res => res.json())
     }
 
@@ -51,7 +52,7 @@ export const CrewProvider = (props) => {
     }
 
     const updateCrew = crew => {
-        return fetch(`http://localhost:8088/crew/${crew.id}`, {
+        return fetch(authApi.localApiBaseUrl+`/crew/${crew.id}`, {
             method: "PUT",
             headers: {
             "Content-Type": "application/json"
@@ -62,7 +63,7 @@ export const CrewProvider = (props) => {
         }
 
     const deleteCrew = crewId => {
-        return fetch(`http://localhost:8088/crew/${crewId}`, {
+        return fetch(authApi.localApiBaseUrl+`/crew/${crewId}`, {
             method: "DELETE"
         })
             .then(getCrew)

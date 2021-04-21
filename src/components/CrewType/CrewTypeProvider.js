@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react"
+import { authApi } from "./../auth/authSettings"
 
 // The context is imported and used by individual components that need data
 export const CrewTypeContext = createContext()
@@ -8,7 +9,7 @@ export const CrewTypeProvider = (props) => {
     const [crewTypes, setCrewTypes] = useState([])
 
     const getCrewTypes = () => {
-        return fetch("http://localhost:8088/crewTypes")
+        return fetch(authApi.localApiBaseUrl+"/crewTypes")
         .then(res => res.json())
         .then(sorted => {
             sorted = sorted.sort((a,b)=>{
@@ -21,7 +22,7 @@ export const CrewTypeProvider = (props) => {
     }
 
     const getCrewTypeById = (id) => {
-        return fetch(`http://localhost:8088/crewTypes/${id}`)
+        return fetch(authApi.localApiBaseUrl+`/crewTypes/${id}`)
             .then(res => res.json())
     }
 
@@ -37,7 +38,7 @@ export const CrewTypeProvider = (props) => {
     }
 
     const deleteCrewType = crewId => {
-        return fetch(`http://localhost:8088/crewTypes/${crewId}`, {
+        return fetch(authApi.localApiBaseUrl+`/crewTypes/${crewId}`, {
             method: "DELETE"
         })
             .then(getCrewTypes)

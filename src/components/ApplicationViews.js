@@ -11,10 +11,9 @@ import { TourRun } from "./tourrun/TourRun";
 import { TourRunProvider } from "./tourrun/TourRunProvider";
 import { TourProvider } from "./tour/TourProvider";
 import { Tour } from "./tour/Tour";
-import { TourRunCrewProvider } from "./tourRunCrew/TourRunCrewProvider";
+import { TourRunCrewProvider } from "./touruncrew/TourRunCrewProvider";
 
 import { Reports } from "./reports/Reports";
-
 
 export const ApplicationViews = () => {
 
@@ -24,7 +23,7 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
             
-            <Route exact path="/crew">
+            {/* <Route exact path="/crew">
 
                 <TourProvider>
                     <CrewProvider>
@@ -33,58 +32,51 @@ export const ApplicationViews = () => {
                         </CrewTypeProvider>
                     </CrewProvider>
                 </TourProvider>
-            </Route>
+            </Route> */}
 
-            <Route exact path="/crew/:crewId(\d+)">
-                <CrewProvider>
-                    <CrewTypeProvider>
-                        <Crew />
-                    </CrewTypeProvider>
-                </CrewProvider>
-            </Route>
-
-            <Route exact path="/tour">
-                <TourProvider>
-                    <Tour />
-                </TourProvider>
-            </Route>
-
-            <Route exact path="/tour/:tourId(\d+)">
-                <TourProvider>
-                        <Tour />
-                </TourProvider>
-            </Route>
-                        <Route exact path="/tourrun">
-                <CrewProvider>
-                <TourRunCrewProvider>
-                <TourProvider>
-                    <TourRunProvider>
-                            <TourRun />
-                    </TourRunProvider>
-                    </TourProvider>
-                    </TourRunCrewProvider>
-                </CrewProvider>
-            </Route>
-
-            <Route exact path="/tourrun/:tourRunId(\d+)">
             <CrewProvider>
+                <CrewTypeProvider>
+                    <Route exact path="/crew">
+                        <Crew />
+                    </Route>
+                    <Route exact path="/crew/:crewId(\d+)">
+                        <Crew />
+                    </Route>
+                </CrewTypeProvider>
+            </CrewProvider>
+
+            <TourProvider>
+                <Route exact path="/tour">
+                    <Tour />
+                </Route>
+                <Route exact path="/tour/:tourId(\d+)">
+                    <Tour />
+                </Route>
+            </TourProvider>
+
+                <CrewProvider>
                     <TourRunCrewProvider>
-                        <TourRunProvider>
-                            <TourProvider>
+                        <TourProvider>
+                            <TourRunProvider>
+                            <Route exact path="/tourrun/:tourRunId(\d+)">
                                 <TourRun />
-                            </TourProvider>
-                        </TourRunProvider>
+                            </Route>
+                            <Route exact path="/tourrun">
+                                <TourRun />
+                            </Route>
+                            </TourRunProvider>
+                        </TourProvider>
                     </TourRunCrewProvider>
                 </CrewProvider>
-            </Route>
+
 
             <Route exact path="/reports">
             <CrewProvider>
             <TourRunCrewProvider>
                 <TourRunProvider>
-                            <TourProvider>
-                                <Reports />
-                            </TourProvider>
+                    <TourProvider>
+                        <Reports />
+                    </TourProvider>
                         </TourRunProvider>
             </TourRunCrewProvider>
             </CrewProvider>

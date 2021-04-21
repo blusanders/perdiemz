@@ -10,7 +10,6 @@
     text-decoration: none;
 }
     
-.active {
-    color: red;
-    text-decoration: none;
+ul.nav li a, ul.nav li a:visited {
+    color: gray !important;
 }

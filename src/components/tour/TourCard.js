@@ -8,8 +8,7 @@ export const TourCard = ({ tour }) => {
     const history = useHistory()
 
     const routeChange = () =>{ 
-        let path = history.push(`/tour/${tour.id}`) 
-        history.push(path);
+        history.push(`/tour/${tour.id}`) 
     }
     
     return (
@@ -21,7 +20,7 @@ export const TourCard = ({ tour }) => {
             <div>   
     
                 {/* <Link to={`/tour/${tour.id}`} className="btn btn-primary">...</Link> */}
-                <Button type="button" className="btn-sm" href={`/tour/${tour.id}`}>
+                <Button type="button" className="btn-sm" onClick={routeChange}>
                     ...
                 </Button>
             </div>

@@ -12,7 +12,7 @@ export const TourList = () => {
 
     return (
         tours.map(tourMember => {
-            return <TourCard key={tours.id} tour={tourMember} />
+            return <TourCard key={tourMember.id} tour={tourMember} />
         }
         )
     )

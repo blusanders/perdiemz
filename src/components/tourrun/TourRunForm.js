@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { CrewContext } from "../crew/CrewProvider";
 import { TourContext } from "../tour/TourProvider";
 import { TourRunContext } from "./TourRunProvider";
+import { TourRunCrewContext } from "../touruncrew/TourRunCrewProvider";
+
 import "./TourRun.css"
 
 import { Button } from 'reactstrap';
@@ -15,15 +17,28 @@ export const TourRunForm = () => {
     const { crew, getCrew } = useContext(CrewContext)
     const { crewAvailable, getCrewAvailable } = useContext(CrewContext)
     const [ validMsgString, setValidMsgString ] = useState("") 
+    const { addTourRunCrew, deleteTourRunCrew } = useContext(TourRunCrewContext)
+    const [ checkVar, setCheckVar ] = useState(true)
+
+    // const [ denArrState, setDenArrState ] = useState(
+    //         [ 
+    //         [100,1000,0,0],
+    //         [50,1000,0,0],
+    //         [20,1000,0,0],
+    //         [10,1000,0,0],
+    //         [5,1000,0,0],
+    //         [1,1000,0,0]
+    //         ]
+    // )
 
     const [ denArrState, setDenArrState ] = useState(
-            [ 
-            [100,"*","",0],
-            [50,"*","",0],
-            [20,"*","",0],
-            [10,"*","",0],
-            [5,"*","",0],
-            [1,"*","",0]
+            [
+            [100,"","",0],
+            [50,"","",0],
+            [20,"","",0],
+            [10,"","",0],
+            [5,"","",0],
+            [1,"","",0]
             ]
     )
 
@@ -40,12 +55,12 @@ export const TourRunForm = () => {
         timeArrive: "",
         perDiem: 0,
         daysOut: 0,
-        d100: "*",
-        d50: "*",
-        d20: "*",
-        d10: "*",
-        d5: "*",
-        d1: "*"
+        d100: "",
+        d50: "",
+        d20: "",
+        d10: "",
+        d5: "",
+        d1: ""
     })
 
     //create state var to stop quick clicks on edits
@@ -65,6 +80,7 @@ export const TourRunForm = () => {
     }
 
     const handleDeleteTourRun = (event) => {
+        // debugger
         if(window.confirm("Are you sure?")===true){
         deleteTourRun(event.target.id)
         .then(() => {
@@ -76,11 +92,14 @@ export const TourRunForm = () => {
     //takes per diem * days out and max bill denoms to calculate
     //how many of each demon to request for the tour run
     const calcDenoms = () => {
+        
+        // debugger
+
         let dayRate = tourRun.perDiem
         let dayTotal = tourRun.daysOut
-        let crewTotal = crew.length
+        let crewTotal = crewAvailable.length
         let calcTotal = dayRate*dayTotal
-        let runTotal = calcTotal*crewTotal
+        // let runTotal = calcTotal*crewTotal
 
         //changed names for...not sure why.  
         let max100=tourRun.d100
@@ -93,12 +112,12 @@ export const TourRunForm = () => {
         //chose * for asthetics and to not have to deal with null vs blank values
         //explicitly selecting * means you definitely want any # of bills
         //setting each value to 100 bc * is not something calculable and 100 will never be reached 
-        if (max100==="*") {max100=100}else{max100=parseInt(max100)} 
-        if (max50==="*") {max50=100}else{max50=parseInt(max50)} 
-        if (max20==="*") {max20=100}else{max20=parseInt(max20)} 
-        if (max10==="*") {max10=100}else{max10=parseInt(max10)} 
-        if (max5==="*") {max5=100}else{max5=parseInt(max5)} 
-        if (max1==="*") {max1=100}else{max1=parseInt(max1)} 
+        if (max100==="") {max100=1000}else{max100=parseInt(max100)} 
+        if (max50==="") {max50=1000}else{max50=parseInt(max50)} 
+        if (max20==="") {max20=1000}else{max20=parseInt(max20)} 
+        if (max10==="") {max10=1000}else{max10=parseInt(max10)} 
+        if (max5==="") {max5=1000}else{max5=parseInt(max5)} 
+        if (max1==="") {max1=1000}else{max1=parseInt(max1)} 
 
         //1-denomintion, 2-max bills, 3-total bills for denomination, 4-total bills for week 
         let denArr =[ 
@@ -110,6 +129,7 @@ export const TourRunForm = () => {
             [1,max1,"",0]
         ]
 
+
         let remVar      //integer after dividing and .trunc 
         let modVar      //modulo after dividing 
 
@@ -117,11 +137,14 @@ export const TourRunForm = () => {
         for (let x = 0; x < denArr.length; x++) {
 
             //divide remaining total into bill denom
-            remVar = Math.trunc(calcTotal/denArr[x][0])
-            modVar = calcTotal%denArr[x][0]
+            remVar = Math.trunc(calcTotal/denArr[x][0]) // 3
+            modVar = calcTotal%denArr[x][0] //50
+
+            // console.log("rem :" + remVar+" ");
+            // console.log("mod:" + modVar);
 
             //calculate max bills per single crew member per denom
-            // if(denArr[x][1]===undefined){denArr[x][2]=remVar}
+            if(denArr[x][1]===undefined){denArr[x][2]=remVar}
             if(denArr[x][1]>=remVar){denArr[x][2]=remVar}
             if(denArr[x][1]<remVar){denArr[x][2]=denArr[x][1]}
 
@@ -129,6 +152,24 @@ export const TourRunForm = () => {
             denArr[x][3]=denArr[x][2]*crewTotal
 
             calcTotal = calcTotal - (denArr[x][0]*denArr[x][2])
+
+            //on the last iteration
+            //check the total vs bill denoms
+            //if it doesn't add up, change the styling of the total 
+            if (x===5){
+                let checkTotal = 0
+                for (let index = 0; index < 6; index++) {
+                    checkTotal = checkTotal + (denArr[index][0]*denArr[index][2]*crewAvailable.length)
+                    // console.log(index +" : "+ denArr[index][0]+" : "+denArr[index][2]+" : "+crewAvailable.length+" : "+checkTotal)
+                }
+                if(checkTotal!==tourRun.perDiem*tourRun.daysOut*crewAvailable.length){
+                    setCheckVar(false)
+                    // console.log("No total is wrong");
+                }else{
+                    setCheckVar(true)
+                    // console.log("Yes total is right");
+                };
+            }
         }
 
         setDenArrState(denArr)
@@ -206,6 +247,19 @@ export const TourRunForm = () => {
                 d5: tourRun.d5,
                 d1: tourRun.d1
             })
+            .then(newTourRunObj => { //get added tour run obj
+
+                //for every available crew member, add to tour crew join table with new id from addTourRun fetch
+                crewAvailable.map(crewMember=>{
+                    let crewMemberObj = {
+                        tourRunId: newTourRunObj.id,
+                        crewId: crewMember.id
+                    }
+                    addTourRunCrew(crewMemberObj)
+                    // console.log(newTourRunObj.id + " " + crewMember.firstName + " " + crewMember.lastName);
+                })
+            })
+            .then(getTourRuns) //reset list of tour runs with new added run 
             .then(setTourRun({  //reset state obj as blank to zero out add form
                 name: "",
                 description: "",
@@ -216,12 +270,12 @@ export const TourRunForm = () => {
                 tourId: 0,
                 perDiem: 0,
                 daysOut: 0,
-                d100: "*",
-                d50: "*",
-                d20: "*",
-                d10: "*",
-                d5: "*",
-                d1: "*"
+                d100: "",
+                d50: "",
+                d20: "",
+                d10: "",
+                d5: "",
+                d1: ""
             }))
             .then(setIsLoading(false))
             .then(() => history.push("/tourRun"))
@@ -230,24 +284,27 @@ export const TourRunForm = () => {
     }
 
     useEffect(() => {
-        getCrew()
-        .then(getTours())
-        .then(() => {
+        getTours()
+    }, [])
+    
+    useEffect(()=>{
         if (tourRunId) {
             getTourRunById(tourRunId)
             .then(tourRunObj => {
                 setTourRun(tourRunObj)
+                // console.log(tourRun);
                 setIsLoading(false)
             })
         } else {
             setIsLoading(false)
         }
-        })
-    }, [])
-
+    }, [tourRunId])
 
     useEffect(()=>{
         getCrewAvailable()
+    },[])
+
+    useEffect(()=>{
         calcDenoms()
     },[
         tourRun.d100,
@@ -257,7 +314,8 @@ export const TourRunForm = () => {
         tourRun.d5,
         tourRun.d1,
         tourRun.perDiem,
-        tourRun.daysOut
+        tourRun.daysOut,
+        crewAvailable
     ])
 
     return (
@@ -265,9 +323,9 @@ export const TourRunForm = () => {
         <div className="wrapper">
 
         {/* form is first column */}
-        <form className="tourRunForm ">
-
+        <div>
         <h2 className="tourRunForm__title">{tourRunId ? "Edit TourRun" : "Add TourRunz"}</h2>
+        <form className="tourRunForm ">
 
             <div className="form-group ">
                 <label htmlFor="location">Tour: </label>
@@ -355,7 +413,7 @@ export const TourRunForm = () => {
         <div className="formNotice">*All Fields Required</div>
         
         </form>
-
+        </div>
         {/* second column */}
         <div>
 
@@ -446,6 +504,7 @@ export const TourRunForm = () => {
                         onChange={handleControlledInputChange}
                         required className="form-control" 
                         placeholder="Any" 
+                        maxLength="2"
                         value={tourRun.d1}
                         />
                 </div>
@@ -455,7 +514,11 @@ export const TourRunForm = () => {
             <div align="center">
             <table className="denomsTable">
                 <thead>
-                <tr><th colSpan="3">Crew: {crewAvailable.length} / PD total: ${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}</th></tr>
+                <tr><th colSpan="3">Crew: {crewAvailable.length}, 
+                    <div className={checkVar ? '' : 'totalNo'}>
+                    PD total: ${tourRun.perDiem*tourRun.daysOut}/${tourRun.perDiem*tourRun.daysOut*crewAvailable.length}
+                    </div>
+                </th></tr>
                     <tr>
                         <th>Denom</th>
                         <th>Each</th>
@@ -499,6 +562,6 @@ export const TourRunForm = () => {
             </div>
         </div>
 
-    </div>
+        </div>
     )
     }
