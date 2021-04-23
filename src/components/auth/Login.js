@@ -74,9 +74,16 @@ export const Login = () => {
                 </form>
             </div>
 
-            <div className="link--register">
-                <Link to="/register">Register for an account</Link>
+            <div align="center">
+                <br></br>
+                LOG IN AS TEST@TEST.com
+                <br></br>
+                ALL NAMES IN THE APP ARE RANDOM
             </div>
+
+            {/* <div className="link--register">
+                <Link to="/register">Register for an account</Link>
+            </div> */}
 
             </section>
         </main>
