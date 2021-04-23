@@ -10,9 +10,11 @@ I came from the country touring world where we were in and out often, which mean
 
 ## Get Perdiemz
 Fork or Clone the perdiemz repo
-json-server -w db.json -p 8080
-npm start
+or see the app on the Heroku deployment:
 
+https://perdiemz.herokuapp.com/
+
+username: test@test.com
 
 #
 
@@ -26,7 +28,7 @@ Reactstrap, CSS Grid
 ## Local Data
 My intention originally was to create my tour/crew in Mastertour (MTD), the software I used for years on the road, and expand from there but their API and crew management didn't quite do what I needed them to do, so for the purposes of this app, I used local data in a JSON db,keeping in mind how I did things with MTD.
 
-Artist/CrewTypes were pre-added to the db. However, what Artist a tour is related to isn't needed for this app.
+Artists/CrewTypes were pre-added to the db. What Artist a tour is related to isn't needed for this app.
 
 #
 
@@ -35,16 +37,20 @@ Artist/CrewTypes were pre-added to the db. However, what Artist a tour is relate
 ![Per Diemz Screenshot](https://res.cloudinary.com/dp6mbc90b/image/upload/v1616694110/perDiemzScreenshot_gigzly.png)
 
 ## Login
-A simple fetch validation was provided for us for the sake of having simple user management. Not real world. Bogus data
+A simple fetch validation was provided for us for the sake of having simple user management. Not real world. Bogus data.
 
 ## Crewz
 CRUD your tour crew. Add crew members who will be on the road with you for a particular week.
 
 ## Tourz
-Gotta be on tour to create a run that needs Per Diem. CRUD a tour. Give your tour a name, and a start/end date.
+Gotta be on tour to create a run that needs Per Diem. CRUD a tour. Give your tour a name, and a start/end date. Dates and times don't matter here. They'd really just be for a title on a report for example.
 
 ## Tour Runz
 Get out on the road. Select your tour. Give your "tour run" a name, date/time, per diem amount, days out.
+
+In a perfect world, each run would be a unique crew. That crew could be the same people each week but on occasion someone travels and extra day and needs +1 day per diem. Or someone subbed for someone. Or an additional person was needed on a week. Or you did a TV show and only needed 15 people instead of 50.
+
+All kinds of things that change per diem on a given run. But that added a layer of comlexity that was a bit much for the time we had for the project. 
 
 ## Max Billz
 Select the maximum # of bills you want for each denomination. Typically this is 0-100s and/or 0-50s. But if that results in 24-20s then you can play with the numbers and get the counts you prefer.
