@@ -30,7 +30,7 @@ export const TourProvider = (props) => {
 
     const addTour = tourObj => {
         // debugger
-        return fetch("authApi.localApiBaseUrl+`/tours", {
+        return fetch(authApi.localApiBaseUrl+"/tours", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
