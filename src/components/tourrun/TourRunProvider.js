@@ -43,7 +43,7 @@ export const TourRunProvider = (props) => {
     }
     
     const addTourRun = tourRunObj => {
-        return fetch("http://localhost:8088/tourruns", {
+        return fetch(authApi.localApiBaseUrl+"/tourruns", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

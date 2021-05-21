@@ -85,11 +85,11 @@
       "id": 7
     },
     {
+      "id": 8,
       "userId": 1,
-      "name": "New Tour",
+      "name": "New Tour 123",
       "dateStart": "1/1/20",
-      "dateEnd": "1/5/2005",
-      "id": 8
+      "dateEnd": "1/5/2005"
     }
   ],
   "crewTypes": [
@@ -165,7 +165,7 @@
     },
     {
       "id": 6,
-      "firstName": "Dale 12345",
+      "firstName": "Dale",
       "lastName": "Beil",
       "title": "Merch",
       "crewTypeId": 2,
@@ -359,9 +359,9 @@
       "timeArrive": "11a",
       "tourId": 2,
       "perDiem": 35,
-      "daysOut": 14,
-      "d100": "1",
-      "d50": "1",
+      "daysOut": 13,
+      "d100": "0",
+      "d50": "2",
       "d20": "10",
       "d10": "10",
       "d5": "",
