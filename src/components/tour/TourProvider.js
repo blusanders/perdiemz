@@ -41,7 +41,7 @@ export const TourProvider = (props) => {
     }
 
     const updateTour = tour => {
-        debugger
+        // debugger
         return fetch(authApi.localApiBaseUrl+`/tours/${tour.id}`, {
             method: "PUT",
             headers: {

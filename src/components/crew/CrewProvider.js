@@ -41,7 +41,7 @@ export const CrewProvider = (props) => {
     }
 
     const addCrew = crewObj => {
-        return fetch("http://localhost:8088/crew", {
+        return fetch(authApi.localApiBaseUrl+"/crew", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
